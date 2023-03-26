@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ^11.10.6
   '@emotion/styled': ^11.10.6
+  '@mui/lab': 5.0.0-alpha.124
   '@mui/material': ^5.11.14
   '@types/node': 18.15.5
   '@types/react': 18.0.28
@@ -20,6 +21,7 @@ specifiers:
 dependencies:
   '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
   '@emotion/styled': 11.10.6_oouaibmszuch5k64ms7uxp2aia
+  '@mui/lab': 5.0.0-alpha.124_47xlngixuwh6anafqtkbgvfviu
   '@mui/material': 5.11.14_xqeqsl5kvjjtyxwyi3jhw3yuli
   '@types/node': 18.15.5
   '@types/react': 18.0.28
@@ -286,6 +288,40 @@ packages:
 
   /@mui/core-downloads-tracker/5.11.14:
     resolution: {integrity: sha512-rfc08z6+3Fif+Gopx2/qmk+MEQlwYeA+gOcSK048BHkTty/ol/boHuVeL2BNC/cf9OVRjJLYHtVb/DeW791LSQ==}
+    dev: false
+
+  /@mui/lab/5.0.0-alpha.124_47xlngixuwh6anafqtkbgvfviu:
+    resolution: {integrity: sha512-K/XEv1zYyLi3tS63tyDta1mqWql+at5w7rWp5Yd63Jx1NjPUtgopAvyRZG2SVYPs/yBwfyDPW1iqQXpRw8h9Xw==}
+    engines: {node: '>=12.0.0'}
+    peerDependencies:
+      '@emotion/react': ^11.5.0
+      '@emotion/styled': ^11.3.0
+      '@mui/material': ^5.0.0
+      '@types/react': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@emotion/react':
+        optional: true
+      '@emotion/styled':
+        optional: true
+      '@types/react':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.21.0
+      '@emotion/react': 11.10.6_pmekkgnqduwlme35zpnqhenc34
+      '@emotion/styled': 11.10.6_oouaibmszuch5k64ms7uxp2aia
+      '@mui/base': 5.0.0-alpha.122_zula6vjvt3wdocc4mwcxqa6nzi
+      '@mui/material': 5.11.14_xqeqsl5kvjjtyxwyi3jhw3yuli
+      '@mui/system': 5.11.14_d2lgyfpecxdc2bsiwyag5wf7ti
+      '@mui/types': 7.2.3_@types+react@18.0.28
+      '@mui/utils': 5.11.13_react@18.2.0
+      '@types/react': 18.0.28
+      clsx: 1.2.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-is: 18.2.0
     dev: false
 
   /@mui/material/5.11.14_xqeqsl5kvjjtyxwyi3jhw3yuli:

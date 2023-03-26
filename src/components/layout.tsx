@@ -14,11 +14,10 @@ export default function Layout({ children }: LayoutProps) {
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       />
-      <div className={`pl-32`}>
-        <main className={`${isOpen ? " blur-sm duration-200" : ""}`}>
-          {children}
-        </main>
-      </div>
+
+      <main className={`pl-32 pr-10 ${isOpen ? " blur-sm duration-200" : ""}`}>
+        {children}
+      </main>
     </>
   );
 }

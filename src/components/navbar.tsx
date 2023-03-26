@@ -55,7 +55,7 @@ export default function Navbar({ onMouseEnter, onMouseLeave }: NavbarProps) {
         <Link
           href={"/turbin-angin"}
           className={`py-4 pl-5 h-14 w-full place-items-center duration-300 flex flex-row  gap-4 text-white ${
-            router.pathname === "/turbin-angin"
+            router.pathname.startsWith("/turbin-angin")
               ? "bg-slate-400 bg-opacity-30"
               : "hover:bg-slate-400 hover:bg-opacity-10"
           }`}

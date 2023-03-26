@@ -11,7 +11,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-screen">
+      <div className="min-h-screen">
         <h1 className="text-4xl font-bold pt-16">Ini overview coy</h1>
         <p className="py-10">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -19,7 +19,7 @@ export default function Home() {
           erat volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
           sollicitudin. Etiam et fermentum neque.
         </p>
-      </main>
+      </div>
     </>
   );
 }

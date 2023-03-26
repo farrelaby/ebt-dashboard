@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function PanelSuryaAC() {
+export default function PanelSuryaDC() {
   return (
     <>
       <Head>
@@ -9,10 +9,9 @@ export default function PanelSuryaAC() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-screen">
-        
-      <h2>Aku AC</h2>
-      </main>
+      <div className="min-h-screen">
+        <h2>aku DC</h2>
+      </div>
     </>
   );
 }

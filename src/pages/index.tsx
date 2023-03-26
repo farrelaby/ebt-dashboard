@@ -11,9 +11,14 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        {/* <nav className="min-h-screen w-20 hover:w-40 pr-4 transition-all fixed overflow-hidden bg-[#363740]"></nav> */}
-        <h1 className="text-5xl">Tailwind test</h1>
+      <main className="min-h-screen">
+        <h1 className="text-4xl font-bold pt-16">Ini overview coy</h1>
+        <p className="py-10">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+          fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam
+          erat volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
+          sollicitudin. Etiam et fermentum neque.
+        </p>
       </main>
     </>
   );

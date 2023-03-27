@@ -3,7 +3,6 @@ import { useState } from "react";
 
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
-import Tabs from "@mui/material/Tabs";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 
@@ -18,14 +17,14 @@ function SolarHeader() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold pt-16 ">Monitoring Solar Panel</h1>
-      <p className="pt-10">
+      <h1 className="text-4xl font-bold pt-16 ">Monitoring Panel Surya</h1>
+      <p className="pt-5">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
         fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam erat
         volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
         sollicitudin. Etiam et fermentum neque.
       </p>
-      <Box className="py-10" sx={{ width: "100%", typography: "body1" }}>
+      <Box className="pt-6 pb-8" sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={tabValue}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList
@@ -69,13 +68,13 @@ function WindHeader() {
   return (
     <>
       <h1 className="text-4xl font-bold pt-16">Monitoring Turbin Angin</h1>
-      <p className="pt-10">
+      <p className="pt-5">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
         fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam erat
         volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
         sollicitudin. Etiam et fermentum neque.
       </p>
-      <Box className="py-10" sx={{ width: "100%", typography: "body1" }}>
+      <Box className="pt-6 pb-8" sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={tabValue}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList

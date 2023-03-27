@@ -15,7 +15,9 @@ export default function Layout({ children }: LayoutProps) {
         onMouseLeave={() => setIsOpen(false)}
       />
 
-      <main className={`pl-32 pr-10 ${isOpen ? " blur-sm duration-200" : ""}`}>
+      <main
+        className={` pr-10 ${isOpen ? "pl-72 blur-sm " : "pl-32"} duration-200`}
+      >
         {children}
       </main>
     </>

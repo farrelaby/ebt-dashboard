@@ -13,7 +13,7 @@ export default function Home() {
       </Head>
       <div className="min-h-screen">
         <h1 className="text-4xl font-bold pt-16">Ini overview coy</h1>
-        <p className="py-10">
+        <p className="pt-5">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
           fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam
           erat volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat

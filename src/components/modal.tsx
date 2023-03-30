@@ -12,7 +12,7 @@ import {
   Button,
 } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
-import { format } from "date-fns";
+import { format, sub } from "date-fns";
 
 type DownloadModalProps = {
   open: boolean;
@@ -21,8 +21,10 @@ type DownloadModalProps = {
 };
 
 function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
-  const [startValue, setStartValue] = useState<Date | null>();
-  const [endValue, setEndValue] = useState<Date | null>();
+  const [startValue, setStartValue] = useState<Date | null>(
+    sub(new Date(), { days: 1 })
+  );
+  const [endValue, setEndValue] = useState<Date | null>(new Date());
   const [fileFormat, setFileFormat] = useState("csv");
 
   const deviceParam = {
@@ -34,6 +36,8 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
   const handleFormatChange = (event: SelectChangeEvent) => {
     setFileFormat(event.target.value);
   };
+
+  console.log(sub(new Date(), { days: 1 }));
 
   return (
     <Modal
@@ -53,12 +57,14 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
             <DatePicker
               label="Tanggal Mulai"
               value={startValue}
+              defaultValue={sub(new Date(), { days: 1 })}
               onChange={(newValue) => setStartValue(newValue)}
               disableFuture
             />
             <DatePicker
               label="Tanggal Akhir"
               value={endValue}
+              defaultValue={new Date()}
               onChange={(newValue) => setEndValue(newValue)}
               disableFuture
             />

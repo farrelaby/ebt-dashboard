@@ -1,6 +1,8 @@
 import Head from "next/head";
-// import Image from 'next/image'
+import Image from "next/image";
 import { Inter } from "next/font/google";
+
+import { Skeleton } from "@mui/material";
 
 export default function Home() {
   return (
@@ -12,13 +14,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="min-h-screen">
-        <h1 className="text-4xl font-bold pt-16">Ini overview coy</h1>
-        <p className="pt-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-          fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam
-          erat volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
-          sollicitudin. Etiam et fermentum neque.
-        </p>
+        <div className="flex flex-row pl-6">
+          <Image src="/home-earth.svg" alt="earth" width={300} height={300} />
+          <div>
+            <h1 className="text-4xl font-bold pt-16">
+              Selamat Datang di Dashboard <br /> Sistem Monitoring EBT
+            </h1>
+            <p className="pt-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
+              fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam
+              erat volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
+              sollicitudin. Etiam et fermentum neque.
+            </p>
+          </div>
+        </div>
+        <Skeleton variant="rounded" className="mt-4 h-40" />
+        <Skeleton variant="rounded" className="mt-4 h-40" />
       </div>
     </>
   );

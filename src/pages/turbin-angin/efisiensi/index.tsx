@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { Skeleton } from "@mui/material";
 
 export default function TurbinAnginEfisiensi() {
   return (
@@ -9,8 +10,10 @@ export default function TurbinAnginEfisiensi() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Wind-Turbine.svg" />
       </Head>
-      <div className="min-h-screen">
-        <h2>aku Efisiensi angin</h2>
+      <div className="pb-8">
+        {/* <h2>aku Efisiensi angin</h2> */}
+        <Skeleton variant="rounded" className="mt-4 h-40" />
+        <Skeleton variant="rounded" className="mt-4 h-40" />
       </div>
     </>
   );

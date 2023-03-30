@@ -6,10 +6,19 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 
+interface TabRouterValue {
+  [key: string]: string;
+}
 function SolarHeader() {
   const router = useRouter();
 
-  const [tabValue, setTabValue] = useState("1");
+  const tabRouterValue: TabRouterValue = {
+    "/panel-surya/ac": "1",
+    "/panel-surya/dc": "2",
+    "/panel-surya/efisiensi": "3",
+  };
+
+  const [tabValue, setTabValue] = useState(tabRouterValue[router.pathname]);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue);
@@ -59,7 +68,12 @@ function SolarHeader() {
 function WindHeader() {
   const router = useRouter();
 
-  const [tabValue, setTabValue] = useState("1");
+  const tabRouterValue: TabRouterValue = {
+    "/turbin-angin": "1",
+    "/turbin-angin/efisiensi": "2",
+  };
+
+  const [tabValue, setTabValue] = useState(tabRouterValue[router.pathname]);
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     setTabValue(newValue);

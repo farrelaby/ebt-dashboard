@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 
 import {
   Modal,
@@ -28,16 +29,16 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
   const [fileFormat, setFileFormat] = useState("csv");
 
   const deviceParam = {
-    "Panel Surya AC": "solarAC",
-    "Panel Surya DC": "solarDC",
-    "Turbin Angin": "Turbin",
+    "Panel Surya AC": "suryaAC",
+    "Panel Surya DC": "suryaDC",
+    "Turbin Angin": "turbin",
   };
 
   const handleFormatChange = (event: SelectChangeEvent) => {
     setFileFormat(event.target.value);
   };
 
-  console.log(sub(new Date(), { days: 1 }));
+  // console.log(sub(new Date(), { days: 1 }));
 
   return (
     <Modal
@@ -75,34 +76,50 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
             <MenuItem value="xml">XML</MenuItem>
           </Select>
           <div className="flex flex-row gap-4 mt-4 justify-end">
-            <div> </div>
-            <Button
-              variant="contained"
-              color="primary"
-              size="medium"
-              style={{
-                textTransform: "none",
-                backgroundColor: "#000000",
-              }}
-              onClick={
-                () =>
-                  alert(
-                    `${modalTitle} | ${
-                      deviceParam[modalTitle]
-                    } | ${fileFormat} | ${format(
-                      startValue as Date,
-                      "yyyy-MM-dd"
-                    )} | ${format(endValue as Date, "yyyy-MM-dd")}`
-                  )
-                // to get desired date
-                // format(endValue as Date, "yyyy-MM-dd")
-              }
+            {/* http://10.46.10.128:5000/ebt/download/report/csv?data=suryaDC&from=2023-02-21&to=2023-02-25 */}
+            <Link
+              href={`http://10.46.10.128:5000/ebt/download/report/${fileFormat}?data=${
+                deviceParam[modalTitle]
+              }&from=${format(startValue as Date, "yyyy-MM-dd")}&to=${format(
+                endValue as Date,
+                "yyyy-MM-dd"
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <div className="flex flex-row gap-2">
-                <Image src="/download-logo.svg" alt="" width={20} height={20} />
-                Download Data
-              </div>
-            </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                size="medium"
+                style={{
+                  textTransform: "none",
+                  backgroundColor: "#000000",
+                }}
+                // onClick={
+                //   () =>
+                //     alert(
+                //       `${modalTitle} | ${
+                //         deviceParam[modalTitle]
+                //       } | ${fileFormat} | ${format(
+                //         startValue as Date,
+                //         "yyyy-MM-dd"
+                //       )} | ${format(endValue as Date, "yyyy-MM-dd")}`
+                //     )
+                //   // to get desired date
+                //   // format(endValue as Date, "yyyy-MM-dd")
+                // }
+              >
+                <div className="flex flex-row gap-2">
+                  <Image
+                    src="/download-logo.svg"
+                    alt=""
+                    width={20}
+                    height={20}
+                  />
+                  Download Data
+                </div>
+              </Button>
+            </Link>
           </div>
         </div>
       </Box>

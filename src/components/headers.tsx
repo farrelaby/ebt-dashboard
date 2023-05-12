@@ -25,7 +25,7 @@ function SolarHeader() {
   };
 
   return (
-    <>
+    <header>
       <h1 className="text-4xl font-bold pt-16 ">Monitoring Panel Surya</h1>
       <p className="pt-5">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -61,7 +61,7 @@ function SolarHeader() {
           </Box>
         </TabContext>
       </Box>
-    </>
+    </header>
   );
 }
 
@@ -80,7 +80,7 @@ function WindHeader() {
   };
 
   return (
-    <>
+    <header>
       <h1 className="text-4xl font-bold pt-16">Monitoring Turbin Angin</h1>
       <p className="pt-5">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
@@ -99,7 +99,7 @@ function WindHeader() {
             >
               <Tab
                 onClick={() => router.push("/turbin-angin")}
-                label="AC"
+                label="Data"
                 value="1"
               />
               <Tab
@@ -111,7 +111,7 @@ function WindHeader() {
           </Box>
         </TabContext>
       </Box>
-    </>
+    </header>
   );
 }
 

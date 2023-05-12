@@ -9,22 +9,21 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const queryClient = new QueryClient();
+  const [queryClient] = useState(() => new QueryClient());
+
+  // const queryClient = new QueryClient();
 
   return (
     <>
       <QueryClientProvider client={queryClient}>
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <Layout>
-            <>
-              {router.pathname.startsWith("/panel-surya") && <SolarHeader />}
-              {router.pathname.startsWith("/turbin-angin") && <WindHeader />}
-              <Component {...pageProps} />
-            </>
+            <Component {...pageProps} />
           </Layout>
         </LocalizationProvider>
         <ReactQueryDevtools initialIsOpen={false} />

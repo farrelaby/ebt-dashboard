@@ -1,10 +1,49 @@
 import Head from "next/head";
 import Image from "next/image";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
+
+import { useQueries } from "@tanstack/react-query";
+import axios from "axios";
+import { RealData } from "@/types/types";
 
 import { Skeleton } from "@mui/material";
+import { RealTimeCard } from "@/components/cards";
+import { useState } from "react";
 
 export default function Home() {
+  const [solarDropdown, setSolarDropdown] = useState("AC");
+  const solarDropdownHandler = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setSolarDropdown(event.target.value);
+  };
+
+  const [solarReal, windReal] = useQueries({
+    queries: [
+      {
+        queryKey: ["realData", { data: `surya${solarDropdown}` }],
+        queryFn: async () => {
+          const res = await axios.get(
+            `http://10.46.10.128:5000/ebt?data=surya${solarDropdown}`
+          );
+          return res.data.value[4] as RealData;
+        },
+      },
+      {
+        queryKey: ["realData", { data: "turbin" }],
+        queryFn: async () => {
+          const res = await axios.get(
+            "http://10.46.10.128:5000/ebt?data=turbin"
+          );
+          return res.data.value[4] as RealData;
+        },
+      },
+    ],
+  });
+
+  // console.log(solarDropdown);
+  // console.log(solarReal.data);
+
   return (
     <>
       <Head>
@@ -13,10 +52,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
       <div className="min-h-screen">
-        <div className="flex flex-row pl-6">
-          <Image src="/home-earth.svg" alt="earth" width={300} height={300} />
-          <div>
+        <header className="flex flex-row pl-6 ">
+          <Image src="/home-earth.svg" alt="earth" width={200} height={200} />
+          <div className="relative bottom-4">
             <h1 className="text-4xl font-bold pt-16">
               Selamat Datang di Dashboard <br /> Sistem Monitoring EBT
             </h1>
@@ -27,10 +67,100 @@ export default function Home() {
               sollicitudin. Etiam et fermentum neque.
             </p>
           </div>
-        </div>
-        <Skeleton variant="rounded" className="mt-4 h-40" />
-        <Skeleton variant="rounded" className="mt-4 h-40" />
+        </header>
+
+        <section className="mt-4">
+          <div className="flex flex-row gap-4">
+            <h3 className="text-2xl font-semibold">
+              Monitoring <span className="text-[#9747FF]">Panel Surya</span>
+            </h3>
+            <select
+              onChange={solarDropdownHandler}
+              name=""
+              id=""
+              className="px-3 border border-gray-300"
+            >
+              <option value="AC">AC</option>
+              <option value="DC">DC</option>
+            </select>
+          </div>
+          <div className="flex flex-row mt-5 gap-4">
+            <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div>
+            <div className="flex flex-col gap-4 mt-2">
+              {solarReal.isSuccess ? (
+                <>
+                  <OverviewCard
+                    value={solarReal.data.power}
+                    unit="Watt"
+                    title="Daya"
+                  />
+                  <OverviewCard
+                    value={solarReal.data.energy}
+                    unit="kWh"
+                    title="Energi"
+                  />
+                </>
+              ) : (
+                <>
+                  <Skeleton variant="rounded" height={176} width={224} />
+                  <Skeleton variant="rounded" height={176} width={224} />
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section className="mt-8">
+          <h3 className="text-2xl font-semibold">
+            Monitoring <span className="text-[#9747FF]">Turbin Angin</span>
+          </h3>
+          <div className="flex flex-row mt-5 gap-4">
+            <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div>
+            <div className="flex flex-col gap-4 mt-2">
+              {windReal.isSuccess ? (
+                <>
+                  <OverviewCard
+                    value={windReal.data.power}
+                    unit="Watt"
+                    title="Daya"
+                  />
+                  <OverviewCard
+                    value={windReal.data.energy}
+                    unit="kWh"
+                    title="Energi"
+                  />
+                </>
+              ) : (
+                <>
+                  <Skeleton variant="rounded" height={176} width={224} />
+                  <Skeleton variant="rounded" height={176} width={224} />
+                </>
+              )}
+            </div>
+          </div>
+        </section>
+
+        <Skeleton variant="rounded" height={160} className="mt-4 " />
+        <Skeleton variant="rounded" height={160} className="mt-4 " />
       </div>
     </>
+  );
+}
+
+function OverviewCard({
+  value,
+  unit,
+  title,
+}: {
+  value: number | undefined | null;
+  unit: string;
+  title: string;
+}) {
+  return (
+    <div className="bg-white w-56 h-44 shadow-md flex flex-col place-items-center justify-center rounded-lg">
+      <h4 className="text-5xl font-semibold">{value ?? "-"}</h4>
+      <p className="text-xl text-[#A4A6B3]">{unit}</p>
+      <div className="text-xl font-semibold text-[#9747FF]">{title}</div>
+    </div>
   );
 }

@@ -81,7 +81,7 @@ export default function PanelSuryaDC() {
                   />
                   <RealTimeCard
                     value={realData.data?.energy}
-                    unit="Watt"
+                    unit="kWh"
                     title="Energi"
                   />
                 </>

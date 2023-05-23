@@ -83,7 +83,7 @@ export default function TurbinAngin() {
                   />
                   <RealTimeCard
                     value={realData.data?.energy}
-                    unit="Watt"
+                    unit="kWh"
                     title="Energi"
                   />
                   <RealTimeCard

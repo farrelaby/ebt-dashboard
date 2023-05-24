@@ -17,3 +17,13 @@ export interface DailyData {
     power_factor: number;
   };
 }
+
+export interface MonthlyData {
+  tanggal: string;
+  value: {
+    avg_harian_tegangan: number;
+    avg_harian_arus: number;
+    sum_harian_daya: number;
+    sum_harian_energi: number;
+  };
+}

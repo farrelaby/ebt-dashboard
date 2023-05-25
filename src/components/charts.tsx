@@ -1,36 +1,18 @@
 import { DailyData, MonthlyData, YearlyData } from "@/types/types";
-import { format } from "date-fns";
 
 import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function EnergyDailyChart({ data }: { data: DailyData[] }) {
-  // const barData = [10, 20, 30, 40, 50];
   const y1Data = [20, 40, 60, 80, 90];
-  // const timestamps = [
-  //   "2018-09-19T00:00:00.000Z",
-  //   "2018-09-19T01:30:00.000Z",
-  //   "2018-09-19T02:30:00.000Z",
-  //   "2018-09-19T03:30:00.000Z",
-  //   "2018-09-19T04:30:00.000Z",
-  // ];
+
   const barData: number[] = [];
   const timestamps: string[] = [];
 
   data?.map((data) => {
     barData.push(data.value.energy);
     timestamps.push(data.db_created_at);
-    // change the timestamp timezone to GMT+7 and push it to timestamps array without date-fns with format yyyy-MM-dd HH:mm:ss
-    // timestamps.push(
-    //   utcToZonedTime(data.db_created_at, "Asia/Jakarta").toString()
-    // format(
-    //   utcToZonedTime(data.db_created_at, "Asia/Jakarta"),
-    //   "yyyy-MM-dd HH:mm:ss"
-    // )
-    // );
   });
-
-  // console.log(timestamps);
 
   const series = [
     {
@@ -49,12 +31,12 @@ function EnergyDailyChart({ data }: { data: DailyData[] }) {
     chart: {
       stacked: false,
       zoom: {
-        type: "x",
+        type: "x" as "x",
         enabled: true,
         autoScaleYaxis: true,
       },
       toolbar: {
-        autoSelected: "zoom",
+        autoSelected: "zoom" as "zoom",
       },
     },
     dataLabels: {
@@ -80,20 +62,12 @@ function EnergyDailyChart({ data }: { data: DailyData[] }) {
       },
     ],
     xaxis: {
-      type: "datetime",
+      type: "datetime" as "datetime",
       categories: timestamps,
       labels: {
         format: "HH:mm:ss",
         datetimeUTC: false,
       },
-      // labels: {
-      //   formatter: (value, timestamp) => {
-      //     let localTime = addHours(new Date(timestamp), 0);
-      //     return format(localTime, "dd/MM/yy HH:mm:ss");
-      //   },
-      // },
-      // min: new Date("2018-09-19T00:00:00.000Z").getTime(),
-      // max: new Date("2018-09-19T23:59:00.000Z").getTime(),
     },
     tooltip: {
       shared: true,
@@ -139,11 +113,10 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
     chart: {
       stacked: false,
       zoom: {
-        type: "x",
         enabled: false,
       },
       toolbar: {
-        autoSelected: "zoom",
+        autoSelected: "zoom" as "zoom",
       },
     },
     dataLabels: {
@@ -158,7 +131,7 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
       },
     ],
     xaxis: {
-      type: "datetime",
+      type: "datetime" as "datetime",
       categories: timestamps,
     },
     tooltip: {
@@ -216,11 +189,7 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
     chart: {
       stacked: false,
       zoom: {
-        type: "x",
         enabled: false,
-      },
-      toolbar: {
-        autoSelected: "zoom",
       },
     },
     dataLabels: {
@@ -235,7 +204,6 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
       },
     ],
     xaxis: {
-      //   type: "datetime",
       categories: timestamps,
     },
     tooltip: {

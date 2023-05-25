@@ -1,4 +1,5 @@
-import { DailyData, MonthlyData } from "@/types/types";
+import { DailyData, MonthlyData, YearlyData } from "@/types/types";
+import { format } from "date-fns";
 
 import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
@@ -16,7 +17,7 @@ function EnergyDailyChart({ data }: { data: DailyData[] }) {
   const barData: number[] = [];
   const timestamps: string[] = [];
 
-  data.map((data) => {
+  data?.map((data) => {
     barData.push(data.value.energy);
     timestamps.push(data.db_created_at);
     // change the timestamp timezone to GMT+7 and push it to timestamps array without date-fns with format yyyy-MM-dd HH:mm:ss
@@ -35,6 +36,9 @@ function EnergyDailyChart({ data }: { data: DailyData[] }) {
     {
       name: "Energi",
       data: barData,
+      fill: {
+        colors: ["#A300D6"],
+      },
     },
     { name: "Solar Irradiance", data: y1Data, yAxisIndex: 1 },
   ];
@@ -119,7 +123,7 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
   const barData: number[] = [];
   const timestamps: string[] = [];
 
-  data.map((data) => {
+  data?.map((data) => {
     barData.push(data.value.sum_harian_energi);
     timestamps.push(data.tanggal);
   });
@@ -177,4 +181,81 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
   );
 }
 
-export { EnergyDailyChart, EnergyMonthlyChart };
+function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
+  const barData: number[] = [];
+  const timestamps: string[] = [];
+
+  const monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  data?.map((data) => {
+    barData.push(data.value.sum_bulanan_energi);
+    timestamps.push(monthNames[data.bulan_ke - 1]);
+  });
+
+  const series = [
+    {
+      name: "Energi",
+      data: barData,
+    },
+  ];
+
+  const options = {
+    chart: {
+      stacked: false,
+      zoom: {
+        type: "x",
+        enabled: false,
+      },
+      toolbar: {
+        autoSelected: "zoom",
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+
+    yaxis: [
+      {
+        title: {
+          text: "Energi (kWh)",
+        },
+      },
+    ],
+    xaxis: {
+      //   type: "datetime",
+      categories: timestamps,
+    },
+    tooltip: {
+      x: {
+        format: "MMMM",
+      },
+    },
+  };
+
+  return (
+    <>
+      <ApexChart
+        options={options}
+        series={series}
+        type="bar"
+        width={1100}
+        height={420}
+      />
+    </>
+  );
+}
+
+export { EnergyDailyChart, EnergyMonthlyChart, EnergyYearlyChart };

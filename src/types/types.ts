@@ -27,3 +27,13 @@ export interface MonthlyData {
     sum_harian_energi: number;
   };
 }
+
+export interface YearlyData {
+  bulan_ke: number;
+  value: {
+    avg_bulanan_tegangan: number;
+    avg_bulanan_arus: number;
+    sum_bulanan_daya: number;
+    sum_bulanan_energi: number;
+  };
+}

@@ -8,8 +8,12 @@ import { Skeleton } from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 
 import { RealTimeCard } from "@/components/cards";
-import { EnergyDailyChart, EnergyMonthlyChart } from "@/components/charts";
-import { RealData, DailyData, MonthlyData } from "@/types/types";
+import {
+  EnergyDailyChart,
+  EnergyMonthlyChart,
+  EnergyYearlyChart,
+} from "@/components/charts";
+import { RealData, DailyData, MonthlyData, YearlyData } from "@/types/types";
 
 import { useQueries } from "@tanstack/react-query";
 import axios from "axios";
@@ -79,7 +83,7 @@ export default function PanelSuryaAC() {
               yearlyDate as Date
             )}`
           );
-          return res.data.value;
+          return res.data.value as YearlyData[];
         },
       },
     ],
@@ -227,19 +231,19 @@ export default function PanelSuryaAC() {
                 Produksi Energi <span className="text-[#9747FF]">Tahunan</span>
               </h3>
               <DatePicker
-                label="Masukkan Bulan"
-                value={monthlyDate}
+                label="Masukkan Tahun"
+                value={yearlyDate}
                 defaultValue={new Date()}
-                onChange={(newValue) => setMonthlyDate(newValue)}
+                onChange={(newValue) => setYearlyDate(newValue)}
                 disableFuture
-                openTo="month"
-                views={["month", "year"]}
+                openTo="year"
+                views={["year"]}
                 className="mr-16"
               />
             </div>
             <div className="mt-9 ml-16">
-              {monthlyData.isSuccess ? (
-                <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
+              {yearlyData.isSuccess ? (
+                <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={420} />
               )}
@@ -247,8 +251,8 @@ export default function PanelSuryaAC() {
           </div>
         </section>
 
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
+        {/* <Skeleton variant="rounded" height={160} className="mt-4 " />
+        <Skeleton variant="rounded" height={160} className="mt-4 " /> */}
       </div>
     </>
   );

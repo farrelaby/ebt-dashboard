@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Sensor {
+  id         String    @id
+  siteId     String
+  name       String
+  unit       String?
+  min        String?
+  max        String?
+  alias      String
+  lastUpdate DateTime?
+  Site       Site      @relation(fields: [siteId], references: [id], onDelete: Cascade)
+  Value      Value[]
+
+  @@unique([siteId, alias])
+}
+
+model Site {
+  id     String   @id
+  name   String
+  alias  String?  @unique
+  ip     String?
+  Sensor Sensor[]
+}
+
+model Value {
+  id         Int       @id @default(autoincrement())
+  created_at DateTime
+  value      Float
+  sensorId   String
+  measure_at DateTime?
+  Sensor     Sensor    @relation(fields: [sensorId], references: [id], onDelete: Cascade)
+
+  @@index([created_at])
+  @@index([sensorId, created_at])
+}

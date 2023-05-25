@@ -2,25 +2,91 @@ import Head from "next/head";
 import { useState } from "react";
 import { DownloadButton } from "../../../components/button";
 import { DownloadModal } from "@/components/modal";
-import { Skeleton } from "@mui/material";
-import { RealTimeCard } from "@/components/cards";
-import { RealData } from "@/types/types";
+import { format, getMonth, getYear } from "date-fns";
 
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { Skeleton } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+
+import { RealTimeCard } from "@/components/cards";
+import {
+  EnergyDailyChart,
+  EnergyMonthlyChart,
+  EnergyYearlyChart,
+} from "@/components/charts";
+import { RealData, DailyData, MonthlyData, YearlyData } from "@/types/types";
+
+import { useQueries } from "@tanstack/react-query";
 import axios from "axios";
 
 export default function PanelSuryaDC() {
   const [open, setOpen] = useState(false);
 
-  const realData = useQuery<RealData>({
-    queryKey: ["realData", { data: "suryaDC" }],
-    queryFn: async () => {
-      const res = await axios.get("http://10.46.10.128:5000/ebt?data=suryaDC");
-      return res.data.value[4];
-    },
-    // staleTime: 10000,
+  const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
+  const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
+  const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-    refetchInterval: 10000,
+  const [realData, dailyData, monthlyData, yearlyData] = useQueries({
+    queries: [
+      {
+        queryKey: ["realData", { data: "suryaDC" }],
+        queryFn: async () => {
+          const res = await axios.get(
+            "http://10.46.10.128:5000/ebt?data=suryaDC"
+          );
+          return res.data.value[4] as RealData;
+        },
+      },
+      {
+        queryKey: [
+          "dailyData",
+          { data: "suryaDC", waktu: format(dailyDate as Date, "yyyy-MM-dd") },
+        ],
+        queryFn: async () => {
+          const res = await axios.get(
+            `http://10.46.10.128:5000/ebt/harian?data=suryaDC&waktu=${format(
+              dailyDate as Date,
+              "yyyy-MM-dd"
+            )}`
+          );
+          return res.data.value as DailyData[];
+        },
+      },
+      {
+        queryKey: [
+          "monthlyData",
+          {
+            data: "suryaDC",
+            bulan: getMonth(monthlyDate as Date) + 1,
+            tahun: getYear(monthlyDate as Date),
+          },
+        ],
+        queryFn: async () => {
+          const res = await axios.get(
+            `http://10.46.10.128:5000/ebt/akumulasi/harian/suryaDC?bulan=${
+              getMonth(monthlyDate as Date) + 1
+            }&tahun=${getYear(monthlyDate as Date)}`
+          );
+          return res.data.value as MonthlyData[];
+        },
+      },
+      {
+        queryKey: [
+          "yearlyData",
+          {
+            data: "suryaDC",
+            tahun: getYear(yearlyDate as Date),
+          },
+        ],
+        queryFn: async () => {
+          const res = await axios.get(
+            `http://10.46.10.128:5000/ebt/akumulasi/bulanan/suryaDC?tahun=${getYear(
+              yearlyDate as Date
+            )}`
+          );
+          return res.data.value as YearlyData[];
+        },
+      },
+    ],
   });
 
   return (
@@ -47,7 +113,12 @@ export default function PanelSuryaDC() {
               </h3>
               {realData.isSuccess && (
                 <p className="italic text-sm">
-                  Last updated : {realData.data?.db_created_at}
+                  Last updated :{" "}
+                  {format(
+                    new Date(realData.data?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
                 </p>
               )}
               {/* <p className="italic">Last updated : {}</p> */}
@@ -89,8 +160,85 @@ export default function PanelSuryaDC() {
             </div>
           </div>
         </div>
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
+        <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <h3 className="text-2xl font-bold">
+                Produksi Energi <span className="text-[#9747FF]">Harian</span>
+              </h3>
+              <DatePicker
+                label="Masukkan Tanggal"
+                value={dailyDate}
+                defaultValue={new Date()}
+                onChange={(newValue) => setDailyDate(newValue)}
+                disableFuture
+                format="dd/MM/yyyy"
+                className="mr-16"
+              />
+            </div>
+            <div className="mt-9 ml-16">
+              {dailyData.isSuccess ? (
+                <EnergyDailyChart data={dailyData.data as DailyData[]} />
+              ) : (
+                <Skeleton variant="rectangular" width={1100} height={420} />
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section id="bulanan" className="mt-9 flex flex-col bg-white shadow-md">
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <h3 className="text-2xl font-bold">
+                Produksi Energi <span className="text-[#9747FF]">Bulanan</span>
+              </h3>
+              <DatePicker
+                label="Masukkan Bulan"
+                value={monthlyDate}
+                defaultValue={new Date()}
+                onChange={(newValue) => setMonthlyDate(newValue)}
+                disableFuture
+                openTo="month"
+                views={["month", "year"]}
+                className="mr-16"
+              />
+            </div>
+            <div className="mt-9 ml-16">
+              {monthlyData.isSuccess ? (
+                <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
+              ) : (
+                <Skeleton variant="rectangular" width={1100} height={420} />
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section id="tahunan" className="mt-9 flex flex-col bg-white shadow-md">
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <h3 className="text-2xl font-bold">
+                Produksi Energi <span className="text-[#9747FF]">Tahunan</span>
+              </h3>
+              <DatePicker
+                label="Masukkan Tahun"
+                value={yearlyDate}
+                defaultValue={new Date()}
+                onChange={(newValue) => setYearlyDate(newValue)}
+                disableFuture
+                openTo="year"
+                views={["year"]}
+                className="mr-16"
+              />
+            </div>
+            <div className="mt-9 ml-16">
+              {yearlyData.isSuccess ? (
+                <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
+              ) : (
+                <Skeleton variant="rectangular" width={1100} height={420} />
+              )}
+            </div>
+          </div>
+        </section>
       </div>
     </>
   );

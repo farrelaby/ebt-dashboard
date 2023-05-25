@@ -23,7 +23,7 @@ export default function Layout({ children }: LayoutProps) {
       <main
         className={` pr-10 ${
           isOpen ? "pl-72 blur-sm " : "pl-32"
-        } duration-200 bg-[#fafafa]`}
+        } duration-200 bg-[#fafafa] overflow-hidden`}
       >
         {router.pathname.startsWith("/panel-surya") && <SolarHeader />}
         {router.pathname.startsWith("/turbin-angin") && <WindHeader />}

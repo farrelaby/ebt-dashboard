@@ -37,3 +37,8 @@ export interface YearlyData {
     sum_bulanan_energi: number;
   };
 }
+
+export interface OutdoorSolarData {
+  created_at: string;
+  value: number;
+}

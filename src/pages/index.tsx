@@ -7,11 +7,13 @@ import axios from "axios";
 import { RealData } from "@/types/types";
 
 import { Skeleton } from "@mui/material";
-import { RealTimeCard } from "@/components/cards";
+
+import { RealChart } from "@/components/charts";
+
 import { useState } from "react";
 
 export default function Home() {
-  const [solarDropdown, setSolarDropdown] = useState("AC");
+  const [solarDropdown, setSolarDropdown] = useState("suryaAC");
   const solarDropdownHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -21,12 +23,12 @@ export default function Home() {
   const [solarReal, windReal] = useQueries({
     queries: [
       {
-        queryKey: ["realData", { data: `surya${solarDropdown}` }],
+        queryKey: ["realData", { data: `${solarDropdown}` }],
         queryFn: async () => {
           const res = await axios.get(
-            `http://10.46.10.128:5000/ebt?data=surya${solarDropdown}`
+            `http://10.46.10.128:5000/ebt?data=${solarDropdown}`
           );
-          return res.data.value[4] as RealData;
+          return res.data.value as RealData[];
         },
       },
       {
@@ -35,14 +37,11 @@ export default function Home() {
           const res = await axios.get(
             "http://10.46.10.128:5000/ebt?data=turbin"
           );
-          return res.data.value[4] as RealData;
+          return res.data.value as RealData[];
         },
       },
     ],
   });
-
-  // console.log(solarDropdown);
-  // console.log(solarReal.data);
 
   return (
     <>
@@ -53,7 +52,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="min-h-screen">
+      <div className="min-h-screen pb-8">
         <header className="flex flex-row pl-6 ">
           <Image src="/home-earth.svg" alt="earth" width={200} height={200} />
           <div className="relative bottom-4">
@@ -80,22 +79,27 @@ export default function Home() {
               id=""
               className="px-3 border border-gray-300"
             >
-              <option value="AC">AC</option>
-              <option value="DC">DC</option>
+              <option value="suryaAC">AC</option>
+              <option value="suryaDC">DC</option>
             </select>
           </div>
           <div className="flex flex-row mt-5 gap-4">
-            <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div>
+            {solarReal.isSuccess ? (
+              <RealChart />
+            ) : (
+              <Skeleton variant="rounded" width={950} height={384} />
+            )}
+
             <div className="flex flex-col gap-4 mt-2">
               {solarReal.isSuccess ? (
                 <>
                   <OverviewCard
-                    value={solarReal.data.power}
+                    value={solarReal?.data[4]?.power}
                     unit="Watt"
                     title="Daya"
                   />
                   <OverviewCard
-                    value={solarReal.data.energy}
+                    value={solarReal?.data[4]?.energy}
                     unit="kWh"
                     title="Energi"
                   />
@@ -115,17 +119,18 @@ export default function Home() {
             Monitoring <span className="text-[#9747FF]">Turbin Angin</span>
           </h3>
           <div className="flex flex-row mt-5 gap-4">
-            <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div>
+            {/* <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div> */}
+            <RealChart />
             <div className="flex flex-col gap-4 mt-2">
               {windReal.isSuccess ? (
                 <>
                   <OverviewCard
-                    value={windReal.data.power}
+                    value={windReal?.data[4]?.power}
                     unit="Watt"
                     title="Daya"
                   />
                   <OverviewCard
-                    value={windReal.data.energy}
+                    value={windReal?.data[4]?.energy}
                     unit="kWh"
                     title="Energi"
                   />
@@ -140,8 +145,8 @@ export default function Home() {
           </div>
         </section>
 
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
+        {/* <Skeleton variant="rounded" height={160} className="mt-4 " />
+        <Skeleton variant="rounded" height={160} className="mt-4 " /> */}
       </div>
     </>
   );

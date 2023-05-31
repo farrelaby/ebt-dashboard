@@ -2,27 +2,32 @@ import Head from "next/head";
 import { useState } from "react";
 import { DownloadButton } from "../../components/button";
 import { DownloadModal } from "@/components/modal";
-import { Skeleton } from "@mui/material";
-import { RealTimeCard } from "@/components/cards";
-import { RealData } from "@/types/types";
 
-import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import { Skeleton } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+
+import { RealTimeCard } from "@/components/cards";
+import {
+  EnergyDailyChart,
+  EnergyMonthlyChart,
+  EnergyYearlyChart,
+} from "@/components/charts";
+import { DailyData, MonthlyData, YearlyData } from "@/types/types";
+
+import { useWindFetch } from "@/hooks/wind.hooks";
 
 export default function TurbinAngin() {
   const [open, setOpen] = useState(false);
 
-  const realData = useQuery<RealData>({
-    queryKey: ["realData", { data: "turbin" }],
-    queryFn: async () => {
-      const res = await axios.get("http://10.46.10.128:5000/ebt?data=turbin");
-      return res.data.value[4];
-    },
-    // staleTime: 10000,
-    // refetchInterval: 1000,
-  });
+  const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
+  const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
+  const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-  console.log(realData.data?.energy);
+  const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
+    dailyDate,
+    monthlyDate,
+    yearlyDate
+  );
 
   return (
     <>
@@ -32,6 +37,7 @@ export default function TurbinAngin() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Wind-Turbine.svg" />
       </Head>
+
       <div className="pb-8">
         <DownloadButton onClick={() => setOpen(true)} />
         <DownloadModal
@@ -40,7 +46,7 @@ export default function TurbinAngin() {
           onClose={() => setOpen(false)}
         />
 
-        <div className="mt-4 flex flex-col bg-white shadow-md">
+        <section className="mt-4 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <h3 className="text-2xl font-bold">
@@ -95,9 +101,92 @@ export default function TurbinAngin() {
               )}
             </div>
           </div>
-        </div>
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
-        <Skeleton variant="rounded" height={160} className="mt-4 " />
+        </section>
+
+        <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <h3 className="text-2xl font-bold">
+                Produksi Energi <span className="text-[#9747FF]">Harian</span>
+              </h3>
+              <DatePicker
+                label="Masukkan Tanggal"
+                value={dailyDate}
+                defaultValue={new Date()}
+                onChange={(newValue) => setDailyDate(newValue)}
+                disableFuture
+                format="dd/MM/yyyy"
+                className="mr-16"
+              />
+            </div>
+            <div className="mt-9 ml-16">
+              {dailyData.isSuccess ? (
+                <EnergyDailyChart
+                  data={dailyData.data as DailyData[]}
+                  outdoorData={[]}
+                />
+              ) : (
+                <Skeleton variant="rectangular" width={1100} height={420} />
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section id="bulanan" className="mt-9 flex flex-col bg-white shadow-md">
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <h3 className="text-2xl font-bold">
+                Produksi Energi <span className="text-[#9747FF]">Bulanan</span>
+              </h3>
+              <DatePicker
+                label="Masukkan Bulan"
+                value={monthlyDate}
+                defaultValue={new Date()}
+                onChange={(newValue) => setMonthlyDate(newValue)}
+                disableFuture
+                openTo="month"
+                views={["month", "year"]}
+                className="mr-16"
+              />
+            </div>
+            <div className="mt-9 ml-16">
+              {monthlyData.isSuccess ? (
+                <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
+              ) : (
+                <Skeleton variant="rectangular" width={1100} height={420} />
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section id="tahunan" className="mt-9 flex flex-col bg-white shadow-md">
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <h3 className="text-2xl font-bold">
+                Produksi Energi <span className="text-[#9747FF]">Tahunan</span>
+              </h3>
+              <DatePicker
+                label="Masukkan Tahun"
+                value={yearlyDate}
+                defaultValue={new Date()}
+                onChange={(newValue) => setYearlyDate(newValue)}
+                disableFuture
+                openTo="year"
+                views={["year"]}
+                className="mr-16"
+              />
+            </div>
+            <div className="mt-9 ml-16">
+              {yearlyData.isSuccess ? (
+                <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
+              ) : (
+                <Skeleton variant="rectangular" width={1100} height={420} />
+              )}
+            </div>
+          </div>
+        </section>
+        {/* <Skeleton variant="rounded" height={160} className="mt-4 " />
+        <Skeleton variant="rounded" height={160} className="mt-4 " /> */}
       </div>
     </>
   );

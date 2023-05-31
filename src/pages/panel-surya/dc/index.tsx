@@ -13,10 +13,18 @@ import {
   EnergyMonthlyChart,
   EnergyYearlyChart,
 } from "@/components/charts";
-import { RealData, DailyData, MonthlyData, YearlyData } from "@/types/types";
+import {
+  RealData,
+  DailyData,
+  MonthlyData,
+  YearlyData,
+  OutdoorSolarData,
+} from "@/types/types";
 
-import { useQueries } from "@tanstack/react-query";
-import axios from "axios";
+// import { useQueries } from "@tanstack/react-query";
+// import axios from "axios";
+
+import { useSolarFetch } from "@/hooks/solar.hooks";
 
 export default function PanelSuryaDC() {
   const [open, setOpen] = useState(false);
@@ -25,69 +33,88 @@ export default function PanelSuryaDC() {
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-  const [realData, dailyData, monthlyData, yearlyData] = useQueries({
-    queries: [
-      {
-        queryKey: ["realData", { data: "suryaDC" }],
-        queryFn: async () => {
-          const res = await axios.get(
-            "http://10.46.10.128:5000/ebt?data=suryaDC"
-          );
-          return res.data.value[4] as RealData;
-        },
-      },
-      {
-        queryKey: [
-          "dailyData",
-          { data: "suryaDC", waktu: format(dailyDate as Date, "yyyy-MM-dd") },
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/harian?data=suryaDC&waktu=${format(
-              dailyDate as Date,
-              "yyyy-MM-dd"
-            )}`
-          );
-          return res.data.value as DailyData[];
-        },
-      },
-      {
-        queryKey: [
-          "monthlyData",
-          {
-            data: "suryaDC",
-            bulan: getMonth(monthlyDate as Date) + 1,
-            tahun: getYear(monthlyDate as Date),
-          },
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/akumulasi/harian/suryaDC?bulan=${
-              getMonth(monthlyDate as Date) + 1
-            }&tahun=${getYear(monthlyDate as Date)}`
-          );
-          return res.data.value as MonthlyData[];
-        },
-      },
-      {
-        queryKey: [
-          "yearlyData",
-          {
-            data: "suryaDC",
-            tahun: getYear(yearlyDate as Date),
-          },
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/akumulasi/bulanan/suryaDC?tahun=${getYear(
-              yearlyDate as Date
-            )}`
-          );
-          return res.data.value as YearlyData[];
-        },
-      },
-    ],
-  });
+  // const [realData, dailyData, monthlyData, yearlyData, outdoorSolarData] =
+  //   useQueries({
+  //     queries: [
+  //       {
+  //         queryKey: ["realData", { data: "suryaDC" }],
+  //         queryFn: async () => {
+  //           const res = await axios.get(
+  //             "http://10.46.10.128:5000/ebt?data=suryaDC"
+  //           );
+  //           return res.data.value[4] as RealData;
+  //         },
+  //       },
+  //       {
+  //         queryKey: [
+  //           "dailyData",
+  //           { data: "suryaDC", waktu: format(dailyDate as Date, "yyyy-MM-dd") },
+  //         ],
+  //         queryFn: async () => {
+  //           const res = await axios.get(
+  //             `http://10.46.10.128:5000/ebt/harian?data=suryaDC&waktu=${format(
+  //               dailyDate as Date,
+  //               "yyyy-MM-dd"
+  //             )}`
+  //           );
+  //           return res.data.value as DailyData[];
+  //         },
+  //       },
+  //       {
+  //         queryKey: [
+  //           "monthlyData",
+  //           {
+  //             data: "suryaDC",
+  //             bulan: getMonth(monthlyDate as Date) + 1,
+  //             tahun: getYear(monthlyDate as Date),
+  //           },
+  //         ],
+  //         queryFn: async () => {
+  //           const res = await axios.get(
+  //             `http://10.46.10.128:5000/ebt/akumulasi/harian/suryaDC?bulan=${
+  //               getMonth(monthlyDate as Date) + 1
+  //             }&tahun=${getYear(monthlyDate as Date)}`
+  //           );
+  //           return res.data.value as MonthlyData[];
+  //         },
+  //       },
+  //       {
+  //         queryKey: [
+  //           "yearlyData",
+  //           {
+  //             data: "suryaDC",
+  //             tahun: getYear(yearlyDate as Date),
+  //           },
+  //         ],
+  //         queryFn: async () => {
+  //           const res = await axios.get(
+  //             `http://10.46.10.128:5000/ebt/akumulasi/bulanan/suryaDC?tahun=${getYear(
+  //               yearlyDate as Date
+  //             )}`
+  //           );
+  //           return res.data.value as YearlyData[];
+  //         },
+  //       },
+  //       {
+  //         queryKey: [
+  //           "outdoorSolarData",
+  //           { tanggal: format(dailyDate as Date, "yyyy-MM-dd") },
+  //         ],
+  //         queryFn: async () => {
+  //           const res = await axios.get(
+  //             `http://localhost:3000/api/solar?tanggal=${format(
+  //               dailyDate as Date,
+  //               "yyyy-MM-dd"
+  //             )}`
+  //           );
+  //           return res.data as OutdoorSolarData[];
+  //         },
+  //       },
+  //     ],
+  //   });
+
+  const [realData, dailyData, monthlyData, yearlyData, outdoorSolarData] =
+    useSolarFetch("suryaDC", dailyDate, monthlyDate, yearlyDate);
 
   return (
     <>
@@ -178,7 +205,10 @@ export default function PanelSuryaDC() {
             </div>
             <div className="mt-9 ml-16">
               {dailyData.isSuccess ? (
-                <EnergyDailyChart data={dailyData.data as DailyData[]} />
+                <EnergyDailyChart
+                  data={dailyData.data as DailyData[]}
+                  outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
+                />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={420} />
               )}

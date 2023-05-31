@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useState } from "react";
-import { format, getMonth, getYear } from "date-fns";
+import { format } from "date-fns";
 import { DownloadButton } from "../../../components/button";
 import { DownloadModal } from "@/components/modal";
 
@@ -13,10 +13,14 @@ import {
   EnergyMonthlyChart,
   EnergyYearlyChart,
 } from "@/components/charts";
-import { RealData, DailyData, MonthlyData, YearlyData } from "@/types/types";
+import {
+  DailyData,
+  MonthlyData,
+  YearlyData,
+  OutdoorSolarData,
+} from "@/types/types";
 
-import { useQueries } from "@tanstack/react-query";
-import axios from "axios";
+import { useSolarFetch } from "@/hooks/solar.hooks";
 
 export default function PanelSuryaAC() {
   const [open, setOpen] = useState(false);
@@ -25,70 +29,44 @@ export default function PanelSuryaAC() {
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-  const [realData, dailyData, monthlyData, yearlyData] = useQueries({
-    queries: [
-      {
-        queryKey: ["realData", { data: "suryaAC" }],
-        queryFn: async () => {
-          const res = await axios.get(
-            "http://10.46.10.128:5000/ebt?data=suryaAC"
-          );
-          return res.data.value[4] as RealData;
-        },
-      },
-      {
-        queryKey: [
-          "dailyData",
-          { data: "suryaAC", waktu: format(dailyDate as Date, "yyyy-MM-dd") },
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/harian?data=suryaAC&waktu=${format(
-              dailyDate as Date,
-              "yyyy-MM-dd"
-            )}`
-          );
-          return res.data.value as DailyData[];
-        },
-      },
-      {
-        queryKey: [
-          "monthlyData",
-          {
-            data: "suryaAC",
-            bulan: getMonth(monthlyDate as Date) + 1,
-            tahun: getYear(monthlyDate as Date),
-          },
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/akumulasi/harian/suryaAC?bulan=${
-              getMonth(monthlyDate as Date) + 1
-            }&tahun=${getYear(monthlyDate as Date)}`
-          );
-          return res.data.value as MonthlyData[];
-        },
-      },
-      {
-        queryKey: [
-          "yearlyData",
-          {
-            data: "suryaAC",
-            tahun: getYear(yearlyDate as Date),
-          },
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/akumulasi/bulanan/suryaAC?tahun=${getYear(
-              yearlyDate as Date
-            )}`
-          );
-          return res.data.value as YearlyData[];
-        },
-      },
-    ],
-  });
+  const [realData, dailyData, monthlyData, yearlyData, outdoorSolarData] =
+    useSolarFetch("suryaAC", dailyDate, monthlyDate, yearlyDate);
 
+  type RealTimeCardItem = {
+    valueKey: "voltage" | "current" | "power" | "energy" | "power_factor";
+    unit: string;
+    title: string;
+  };
+
+  const realTimeCardItems: RealTimeCardItem[] = [
+    {
+      valueKey: "voltage",
+      unit: "Volt",
+      title: "Voltage",
+    },
+    {
+      valueKey: "current",
+      unit: "Ampere",
+      title: "Arus",
+    },
+    {
+      valueKey: "power",
+      unit: "Watt",
+      title: "Daya",
+    },
+    {
+      valueKey: "energy",
+      unit: "Wh",
+      title: "Energi",
+    },
+    {
+      valueKey: "power_factor",
+      unit: "",
+      title: "Power Factor",
+    },
+  ];
+
+  // console.log(realData.data, realData.isSuccess);
   return (
     <>
       <Head>
@@ -115,7 +93,7 @@ export default function PanelSuryaAC() {
               <h3 className="text-2xl font-bold">
                 <span className="text-[#9747FF]">Real Time</span> Monitoring
               </h3>
-              {realData.isSuccess && (
+              {realData.isSuccess ? (
                 <p className="italic text-sm">
                   Last updated :{" "}
                   {format(
@@ -124,6 +102,8 @@ export default function PanelSuryaAC() {
                   )}{" "}
                   WIB
                 </p>
+              ) : (
+                <></>
               )}
               {/* <p className="italic">Last updated : {}</p> */}
             </div>
@@ -140,31 +120,14 @@ export default function PanelSuryaAC() {
               {realData.isError && <p>Error...</p>}
               {realData.isSuccess && (
                 <>
-                  <RealTimeCard
-                    value={realData.data?.voltage}
-                    unit="Volt"
-                    title="Tegangan"
-                  />
-                  <RealTimeCard
-                    value={realData.data?.current}
-                    unit="Ampere"
-                    title="Arus"
-                  />
-                  <RealTimeCard
-                    value={realData.data?.power}
-                    unit="Watt"
-                    title="Daya"
-                  />
-                  <RealTimeCard
-                    value={realData.data?.energy}
-                    unit="kWh"
-                    title="Energi"
-                  />
-                  <RealTimeCard
-                    value={realData.data?.power_factor}
-                    unit="-"
-                    title="Power Factor"
-                  />
+                  {realTimeCardItems.map((item, index) => (
+                    <RealTimeCard
+                      key={index}
+                      value={realData.data[item.valueKey]}
+                      unit={item.unit}
+                      title={item.title}
+                    />
+                  ))}
                 </>
               )}
             </div>
@@ -187,9 +150,12 @@ export default function PanelSuryaAC() {
                 className="mr-16"
               />
             </div>
-            <div className="mt-9 ml-16">
-              {dailyData.isSuccess ? (
-                <EnergyDailyChart data={dailyData.data as DailyData[]} />
+            <div className="mt-9 ml-16 mr-2">
+              {dailyData.isSuccess && outdoorSolarData.isSuccess ? (
+                <EnergyDailyChart
+                  data={dailyData.data as DailyData[]}
+                  outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
+                />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={420} />
               )}

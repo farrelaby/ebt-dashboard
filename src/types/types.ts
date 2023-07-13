@@ -39,6 +39,13 @@ export interface YearlyData {
 }
 
 export interface OutdoorSolarData {
-  created_at: string;
+  created_at: string | Date;
   value: number;
+}
+
+export interface OutdoorSolarEfficiencyData {
+  timestamp: Date;
+  panel_power: number;
+  outdoor_power: number;
+  efficiency: number;
 }

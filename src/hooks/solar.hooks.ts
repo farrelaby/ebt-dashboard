@@ -1,4 +1,4 @@
-import { useQueries } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 import {
@@ -28,7 +28,7 @@ export const useSolarFetch = (
           // console.log(res.data.value[4]);
           return res.data.value as RealData[];
         },
-        select: (data: RealData[]) => data[4],
+        // select: (data: RealData[]) => data[4],
       },
       {
         queryKey: [
@@ -97,3 +97,16 @@ export const useSolarFetch = (
       },
     ],
   });
+
+export const useOutdoorSolarFetch = () => {
+  const data = useQuery({
+    queryKey: ["latestOutdoorSolarData"],
+    queryFn: async () => {
+      const res =
+        await axios.get(`http://10.46.10.128:3001/site/outdoor/solar_power
+      `);
+      return res.data;
+    },
+  });
+  return data;
+};

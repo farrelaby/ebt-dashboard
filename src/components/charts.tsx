@@ -4,26 +4,42 @@ import {
   YearlyData,
   OutdoorSolarData,
   RealData,
+  OutdoorSolarEfficiencyData,
 } from "@/types/types";
+
+import { twoDecimalPlaces } from "@/utils";
+
+import { useMemo } from "react";
 
 import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-function RealChart() {
+function RealChart({ data }: { data: RealData[] }) {
+  console.log("chart rendered");
+  const newObject = data?.map((data) => {
+    return {
+      date: data.db_created_at,
+      energy:
+        data.energy !== null ? twoDecimalPlaces(data.energy) : data.energy,
+    };
+  });
+
+  const realData = newObject?.map((data) => Object.values(data));
+
   const series = [
     {
       name: "Energi",
-      data: [20, 40, 60, 80, 90],
+      data: realData as number[][],
       fill: {
         colors: ["#A300D6"],
       },
     },
-    {
-      name: "Solar Irradiance",
-      data: [10, 20, 30, 40, 50],
-      yAxisIndex: 1,
-      fill: { colors: ["#FFD600"] },
-    },
+    // {
+    //   name: "Solar Irradiance",
+    //   data: [10, 20, 30, 40, 50],
+    //   yAxisIndex: 1,
+    //   fill: { colors: ["#FFD600"] },
+    // },
   ];
 
   // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
@@ -54,17 +70,17 @@ function RealChart() {
         },
         // max: maxDataValue,
       },
-      {
-        opposite: true,
-        title: {
-          text: "Solar Irradiance (W/m^2)",
-        },
-        // max: maxDataValue,
-      },
+      // {
+      //   opposite: true,
+      //   title: {
+      //     text: "Solar Irradiance (W/m^2)",
+      //   },
+      //   // max: maxDataValue,
+      // },
     ],
     xaxis: {
       type: "datetime" as "datetime",
-      categories: ["1", "2", "3", "4", "5"],
+      // categories: ["1", "2", "3", "4", "5"],
       labels: {
         format: "HH:mm:ss",
         datetimeUTC: false,
@@ -82,13 +98,13 @@ function RealChart() {
   };
 
   return (
-    <div className="bg-white shadow-md pt-3">
+    <div className="bg-white shadow-md pt-3 h-72">
       <ApexChart
         options={options}
         series={series}
         type="line"
-        width={950}
-        height={360}
+        width={650}
+        height={260}
       />
     </div>
   );
@@ -97,9 +113,11 @@ function RealChart() {
 function EnergyDailyChart({
   data,
   outdoorData,
+  dailyDate,
 }: {
   data: DailyData[];
   outdoorData: OutdoorSolarData[];
+  dailyDate: Date | null;
 }) {
   // const y1Data = [20, 40, 60, 80, 90];
 
@@ -120,14 +138,18 @@ function EnergyDailyChart({
   const newObject = data?.map((data) => {
     return {
       date: data.db_created_at,
-      energy: data.value.energy,
+      energy:
+        data.value.energy !== null
+          ? twoDecimalPlaces(data.value.energy)
+          : data.value.energy,
     };
   });
 
-  const barData = newObject?.map((data) => Object.values(data));
+  const y0Data = newObject?.map((data) => Object.values(data));
 
   const y1Data = outdoorData?.map((data) => Object.values(data));
 
+  // console.log(y0Data[0][0]);
   // console.log(tes_data);
 
   // console.log(y1Data.length, barData.length, timestamps.length);
@@ -142,7 +164,7 @@ function EnergyDailyChart({
   const series = [
     {
       name: "Energi",
-      data: barData as number[][],
+      data: y0Data as number[][],
       fill: {
         colors: ["#A300D6"],
       },
@@ -156,6 +178,8 @@ function EnergyDailyChart({
   ];
 
   // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
+
+  dailyDate?.setHours(23, 59, 59, 999);
 
   const options = {
     chart: {
@@ -198,6 +222,7 @@ function EnergyDailyChart({
         format: "HH:mm:ss",
         datetimeUTC: false,
       },
+      max: dailyDate?.getTime(),
     },
     tooltip: {
       shared: true,
@@ -356,4 +381,97 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
   );
 }
 
-export { EnergyDailyChart, EnergyMonthlyChart, EnergyYearlyChart, RealChart };
+function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
+  const efficiencyData: number[] = [];
+  const timestamps: Date[] = [];
+
+  data?.map((data) => {
+    efficiencyData.push(data.efficiency);
+    timestamps.push(data.timestamp);
+  });
+
+  const series = [
+    {
+      name: "Efisiensi",
+      data: efficiencyData,
+      fill: {
+        colors: ["#A300D6"],
+      },
+    },
+  ];
+
+  // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
+
+  const options = {
+    chart: {
+      stacked: false,
+      zoom: {
+        type: "x" as "x",
+        enabled: true,
+        autoScaleYaxis: true,
+      },
+      toolbar: {
+        autoSelected: "zoom" as "zoom",
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    markers: {
+      size: 0,
+    },
+
+    yaxis: [
+      {
+        title: {
+          text: "Efisiensi (%)",
+        },
+        // max: maxDataValue,
+      },
+      // {
+      //   opposite: true,
+      //   title: {
+      //     text: "Solar Irradiance (W/m^2)",
+      //   },
+      //   // max: maxDataValue,
+      // },
+    ],
+    xaxis: {
+      type: "datetime" as "datetime",
+      categories: timestamps,
+      labels: {
+        format: "HH:mm:ss",
+        datetimeUTC: false,
+      },
+    },
+    // tooltip: {
+    //   // shared: true,
+    //   x: {
+    //     format: "dd/MM/yy HH:mm",
+    //   },
+    // },
+    stroke: {
+      width: 2,
+    },
+  };
+
+  return (
+    <>
+      <ApexChart
+        options={options}
+        series={series}
+        type="line"
+        width={1100}
+        height={420}
+      />
+    </>
+  );
+}
+
+export {
+  EnergyDailyChart,
+  EnergyMonthlyChart,
+  EnergyYearlyChart,
+  RealChart,
+  EfficiencyChart,
+};

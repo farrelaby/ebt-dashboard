@@ -16,6 +16,10 @@ import { DailyData, MonthlyData, YearlyData } from "@/types/types";
 
 import { useWindFetch } from "@/hooks/wind.hooks";
 
+import { realTimeCardItems } from "@/utils";
+
+import { format } from "date-fns";
+
 export default function TurbinAngin() {
   const [open, setOpen] = useState(false);
 
@@ -48,14 +52,21 @@ export default function TurbinAngin() {
 
         <section className="mt-4 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-bold">
-                <span className="text-[#9747FF]">Real Time</span> Monitoring
+                Data <span className="text-[#9747FF]">Terbaru</span>
               </h3>
-              {realData.isSuccess && (
+              {realData.isSuccess ? (
                 <p className="italic text-sm">
-                  Last updated : {realData.data?.db_created_at}
+                  Last updated :{" "}
+                  {format(
+                    new Date(realData.data[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
                 </p>
+              ) : (
+                <></>
               )}
               {/* <p className="italic">Last updated : {}</p> */}
             </div>
@@ -73,27 +84,27 @@ export default function TurbinAngin() {
               {realData.isSuccess && (
                 <>
                   <RealTimeCard
-                    value={realData.data?.voltage}
+                    value={realData.data[4]?.voltage}
                     unit="Volt"
                     title="Tegangan"
                   />
                   <RealTimeCard
-                    value={realData.data?.current}
+                    value={realData.data[4]?.current}
                     unit="Ampere"
                     title="Arus"
                   />
                   <RealTimeCard
-                    value={realData.data?.power}
+                    value={realData.data[4]?.power}
                     unit="Watt"
                     title="Daya"
                   />
                   <RealTimeCard
-                    value={realData.data?.energy}
+                    value={realData.data[4]?.energy}
                     unit="kWh"
                     title="Energi"
                   />
                   <RealTimeCard
-                    value={realData.data?.power_factor}
+                    value={realData.data[4]?.power_factor}
                     unit="-"
                     title="Power Factor"
                   />
@@ -124,9 +135,10 @@ export default function TurbinAngin() {
                 <EnergyDailyChart
                   data={dailyData.data as DailyData[]}
                   outdoorData={[]}
+                  dailyDate={dailyDate}
                 />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={420} />
+                <Skeleton variant="rectangular" width={1100} height={435} />
               )}
             </div>
           </div>
@@ -153,7 +165,7 @@ export default function TurbinAngin() {
               {monthlyData.isSuccess ? (
                 <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={420} />
+                <Skeleton variant="rectangular" width={1100} height={435} />
               )}
             </div>
           </div>
@@ -180,7 +192,7 @@ export default function TurbinAngin() {
               {yearlyData.isSuccess ? (
                 <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={420} />
+                <Skeleton variant="rectangular" width={1100} height={435} />
               )}
             </div>
           </div>

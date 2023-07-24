@@ -1,7 +1,83 @@
 import Head from "next/head";
+import { useState, useCallback } from "react";
+
+import { format, set } from "date-fns";
+
 import { Skeleton } from "@mui/material";
+import { DatePicker } from "@mui/x-date-pickers";
+
+import { useQuery, useQueries } from "@tanstack/react-query";
+import axios from "axios";
+
+import { EfficiencyChart } from "@/components/charts";
+
+import { OutdoorSolarEfficiencyData } from "@/types/types";
 
 export default function PanelSuryaEfisiensi() {
+  const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
+
+  const changeDate = useCallback((newDate: Date | null) => {
+    setDailyDate(newDate);
+  }, []);
+
+  const outdoorSolar = useQuery({
+    queryKey: ["realData", "outdoor", "solar_power"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `http://10.46.10.128:3001/site/outdoor/solar_power
+        `
+      );
+      // console.log(res.data);
+      setDailyDate(new Date(res.data.data.lastUpdate as string));
+      return res.data.data.lastUpdate as string;
+    },
+    // staleTime: Infinity,
+    // cacheTime: Infinity,
+    // select: (data: RealData[]) => data[4],
+  });
+  // outdoorSolar.isSuccess && setDailyDate(new Date(outdoorSolar.data as string));
+
+  const efficiencyData = useQuery({
+    queryKey: [
+      "efisiensi",
+      "solar",
+      { tanggal: format(dailyDate as Date, "yyyy-MM-dd") },
+    ],
+    queryFn: async () => {
+      const res = await axios.get(
+        `http://localhost:3000/api/solar/efisiensi?tanggal=${format(
+          dailyDate as Date,
+          "yyyy-MM-dd"
+        )}`
+      );
+      return res.data as OutdoorSolarEfficiencyData[];
+    },
+  });
+
+  // const [efficiencyData, outdoorSolar] = useQueries({
+  //   queries: [
+  //     {
+  //       queryKey: [
+  //         "efisiensi",
+  //         "solar",
+  //         { tanggal: format(dailyDate as Date, "yyyy-MM-dd") },
+  //       ],
+  //       queryFn: async () => {
+  //         const res = await axios.get(
+  //           `http://localhost:3000/api/solar/efisiensi?tanggal=${format(
+  //             dailyDate as Date,
+  //             "yyyy-MM-dd"
+  //           )}`
+  //         );
+  //         return res.data as OutdoorSolarEfficiencyData[];
+  //       },
+  //     },
+  //    ,
+  //   ],
+  // });
+
+  // console.log(outdoorSolar.data);
+
   return (
     <>
       <Head>
@@ -12,8 +88,57 @@ export default function PanelSuryaEfisiensi() {
       </Head>
       <div className="pb-8">
         {/* <h2>aku Efisiensi solar</h2> */}
-        <Skeleton variant="rounded" className="mt-4 h-40" />
-        <Skeleton variant="rounded" className="mt-4 h-40" />
+        <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  <span className="text-[#9747FF]">Efisiensi</span> Energi
+                </h3>
+                {outdoorSolar.isSuccess && (
+                  <p className="italic text-sm">
+                    Last updated :{" "}
+                    {format(
+                      new Date(outdoorSolar.data as string),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
+                )}
+              </div>
+
+              {outdoorSolar.isSuccess ? (
+                <DatePicker
+                  label="Masukkan Tanggal"
+                  value={dailyDate}
+                  defaultValue={new Date(outdoorSolar.data)}
+                  onChange={changeDate}
+                  disableFuture
+                  format="dd/MM/yyyy"
+                  className="mr-16"
+                  maxDate={new Date(outdoorSolar.data)}
+                />
+              ) : (
+                <>
+                  <Skeleton variant="rectangular" width={200} height={50} />
+                </>
+              )}
+            </div>
+            <div className="mt-9 ml-16 mr-2">
+              {efficiencyData.isSuccess ? (
+                <EfficiencyChart
+                  data={efficiencyData.data as OutdoorSolarEfficiencyData[]}
+                />
+              ) : efficiencyData.isLoading ? (
+                <Skeleton variant="rectangular" width={1100} height={435} />
+              ) : (
+                <h1>error</h1>
+              )}
+            </div>
+          </div>
+        </section>
+        {/* <Skeleton variant="rounded" className="mt-4 h-40" />
+        <Skeleton variant="rounded" className="mt-4 h-40" /> */}
       </div>
     </>
   );

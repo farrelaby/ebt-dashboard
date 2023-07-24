@@ -24,7 +24,7 @@ import {
 // import { useQueries } from "@tanstack/react-query";
 // import axios from "axios";
 
-import { useSolarFetch } from "@/hooks/solar.hooks";
+import { useSolarFetch, useOutdoorSolarFetch } from "@/hooks/solar.hooks";
 
 export default function PanelSuryaDC() {
   const [open, setOpen] = useState(false);
@@ -33,88 +33,10 @@ export default function PanelSuryaDC() {
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-  // const [realData, dailyData, monthlyData, yearlyData, outdoorSolarData] =
-  //   useQueries({
-  //     queries: [
-  //       {
-  //         queryKey: ["realData", { data: "suryaDC" }],
-  //         queryFn: async () => {
-  //           const res = await axios.get(
-  //             "http://10.46.10.128:5000/ebt?data=suryaDC"
-  //           );
-  //           return res.data.value[4] as RealData;
-  //         },
-  //       },
-  //       {
-  //         queryKey: [
-  //           "dailyData",
-  //           { data: "suryaDC", waktu: format(dailyDate as Date, "yyyy-MM-dd") },
-  //         ],
-  //         queryFn: async () => {
-  //           const res = await axios.get(
-  //             `http://10.46.10.128:5000/ebt/harian?data=suryaDC&waktu=${format(
-  //               dailyDate as Date,
-  //               "yyyy-MM-dd"
-  //             )}`
-  //           );
-  //           return res.data.value as DailyData[];
-  //         },
-  //       },
-  //       {
-  //         queryKey: [
-  //           "monthlyData",
-  //           {
-  //             data: "suryaDC",
-  //             bulan: getMonth(monthlyDate as Date) + 1,
-  //             tahun: getYear(monthlyDate as Date),
-  //           },
-  //         ],
-  //         queryFn: async () => {
-  //           const res = await axios.get(
-  //             `http://10.46.10.128:5000/ebt/akumulasi/harian/suryaDC?bulan=${
-  //               getMonth(monthlyDate as Date) + 1
-  //             }&tahun=${getYear(monthlyDate as Date)}`
-  //           );
-  //           return res.data.value as MonthlyData[];
-  //         },
-  //       },
-  //       {
-  //         queryKey: [
-  //           "yearlyData",
-  //           {
-  //             data: "suryaDC",
-  //             tahun: getYear(yearlyDate as Date),
-  //           },
-  //         ],
-  //         queryFn: async () => {
-  //           const res = await axios.get(
-  //             `http://10.46.10.128:5000/ebt/akumulasi/bulanan/suryaDC?tahun=${getYear(
-  //               yearlyDate as Date
-  //             )}`
-  //           );
-  //           return res.data.value as YearlyData[];
-  //         },
-  //       },
-  //       {
-  //         queryKey: [
-  //           "outdoorSolarData",
-  //           { tanggal: format(dailyDate as Date, "yyyy-MM-dd") },
-  //         ],
-  //         queryFn: async () => {
-  //           const res = await axios.get(
-  //             `http://localhost:3000/api/solar?tanggal=${format(
-  //               dailyDate as Date,
-  //               "yyyy-MM-dd"
-  //             )}`
-  //           );
-  //           return res.data as OutdoorSolarData[];
-  //         },
-  //       },
-  //     ],
-  //   });
-
   const [realData, dailyData, monthlyData, yearlyData, outdoorSolarData] =
     useSolarFetch("suryaDC", dailyDate, monthlyDate, yearlyDate);
+
+  const latestOutdoor = useOutdoorSolarFetch();
 
   return (
     <>
@@ -134,15 +56,15 @@ export default function PanelSuryaDC() {
 
         <div className="mt-4 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-bold">
-                <span className="text-[#9747FF]">Real Time</span> Monitoring
+                Data <span className="text-[#9747FF]">Terbaru</span>
               </h3>
               {realData.isSuccess && (
                 <p className="italic text-sm">
                   Last updated :{" "}
                   {format(
-                    new Date(realData.data?.db_created_at),
+                    new Date(realData.data[4]?.db_created_at),
                     "dd/MM/yyyy HH:mm:ss"
                   )}{" "}
                   WIB
@@ -163,36 +85,81 @@ export default function PanelSuryaDC() {
               {realData.isSuccess && (
                 <>
                   <RealTimeCard
-                    value={realData.data?.voltage}
+                    value={realData.data[4]?.voltage}
                     unit="Volt"
                     title="Tegangan"
                   />
                   <RealTimeCard
-                    value={realData.data?.current}
+                    value={realData.data[4]?.current}
                     unit="Ampere"
                     title="Arus"
                   />
                   <RealTimeCard
-                    value={realData.data?.power}
+                    value={realData.data[4]?.power}
                     unit="Watt"
                     title="Daya"
                   />
                   <RealTimeCard
-                    value={realData.data?.energy}
+                    value={realData.data[4]?.energy}
                     unit="kWh"
                     title="Energi"
                   />
                 </>
+                // <>
+                //   {realTimeCardItems.map((item, index) => (
+                //     <RealTimeCard
+                //       key={index}
+                //       value={realData.data[4][item.valueKey]}
+                //       unit={item.unit}
+                //       title={item.title}
+                //     />
+                //   ))}
+                // </>
               )}
             </div>
           </div>
         </div>
+
         <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
-              <h3 className="text-2xl font-bold">
-                Produksi Energi <span className="text-[#9747FF]">Harian</span>
-              </h3>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  Produksi Energi <span className="text-[#9747FF]">Harian</span>
+                </h3>
+                {/* {dailyData.isSuccess && (
+                  <p className="italic text-sm text-[#378ffd]">
+                    Last updated :{" "}
+                    {format(
+                      new Date(
+                        dailyData.data[dailyData.data.length - 1].db_created_at
+                      ),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
+                )} */}
+                {realData.isSuccess && (
+                  <p className="italic text-sm text-[#378ffd]">
+                    Last updated :{" "}
+                    {format(
+                      new Date(realData.data[4]?.db_created_at),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
+                )}
+                {latestOutdoor.isSuccess && (
+                  <p className="italic text-sm text-[#4ee294]">
+                    Last updated :{" "}
+                    {format(
+                      new Date(latestOutdoor.data.data.lastUpdate),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
+                )}
+              </div>
               <DatePicker
                 label="Masukkan Tanggal"
                 value={dailyDate}
@@ -208,9 +175,10 @@ export default function PanelSuryaDC() {
                 <EnergyDailyChart
                   data={dailyData.data as DailyData[]}
                   outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
+                  dailyDate={dailyDate}
                 />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={420} />
+                <Skeleton variant="rectangular" width={1100} height={435} />
               )}
             </div>
           </div>
@@ -219,9 +187,23 @@ export default function PanelSuryaDC() {
         <section id="bulanan" className="mt-9 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
-              <h3 className="text-2xl font-bold">
-                Produksi Energi <span className="text-[#9747FF]">Bulanan</span>
-              </h3>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  Produksi Energi{" "}
+                  <span className="text-[#9747FF]">Bulanan</span>
+                </h3>
+                {monthlyData.isSuccess && (
+                  <p className="italic text-sm ">
+                    Last updated :{" "}
+                    {format(
+                      new Date(
+                        monthlyData.data[monthlyData.data.length - 1].tanggal
+                      ),
+                      "dd/MM/yyyy"
+                    )}{" "}
+                  </p>
+                )}
+              </div>
               <DatePicker
                 label="Masukkan Bulan"
                 value={monthlyDate}
@@ -237,7 +219,7 @@ export default function PanelSuryaDC() {
               {monthlyData.isSuccess ? (
                 <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={420} />
+                <Skeleton variant="rectangular" width={1100} height={435} />
               )}
             </div>
           </div>
@@ -246,9 +228,23 @@ export default function PanelSuryaDC() {
         <section id="tahunan" className="mt-9 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
-              <h3 className="text-2xl font-bold">
-                Produksi Energi <span className="text-[#9747FF]">Tahunan</span>
-              </h3>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  Produksi Energi{" "}
+                  <span className="text-[#9747FF]">Tahunan</span>
+                </h3>
+                {monthlyData.isSuccess && (
+                  <p className="italic text-sm ">
+                    Last updated :{" "}
+                    {format(
+                      new Date(
+                        monthlyData.data[monthlyData.data.length - 1].tanggal
+                      ),
+                      "dd/MM/yyyy"
+                    )}{" "}
+                  </p>
+                )}
+              </div>
               <DatePicker
                 label="Masukkan Tahun"
                 value={yearlyDate}
@@ -264,7 +260,7 @@ export default function PanelSuryaDC() {
               {yearlyData.isSuccess ? (
                 <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={420} />
+                <Skeleton variant="rectangular" width={1100} height={435} />
               )}
             </div>
           </div>

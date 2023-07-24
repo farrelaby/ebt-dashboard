@@ -53,7 +53,7 @@ export default function Home() {
       </Head>
 
       <div className="min-h-screen pb-8">
-        <header className="flex flex-row pl-6 ">
+        <header className="flex flex-row pl-6">
           <Image src="/home-earth.svg" alt="earth" width={200} height={200} />
           <div className="relative bottom-4">
             <h1 className="text-4xl font-bold pt-16">
@@ -68,82 +68,90 @@ export default function Home() {
           </div>
         </header>
 
-        <section className="mt-4">
-          <div className="flex flex-row gap-4">
-            <h3 className="text-2xl font-semibold">
-              Monitoring <span className="text-[#9747FF]">Panel Surya</span>
-            </h3>
-            <select
-              onChange={solarDropdownHandler}
-              name=""
-              id=""
-              className="px-3 border border-gray-300"
-            >
-              <option value="suryaAC">AC</option>
-              <option value="suryaDC">DC</option>
-            </select>
-          </div>
-          <div className="flex flex-row mt-5 gap-4">
-            {solarReal.isSuccess ? (
-              <RealChart />
-            ) : (
-              <Skeleton variant="rounded" width={950} height={384} />
-            )}
-
-            <div className="flex flex-col gap-4 mt-2">
+        <div className="flex flex-row gap-8 mt-8">
+          <section id="panel-surya">
+            <div className="flex flex-row gap-4 justify-center border-b pb-2">
+              <h3 className="text-2xl font-semibold ">
+                Panel<span className="text-[#9747FF]"> Surya</span>
+              </h3>
+              <select
+                onChange={solarDropdownHandler}
+                name=""
+                id=""
+                className="px-3 border border-gray-300"
+              >
+                <option value="suryaAC">AC</option>
+                <option value="suryaDC">DC</option>
+              </select>
+            </div>
+            <div className="flex flex-col mt-3 gap-4 ">
               {solarReal.isSuccess ? (
-                <>
-                  <OverviewCard
-                    value={solarReal?.data[4]?.power}
-                    unit="Watt"
-                    title="Daya"
-                  />
-                  <OverviewCard
-                    value={solarReal?.data[4]?.energy}
-                    unit="kWh"
-                    title="Energi"
-                  />
-                </>
+                <RealChart data={solarReal.data} />
               ) : (
-                <>
-                  <Skeleton variant="rounded" height={176} width={224} />
-                  <Skeleton variant="rounded" height={176} width={224} />
-                </>
+                <Skeleton variant="rounded" width={650} height={290} />
               )}
-            </div>
-          </div>
-        </section>
 
-        <section className="mt-8">
-          <h3 className="text-2xl font-semibold">
-            Monitoring <span className="text-[#9747FF]">Turbin Angin</span>
-          </h3>
-          <div className="flex flex-row mt-5 gap-4">
-            {/* <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div> */}
-            <RealChart />
-            <div className="flex flex-col gap-4 mt-2">
-              {windReal.isSuccess ? (
-                <>
-                  <OverviewCard
-                    value={windReal?.data[4]?.power}
-                    unit="Watt"
-                    title="Daya"
-                  />
-                  <OverviewCard
-                    value={windReal?.data[4]?.energy}
-                    unit="kWh"
-                    title="Energi"
-                  />
-                </>
-              ) : (
-                <>
-                  <Skeleton variant="rounded" height={176} width={224} />
-                  <Skeleton variant="rounded" height={176} width={224} />
-                </>
-              )}
+              <div className="flex flex-row gap-4 mt-2 justify-center">
+                {solarReal.isSuccess ? (
+                  <>
+                    <OverviewCard
+                      value={solarReal?.data[4]?.power}
+                      unit="Watt"
+                      title="Daya"
+                    />
+                    <OverviewCard
+                      value={solarReal?.data[4]?.energy}
+                      unit="Wh"
+                      title="Energi"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Skeleton variant="rounded" height={128} width={144} />
+                    <Skeleton variant="rounded" height={128} width={144} />
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+
+          <section id="turbin-angin">
+            <div className="border-b pb-2">
+              <h3 className="text-2xl font-semibold text-center">
+                Turbin<span className="text-[#9747FF]"> Angin</span>
+              </h3>
+            </div>
+            <div className="flex flex-col mt-3 gap-4">
+              {/* <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div> */}
+              {windReal.isSuccess ? (
+                <RealChart data={windReal.data} />
+              ) : (
+                <Skeleton variant="rounded" width={650} height={290} />
+              )}
+              <div className="flex flex-row gap-4 mt-2 justify-center">
+                {windReal.isSuccess ? (
+                  <>
+                    <OverviewCard
+                      value={windReal?.data[4]?.power}
+                      unit="Watt"
+                      title="Daya"
+                    />
+                    <OverviewCard
+                      value={windReal?.data[4]?.energy}
+                      unit="Wh"
+                      title="Energi"
+                    />
+                  </>
+                ) : (
+                  <>
+                    <Skeleton variant="rounded" height={128} width={144} />
+                    <Skeleton variant="rounded" height={128} width={144} />
+                  </>
+                )}
+              </div>
+            </div>
+          </section>
+        </div>
 
         {/* <Skeleton variant="rounded" height={160} className="mt-4 " />
         <Skeleton variant="rounded" height={160} className="mt-4 " /> */}
@@ -151,6 +159,8 @@ export default function Home() {
     </>
   );
 }
+
+import { twoDecimalPlaces } from "@/utils";
 
 function OverviewCard({
   value,
@@ -162,10 +172,12 @@ function OverviewCard({
   title: string;
 }) {
   return (
-    <div className="bg-white w-56 h-44 shadow-md flex flex-col place-items-center justify-center rounded-lg">
-      <h4 className="text-5xl font-semibold">{value ?? "-"}</h4>
-      <p className="text-xl text-[#A4A6B3]">{unit}</p>
-      <div className="text-xl font-semibold text-[#9747FF]">{title}</div>
+    <div className="bg-white w-36 h-32 shadow-md flex flex-col place-items-center justify-center rounded-lg">
+      <h4 className="text-4xl font-semibold">
+        {typeof value === "number" ? twoDecimalPlaces(value) : "-"}
+      </h4>
+      <p className="text-lg text-[#A4A6B3]">{unit}</p>
+      <div className="text-lg font-semibold text-[#9747FF]">{title}</div>
     </div>
   );
 }

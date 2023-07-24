@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
@@ -20,9 +20,16 @@ function SolarHeader() {
 
   const [tabValue, setTabValue] = useState(tabRouterValue[router.pathname]);
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-    setTabValue(newValue);
-  };
+  // const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+  //   setTabValue(newValue);
+  // };
+
+  const handleTabChange = useCallback(
+    (event: React.SyntheticEvent, newValue: string) => {
+      setTabValue(newValue);
+    },
+    []
+  );
 
   return (
     <header>
@@ -75,9 +82,16 @@ function WindHeader() {
 
   const [tabValue, setTabValue] = useState(tabRouterValue[router.pathname]);
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-    setTabValue(newValue);
-  };
+  // const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
+  //   setTabValue(newValue);
+  // };
+
+  const handleTabChange = useCallback(
+    (event: React.SyntheticEvent, newValue: string) => {
+      setTabValue(newValue);
+    },
+    []
+  );
 
   return (
     <header>

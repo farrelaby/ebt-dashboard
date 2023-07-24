@@ -16,6 +16,7 @@ function DownloadButton({ onClick }: DownloadButtonProps) {
         textTransform: "none",
         backgroundColor: "#000000",
       }}
+      className="m-2"
     >
       <div className="flex flex-row gap-2">
         <Image src="/download-logo.svg" alt="" width={20} height={20} />

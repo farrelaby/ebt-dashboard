@@ -18,7 +18,7 @@ export const useWindFetch = (
           const res = await axios.get(
             `http://10.46.10.128:5000/ebt?data=turbin`
           );
-          return res.data.value[4] as RealData;
+          return res.data.value as RealData[];
         },
       },
       {

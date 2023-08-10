@@ -56,7 +56,7 @@ pnpm start
 git clone #link repository hasil fork anda
 ```
 
-> Forking dilakukan agar anda dapat melakukan perubahan pada repository ini tanpa harus melakukan perubahan langsung pada repository ini.
+> Forking dilakukan agar anda dapat melakukan perubahan/pengembangan pada aplikasi ini tanpa harus melakukan perubahan langsung pada repository ini.
 
 ### Pre-requisites pengembangan lebih lanjut
 Berikut adalah beberapa hal yang perlu dipersiapkan sebelum melakukan pengembangan aplikasi ini lebih lanjut:

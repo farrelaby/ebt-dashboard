@@ -13,12 +13,10 @@ src/
 └── utils/
 ```
 
-- `components`: folder ini berisi komponen-komponen yang digunakan pada aplikasi ini
-- `configs` : folder ini berisi konfigurasi-konfigurasi yang digunakan pada aplikasi ini
-- `hooks`: folder ini berisi custom hooks yang digunakan pada aplikasi ini
-- `pages`: folder ini berisi halaman-halaman yang ada pada aplikasi ini
-- `styles`: folder ini berisi file CSS yang digunakan pada aplikasi ini
-- `types`: folder ini berisi tipe-tipe data yang digunakan pada aplikasi ini
-- `utils`: folder ini berisi beberapa utility yang digunakan pada aplikasi ini
-
-<!-- Untuk informasi  -->
+- `components`: folder ini berisi komponen-komponen yang digunakan pada aplikasi ini. Detail lebih lanjut dapat [dicek disini](./components/README.md)
+- `configs` : folder ini berisi konfigurasi-konfigurasi yang digunakan pada aplikasi ini. Detail lebih lanjut dapat [dicek disini](./configs/README.md)
+- `hooks`: folder ini berisi custom hooks yang digunakan pada aplikasi ini. Detail lebih lanjut dapat [dicek disini](./hooks/README.md)
+- `pages`: folder ini berisi halaman-halaman yang ada pada aplikasi ini. Detail lebih lanjut dapat [dicek disini](./pages/README.md)
+- `styles`: folder ini berisi file CSS yang digunakan pada aplikasi ini. Detail lebih lanjut dapat [dicek disini](./styles/README.md)
+- `types`: folder ini berisi tipe-tipe data yang digunakan pada aplikasi ini. Detail lebih lanjut dapat [dicek disini](./types/README.md)
+- `utils`: folder ini berisi beberapa utility yang digunakan pada aplikasi ini. Detail lebih lanjut dapat [dicek disini](./utils/README.md)

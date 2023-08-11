@@ -227,7 +227,7 @@ export default function PanelSuryaAC() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
-                {monthlyData.isSuccess && (
+                {/* {monthlyData.isSuccess && (
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
@@ -236,6 +236,15 @@ export default function PanelSuryaAC() {
                       ),
                       "dd/MM/yyyy"
                     )}{" "}
+                  </p>
+                )} */}
+                {realData.isSuccess && (
+                  <p className="italic text-sm">
+                    Last updated :{" "}
+                    {format(
+                      new Date(realData.data[4]?.db_created_at),
+                      "dd/MM/yyyy"
+                    )}
                   </p>
                 )}
               </div>
@@ -268,7 +277,7 @@ export default function PanelSuryaAC() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Tahunan</span>
                 </h3>
-                {monthlyData.isSuccess && (
+                {/* {monthlyData.isSuccess && (
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
@@ -277,6 +286,15 @@ export default function PanelSuryaAC() {
                       ),
                       "dd/MM/yyyy"
                     )}{" "}
+                  </p>
+                )} */}
+                {realData.isSuccess && (
+                  <p className="italic text-sm">
+                    Last updated :{" "}
+                    {format(
+                      new Date(realData.data[4]?.db_created_at),
+                      "dd/MM/yyyy"
+                    )}
                   </p>
                 )}
               </div>

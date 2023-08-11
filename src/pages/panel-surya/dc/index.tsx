@@ -192,15 +192,13 @@ export default function PanelSuryaDC() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
-                {monthlyData.isSuccess && (
-                  <p className="italic text-sm ">
+                {realData.isSuccess && (
+                  <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
-                      new Date(
-                        monthlyData.data[monthlyData.data.length - 1].tanggal
-                      ),
+                      new Date(realData.data[4]?.db_created_at),
                       "dd/MM/yyyy"
-                    )}{" "}
+                    )}
                   </p>
                 )}
               </div>
@@ -233,15 +231,13 @@ export default function PanelSuryaDC() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Tahunan</span>
                 </h3>
-                {monthlyData.isSuccess && (
-                  <p className="italic text-sm ">
+                {realData.isSuccess && (
+                  <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
-                      new Date(
-                        monthlyData.data[monthlyData.data.length - 1].tanggal
-                      ),
+                      new Date(realData.data[4]?.db_created_at),
                       "dd/MM/yyyy"
-                    )}{" "}
+                    )}
                   </p>
                 )}
               </div>

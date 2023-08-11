@@ -117,9 +117,20 @@ export default function TurbinAngin() {
         <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
-              <h3 className="text-2xl font-bold">
-                Produksi Energi <span className="text-[#9747FF]">Harian</span>
-              </h3>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  Produksi Energi <span className="text-[#9747FF]">Harian</span>
+                </h3>
+                {realData.isSuccess && (
+                  <p className="italic text-sm">
+                    Last updated :{" "}
+                    {format(
+                      new Date(realData.data[4]?.db_created_at),
+                      "dd/MM/yyyy"
+                    )}
+                  </p>
+                )}
+              </div>
               <DatePicker
                 label="Masukkan Tanggal"
                 value={dailyDate}
@@ -147,9 +158,21 @@ export default function TurbinAngin() {
         <section id="bulanan" className="mt-9 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
-              <h3 className="text-2xl font-bold">
-                Produksi Energi <span className="text-[#9747FF]">Bulanan</span>
-              </h3>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  Produksi Energi{" "}
+                  <span className="text-[#9747FF]">Bulanan</span>
+                </h3>
+                {realData.isSuccess && (
+                  <p className="italic text-sm">
+                    Last updated :{" "}
+                    {format(
+                      new Date(realData.data[4]?.db_created_at),
+                      "dd/MM/yyyy"
+                    )}
+                  </p>
+                )}
+              </div>
               <DatePicker
                 label="Masukkan Bulan"
                 value={monthlyDate}
@@ -174,9 +197,21 @@ export default function TurbinAngin() {
         <section id="tahunan" className="mt-9 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
-              <h3 className="text-2xl font-bold">
-                Produksi Energi <span className="text-[#9747FF]">Tahunan</span>
-              </h3>
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  Produksi Energi{" "}
+                  <span className="text-[#9747FF]">Tahunan</span>
+                </h3>
+                {realData.isSuccess && (
+                  <p className="italic text-sm">
+                    Last updated :{" "}
+                    {format(
+                      new Date(realData.data[4]?.db_created_at),
+                      "dd/MM/yyyy"
+                    )}
+                  </p>
+                )}
+              </div>
               <DatePicker
                 label="Masukkan Tahun"
                 value={yearlyDate}

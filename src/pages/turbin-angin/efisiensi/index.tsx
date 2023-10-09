@@ -1,6 +1,10 @@
 import Head from "next/head";
 import { Skeleton } from "@mui/material";
 
+// ! Deprecataed page soalnya sistem monitoring PLTB tidak bisa mengukur efisiensi
+// ! Karena posisi PLTB & anemometer berbeda
+// ! Informasi lebih lanjut dapat ditemui di skripsi "RANCANG BANGUN SISTEM PEMANTAUAN EFISIENSI DAYA DC PADA TURBIN ANGIN (Studi Kasus Turbin Angin Sumbu Vertikal Darrieus Tipe H)" karya Dimas Baihaqi Teknik Fisika 2019
+
 export default function TurbinAnginEfisiensi() {
   return (
     <>

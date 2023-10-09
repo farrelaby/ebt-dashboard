@@ -35,7 +35,7 @@ export default function PanelSuryaEfisiensi() {
     // cacheTime: Infinity,
     // select: (data: RealData[]) => data[4],
   });
-  // outdoorSolar.isSuccess && setDailyDate(new Date(outdoorSolar.data as string));
+  // // outdoorSolar.isSuccess && setDailyDate(new Date(outdoorSolar.data as string));
 
   const efficiencyData = useQuery({
     queryKey: [
@@ -45,17 +45,29 @@ export default function PanelSuryaEfisiensi() {
     ],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:3000/api/solar/efisiensi?tanggal=${format(
-          dailyDate as Date,
-          "yyyy-MM-dd"
-        )}`
+        `/api/solar/paralel?tanggal=${format(dailyDate as Date, "yyyy-MM-dd")}`
       );
       return res.data as OutdoorSolarEfficiencyData[];
     },
   });
 
-  // const [efficiencyData, outdoorSolar] = useQueries({
+  // const [outdoorSolar, efficiencyData] = useQueries({
   //   queries: [
+  //     {
+  //       queryKey: ["realData", "outdoor", "solar_power"],
+  //       queryFn: async () => {
+  //         const res = await axios.get(
+  //           `http://10.46.10.128:3001/site/outdoor/solar_power
+  //             `
+  //         );
+  //         // console.log(res.data);
+  //         setDailyDate(new Date(res.data.data.lastUpdate as string));
+  //         return res.data.data.lastUpdate as string;
+  //       },
+  //       // staleTime: Infinity,
+  //       // cacheTime: Infinity,
+  //       // select: (data: RealData[]) => data[4],
+  //     },
   //     {
   //       queryKey: [
   //         "efisiensi",
@@ -64,7 +76,7 @@ export default function PanelSuryaEfisiensi() {
   //       ],
   //       queryFn: async () => {
   //         const res = await axios.get(
-  //           `http://localhost:3000/api/solar/efisiensi?tanggal=${format(
+  //           `http://localhost:3000/api/solar/paralel?tanggal=${format(
   //             dailyDate as Date,
   //             "yyyy-MM-dd"
   //           )}`
@@ -72,7 +84,6 @@ export default function PanelSuryaEfisiensi() {
   //         return res.data as OutdoorSolarEfficiencyData[];
   //       },
   //     },
-  //    ,
   //   ],
   // });
 
@@ -111,6 +122,7 @@ export default function PanelSuryaEfisiensi() {
                 <DatePicker
                   label="Masukkan Tanggal"
                   value={dailyDate}
+                  views={["year", "month", "day"]}
                   defaultValue={new Date(outdoorSolar.data)}
                   onChange={changeDate}
                   disableFuture

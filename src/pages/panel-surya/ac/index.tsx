@@ -198,6 +198,7 @@ export default function PanelSuryaAC() {
               <DatePicker
                 label="Masukkan Tanggal"
                 value={dailyDate}
+                views={["year", "month", "day"]}
                 defaultValue={new Date()}
                 onChange={changeDate.daily}
                 disableFuture

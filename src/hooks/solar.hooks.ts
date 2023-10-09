@@ -11,6 +11,8 @@ import {
 
 import { format, getMonth, getYear } from "date-fns";
 
+import { SERVER_EBT_URL, SERVER_HEB_URL } from "@/configs/url";
+
 export const useSolarFetch = (
   device: "suryaAC" | "suryaDC",
   dailyDate: Date | null,
@@ -22,9 +24,7 @@ export const useSolarFetch = (
       {
         queryKey: ["realData", { data: device }],
         queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt?data=${device}`
-          );
+          const res = await axios.get(`${SERVER_EBT_URL}/ebt?data=${device}`);
           // console.log(res.data.value[4]);
           return res.data.value as RealData[];
         },
@@ -37,7 +37,7 @@ export const useSolarFetch = (
         ],
         queryFn: async () => {
           const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/harian?data=${device}&waktu=${format(
+            `${SERVER_EBT_URL}/ebt/harian?data=${device}&waktu=${format(
               dailyDate as Date,
               "yyyy-MM-dd"
             )}`
@@ -56,7 +56,7 @@ export const useSolarFetch = (
         ],
         queryFn: async () => {
           const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/akumulasi/harian/${device}?bulan=${
+            `${SERVER_EBT_URL}/ebt/akumulasi/harian/${device}?bulan=${
               getMonth(monthlyDate as Date) + 1
             }&tahun=${getYear(monthlyDate as Date)}`
           );
@@ -73,7 +73,7 @@ export const useSolarFetch = (
         ],
         queryFn: async () => {
           const res = await axios.get(
-            `http://10.46.10.128:5000/ebt/akumulasi/bulanan/${device}?tahun=${getYear(
+            `${SERVER_EBT_URL}/ebt/akumulasi/bulanan/${device}?tahun=${getYear(
               yearlyDate as Date
             )}`
           );
@@ -87,7 +87,7 @@ export const useSolarFetch = (
         ],
         queryFn: async () => {
           const res = await axios.get(
-            `http://localhost:3000/api/solar?tanggal=${format(
+            `/api/solar?tanggal=${format(
               dailyDate as Date,
               "yyyy-MM-dd"
             )}`
@@ -102,8 +102,7 @@ export const useOutdoorSolarFetch = () => {
   const data = useQuery({
     queryKey: ["latestOutdoorSolarData"],
     queryFn: async () => {
-      const res =
-        await axios.get(`http://10.46.10.128:3001/site/outdoor/solar_power
+      const res = await axios.get(`${SERVER_HEB_URL}/site/outdoor/solar_power
       `);
       return res.data;
     },

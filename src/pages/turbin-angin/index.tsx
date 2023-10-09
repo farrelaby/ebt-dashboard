@@ -134,6 +134,7 @@ export default function TurbinAngin() {
               <DatePicker
                 label="Masukkan Tanggal"
                 value={dailyDate}
+                views={["year", "month", "day"]}
                 defaultValue={new Date()}
                 onChange={(newValue) => setDailyDate(newValue)}
                 disableFuture

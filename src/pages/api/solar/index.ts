@@ -8,6 +8,7 @@ import { prisma } from "../db";
 
 const cors = Cors({
   methods: ["GET", "HEAD"],
+  origin: "*",
 });
 
 // Helper method to wait for a middleware to execute before continuing

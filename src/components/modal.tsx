@@ -15,6 +15,8 @@ import {
 import { DatePicker } from "@mui/x-date-pickers";
 import { format, sub } from "date-fns";
 
+import { SERVER_EBT_URL } from "@/configs/url";
+
 type DownloadModalProps = {
   open: boolean;
   onClose: () => void;
@@ -78,7 +80,7 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
           <div className="flex flex-row gap-4 mt-4 justify-end">
             {/* http://10.46.10.128:5000/ebt/download/report/csv?data=suryaDC&from=2023-02-21&to=2023-02-25 */}
             <Link
-              href={`http://10.46.10.128:5000/ebt/download/report/${fileFormat}?data=${
+              href={`${SERVER_EBT_URL}/ebt/download/report/${fileFormat}?data=${
                 deviceParam[modalTitle]
               }&from=${format(startValue as Date, "yyyy-MM-dd")}&to=${format(
                 endValue as Date,

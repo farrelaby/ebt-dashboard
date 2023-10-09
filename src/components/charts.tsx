@@ -182,6 +182,7 @@ function EnergyDailyChart({
   dailyDate?.setHours(23, 59, 59, 999);
 
   const options = {
+    // colors: ["#378ffd", "#e6e600"],
     chart: {
       stacked: false,
       zoom: {

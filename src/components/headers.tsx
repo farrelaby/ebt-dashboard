@@ -35,10 +35,9 @@ function SolarHeader() {
     <header>
       <h1 className="text-4xl font-bold pt-16 ">Monitoring Panel Surya</h1>
       <p className="pt-5">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-        fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam erat
-        volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
-        sollicitudin. Etiam et fermentum neque.
+        Di sini Anda dapat melihat kumpulan data produksi energi yang dihasilkan
+        oleh panel surya yang terletak di gedung Departemen Teknik Nuklir dan
+        Teknik Fisika Universitas Gadjah Mada (DTNTF UGM).
       </p>
       <Box className="pt-6 pb-8" sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={tabValue}>
@@ -73,36 +72,31 @@ function SolarHeader() {
 }
 
 function WindHeader() {
-  const router = useRouter();
+  // const router = useRouter();
 
-  const tabRouterValue: TabRouterValue = {
-    "/turbin-angin": "1",
-    "/turbin-angin/efisiensi": "2",
-  };
-
-  const [tabValue, setTabValue] = useState(tabRouterValue[router.pathname]);
-
-  // const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-  //   setTabValue(newValue);
+  // const tabRouterValue: TabRouterValue = {
+  //   "/turbin-angin": "1",
+  //   "/turbin-angin/efisiensi": "2",
   // };
 
-  const handleTabChange = useCallback(
-    (event: React.SyntheticEvent, newValue: string) => {
-      setTabValue(newValue);
-    },
-    []
-  );
+  // const [tabValue, setTabValue] = useState(tabRouterValue[router.pathname]);
+
+  // const handleTabChange = useCallback(
+  //   (event: React.SyntheticEvent, newValue: string) => {
+  //     setTabValue(newValue);
+  //   },
+  //   []
+  // );
 
   return (
     <header>
       <h1 className="text-4xl font-bold pt-16">Monitoring Turbin Angin</h1>
-      <p className="pt-5">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-        fermentum dui vel diam tempor lobortis sit amet quis enim. Aliquam erat
-        volutpat. Nam ac ipsum arcu. Proin finibus nisi non consequat
-        sollicitudin. Etiam et fermentum neque.
+      <p className="pt-5 pb-8">
+        Di sini Anda dapat melihat kumpulan data produksi energi yang dihasilkan
+        oleh turbin angin yang terletak di gedung Departemen Teknik Nuklir dan
+        Teknik Fisika Universitas Gadjah Mada (DTNTF UGM).
       </p>
-      <Box className="pt-6 pb-8" sx={{ width: "100%", typography: "body1" }}>
+      {/* <Box className="pt-6 pb-8" sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={tabValue}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <TabList
@@ -124,7 +118,7 @@ function WindHeader() {
             </TabList>
           </Box>
         </TabContext>
-      </Box>
+      </Box> */}
     </header>
   );
 }

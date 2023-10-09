@@ -60,10 +60,12 @@ export default async function handler(
     (panelVar.panjang_mm * panelVar.lebar_mm * panelVar.jumlah) / 1_000_000;
 
   try {
-    console.time("serial");
-    const panelData = await axios
+    // console.time("serial");
+    const panelFetch = await axios
       .get(`http://10.46.10.128:5000/ebt/harian?data=suryaAC&waktu=${tanggal}`)
       .then((response) => response.data.value as DailyData[]);
+
+    let panelData;
 
     // console.log(panelData);
 
@@ -73,12 +75,13 @@ export default async function handler(
     //   and DATE_FORMAT(created_at , '%Y-%m-%d') = ${tanggal}
     //   and MINUTE(created_at) % 5 = 0`;
 
-    const outdoorData = await prisma.$queryRawUnsafe<OutdoorSolarData[]>(
+    const outdoorFetch = await prisma.$queryRawUnsafe<OutdoorSolarData[]>(
       `SELECT *
       from Value v
       where sensorId = 'fa9c9a3a-8768-48f3-a184-5686cba421fe' and (created_at BETWEEN '${dayBefore} 17:00:00' AND '${tanggal} 17:00:00') and MINUTE(created_at) % 5 = 0`
     );
-    console.timeEnd("serial");
+    // console.timeEnd("serial");
+    let outdoorData;
 
     // const dayBeforeSQL = `'${dayBefore} 17:00:00'`;
     // const tanggalSQL = `'${tanggal} 17:00:00'`;
@@ -89,9 +92,26 @@ export default async function handler(
     // console.log(outdoorData);
 
     console.time("paralel");
-    const tryAllSettled = await Promise.allSettled([panelData, outdoorData]);
-    console.log(tryAllSettled);
+    const [panel, outdoor] = await Promise.allSettled([
+      panelFetch,
+      outdoorFetch,
+    ]);
+    if (panel.status == "fulfilled") {
+      //   console.log(panel.value);
+      panelData = panel.value;
+    } else {
+      return res.status(500).send("Server Error");
+    }
+
+    if (outdoor.status == "fulfilled") {
+      //   console.log(panel.value);
+      outdoorData = outdoor.value;
+    } else {
+      return res.status(500).send("Server Error");
+    }
     console.timeEnd("paralel");
+
+    // console.log(panelData);
 
     const panelPower = panelData.map((data) => {
       return {
@@ -179,7 +199,7 @@ export default async function handler(
     //   responseData.splice(0, responseData.length - panelData.length);
     // }
     // res.status(200).send(responseData);
-    res.status(200).send(alignedData);
+    return res.status(200).send(alignedData);
 
     // res.status(200).send(data);
   } catch (error) {

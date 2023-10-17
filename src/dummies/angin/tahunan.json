@@ -1,0 +1,60 @@
+{
+    "turbin_id": 8,
+    "tahun": "2023",
+    "units": [
+      {
+        "avg_bulanan_tegangan": "V",
+        "avg_bulanan_arus": "A",
+        "sum_bulanan_daya": "W",
+        "sum_bulanan_energi": "Wh"
+      }
+    ],
+    "value": [
+      {
+        "bulan_ke": 1,
+        "value": {
+          "avg_bulanan_tegangan": 8.98,
+          "avg_bulanan_arus": 0.02,
+          "sum_bulanan_daya": 531.41,
+          "sum_bulanan_energi": 44.28
+        }
+      },
+      {
+        "bulan_ke": 2,
+        "value": {
+          "avg_bulanan_tegangan": 2.04,
+          "avg_bulanan_arus": 0.0,
+          "sum_bulanan_daya": 145.09,
+          "sum_bulanan_energi": 12.09
+        }
+      },
+      {
+        "bulan_ke": 3,
+        "value": {
+          "avg_bulanan_tegangan": 0.26,
+          "avg_bulanan_arus": 0.0,
+          "sum_bulanan_daya": 17.08,
+          "sum_bulanan_energi": 1.42
+        }
+      },
+      {
+        "bulan_ke": 4,
+        "value": {
+          "avg_bulanan_tegangan": null,
+          "avg_bulanan_arus": null,
+          "sum_bulanan_daya": null,
+          "sum_bulanan_energi": null
+        }
+      },
+      {
+        "bulan_ke": 5,
+        "value": {
+          "avg_bulanan_tegangan": null,
+          "avg_bulanan_arus": null,
+          "sum_bulanan_daya": null,
+          "sum_bulanan_energi": null
+        }
+      }
+    ]
+  }
+  

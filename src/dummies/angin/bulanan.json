@@ -1,0 +1,88 @@
+{
+    "turbin_id": 8,
+    "bulan": "1",
+    "tahun": "2023",
+    "units": [
+      {
+        "avg_harian_tegangan": "V",
+        "avg_harian_arus": "A",
+        "sum_harian_daya": "W",
+        "sum_harian_energi": "Wh"
+      }
+    ],
+    "value": [
+      {
+        "tanggal": "Tue, 24 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 0.0,
+          "avg_harian_arus": 0.0,
+          "sum_harian_daya": 0.0,
+          "sum_harian_energi": 0.0
+        }
+      },
+      {
+        "tanggal": "Wed, 25 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 0.24,
+          "avg_harian_arus": 0.0,
+          "sum_harian_daya": 1.86,
+          "sum_harian_energi": 0.15
+        }
+      },
+      {
+        "tanggal": "Thu, 26 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 4.42,
+          "avg_harian_arus": 0.01,
+          "sum_harian_daya": 37.66,
+          "sum_harian_energi": 3.14
+        }
+      },
+      {
+        "tanggal": "Fri, 27 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 12.26,
+          "avg_harian_arus": 0.03,
+          "sum_harian_daya": 105.82,
+          "sum_harian_energi": 8.82
+        }
+      },
+      {
+        "tanggal": "Sat, 28 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 12.15,
+          "avg_harian_arus": 0.03,
+          "sum_harian_daya": 104.57,
+          "sum_harian_energi": 8.71
+        }
+      },
+      {
+        "tanggal": "Sun, 29 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 12.03,
+          "avg_harian_arus": 0.03,
+          "sum_harian_daya": 103.56,
+          "sum_harian_energi": 8.63
+        }
+      },
+      {
+        "tanggal": "Mon, 30 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 11.9,
+          "avg_harian_arus": 0.03,
+          "sum_harian_daya": 101.75,
+          "sum_harian_energi": 8.48
+        }
+      },
+      {
+        "tanggal": "Tue, 31 Jan 2023 00:00:00 GMT",
+        "value": {
+          "avg_harian_tegangan": 11.77,
+          "avg_harian_arus": 0.03,
+          "sum_harian_daya": 76.18,
+          "sum_harian_energi": 6.35
+        }
+      }
+    ]
+  }
+  

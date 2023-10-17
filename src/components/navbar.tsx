@@ -16,6 +16,19 @@ export default function Navbar({ onMouseEnter, onMouseLeave }: NavbarProps) {
       onMouseLeave={onMouseLeave}
       className="min-h-screen z-10 w-16 hover:w-52  transition-all  fixed overflow-hidden bg-[#363740] hover:bg-opacity-90 hover:backdrop-blur-sm"
     >
+      <div className="py-6 pl-2 flex flex-row gap-5 items-center border-b-2 border-[#dde2ff]">
+        <Image
+          src="/ugm_bw.png"
+          alt="logo"
+          width={50}
+          height={50}
+          className="flex-shrink-0"
+        />
+        <p className="flex-shrink-0 text-sm overflow-clip font-semibold text-white ">
+          Departemen <br /> Teknik Nuklir
+          <br />& Teknik Fisika
+        </p>
+      </div>
       <div className="flex flex-col w-full place-items-start top-1/3 absolute">
         <Link
           href={"/"}

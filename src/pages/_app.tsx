@@ -10,21 +10,17 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useState } from "react";
 
 export default function App({ Component, pageProps }: AppProps) {
-  // const router = useRouter();
-
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            retryDelay: (attemptIndex) =>
-              Math.min(1000 * 2 ** attemptIndex, 10000),
+            retry: 4,
+            // staleTime: Infinity,
           },
         },
       })
   );
-
-  // const queryClient = new QueryClient();
 
   return (
     <>

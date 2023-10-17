@@ -1,9 +1,9 @@
 export interface RealData {
-  voltage: number;
-  current: number;
-  power: number;
-  energy: number;
-  power_factor: number;
+  voltage: number | null;
+  current: number | null;
+  power: number | null;
+  energy: number | null;
+  power_factor?: number;
   db_created_at: string;
 }
 
@@ -14,7 +14,7 @@ export interface DailyData {
     current: number;
     power: number;
     energy: number;
-    power_factor: number;
+    power_factor?: number;
   };
 }
 
@@ -31,10 +31,10 @@ export interface MonthlyData {
 export interface YearlyData {
   bulan_ke: number;
   value: {
-    avg_bulanan_tegangan: number;
-    avg_bulanan_arus: number;
-    sum_bulanan_daya: number;
-    sum_bulanan_energi: number;
+    avg_bulanan_tegangan: number | null;
+    avg_bulanan_arus: number | null;
+    sum_bulanan_daya: number | null;
+    sum_bulanan_energi: number | null;
   };
 }
 
@@ -44,7 +44,7 @@ export interface OutdoorSolarData {
 }
 
 export interface OutdoorSolarEfficiencyData {
-  timestamp: Date;
+  timestamp: Date | string;
   panel_power: number;
   outdoor_power: number;
   efficiency: number;

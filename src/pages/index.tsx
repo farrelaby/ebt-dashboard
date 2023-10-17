@@ -6,13 +6,25 @@ import { useQueries } from "@tanstack/react-query";
 import axios from "axios";
 import { RealData } from "@/types/types";
 
-import { Skeleton, Snackbar, Alert } from "@mui/material";
+import { Skeleton } from "@mui/material";
+
+import { ErrorSnackbar } from "@/components/snackbars";
+import { useErrorSnackbar } from "@/hooks/snackbars.hooks";
 
 import { RealChart } from "@/components/charts";
 
 import { useState } from "react";
 
+import terbaru from "../dummies/surya/terbaru.json";
+
 export default function Home() {
+  // const [toastOpen, setToastOpen] = useState(false);
+  // const toastHandler = {
+  //   open: () => setToastOpen(true),
+  //   close: () => setToastOpen(false),
+  // };
+  const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
+
   const [solarDropdown, setSolarDropdown] = useState("suryaAC");
   const solarDropdownHandler = (
     event: React.ChangeEvent<HTMLSelectElement>
@@ -31,7 +43,8 @@ export default function Home() {
           return res.data.value as RealData[];
         },
 
-        retry: 2,
+        onError: () => snackbarHandler.open(),
+        initialData: terbaru.value,
       },
       {
         queryKey: ["realData", { data: "turbin" }],
@@ -42,16 +55,11 @@ export default function Home() {
           return res.data.value as RealData[];
         },
 
-        retry: 2,
+        onError: () => snackbarHandler.open(),
+        initialData: terbaru.value,
       },
     ],
   });
-
-  const [toastOpen, setToastOpen] = useState(true);
-  const toastHandler = {
-    open: () => setToastOpen(true),
-    close: () => setToastOpen(false),
-  };
 
   return (
     <>
@@ -61,6 +69,8 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
 
       <div className="min-h-screen pb-8">
         <header className="flex flex-row pl-6">
@@ -78,18 +88,9 @@ export default function Home() {
           </div>
         </header>
 
-        {solarReal.isError && windReal.isError && (
-          <Snackbar
-            open={toastOpen}
-            autoHideDuration={6000}
-            onClose={toastHandler.close}
-            anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          >
-            <Alert severity="error" sx={{ width: "100%", border: "red" }}>
-              Tidak dapat tersambung ke server
-            </Alert>
-          </Snackbar>
-        )}
+        <h3 className="text-2xl font-bold text-center pt-8 pb-2 border-b-2">
+          <span className="text-[#9747FF]">5</span> Data Terakhir
+        </h3>
 
         <div className="flex flex-row gap-8 mt-8">
           <section id="panel-surya">
@@ -114,7 +115,7 @@ export default function Home() {
                 <Skeleton variant="rounded" width={650} height={290} />
               )}
 
-              <div className="flex flex-row gap-4 mt-2 justify-center">
+              {/* <div className="flex flex-row gap-4 mt-2 justify-center">
                 {solarReal.isSuccess ? (
                   <>
                     <OverviewCard
@@ -134,7 +135,7 @@ export default function Home() {
                     <Skeleton variant="rounded" height={128} width={144} />
                   </>
                 )}
-              </div>
+              </div> */}
             </div>
           </section>
 
@@ -151,7 +152,7 @@ export default function Home() {
               ) : (
                 <Skeleton variant="rounded" width={650} height={290} />
               )}
-              <div className="flex flex-row gap-4 mt-2 justify-center">
+              {/* <div className="flex flex-row gap-4 mt-2 justify-center">
                 {windReal.isSuccess ? (
                   <>
                     <OverviewCard
@@ -171,7 +172,7 @@ export default function Home() {
                     <Skeleton variant="rounded" height={128} width={144} />
                   </>
                 )}
-              </div>
+              </div> */}
             </div>
           </section>
         </div>

@@ -52,7 +52,7 @@ export default async function handler(
     take: 1,
   });
 
-  console.log(fetch);
+  // console.log(fetch);
 
   return res.status(200).send(fetch);
 }

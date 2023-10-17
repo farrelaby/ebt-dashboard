@@ -8,6 +8,8 @@ import {
 } from "@/types/types";
 
 import { twoDecimalPlaces } from "@/utils";
+import FormatNumber from "@/utils/numFormatter";
+import { format } from "date-fns";
 
 import { useMemo } from "react";
 
@@ -15,24 +17,41 @@ import dynamic from "next/dynamic";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function RealChart({ data }: { data: RealData[] }) {
-  console.log("chart rendered");
+  // console.log(data);
+
   const newObject = data?.map((data) => {
     return {
-      date: data.db_created_at,
-      energy:
-        data.energy !== null ? twoDecimalPlaces(data.energy) : data.energy,
+      // date: data.db_created_at,
+      // energy:
+      //   data.energy !== null ? twoDecimalPlaces(data.energy) : data.energy,
+
+      x: data.db_created_at,
+      y: data.power !== null ? twoDecimalPlaces(data.power) : data.power,
+      additionalInfo: {
+        voltage:
+          data.voltage !== null ? twoDecimalPlaces(data.voltage) : data.voltage,
+        current:
+          data.current !== null ? twoDecimalPlaces(data.current) : data.current,
+      },
     };
   });
 
+  const timestamps = data?.map((data) => data.db_created_at);
+  // console.log(newObject);
+  // console.log(timestamps.length);
+
   const realData = newObject?.map((data) => Object.values(data));
+
+  // console.log(realData);
 
   const series = [
     {
-      name: "Energi",
-      data: realData as number[][],
-      fill: {
-        colors: ["#A300D6"],
-      },
+      name: "Daya",
+      // data: realData as number[][],
+      data: newObject,
+      // fill: {
+      //   colors: ["#A300D6"],
+      // },
     },
     // {
     //   name: "Solar Irradiance",
@@ -66,7 +85,7 @@ function RealChart({ data }: { data: RealData[] }) {
     yaxis: [
       {
         title: {
-          text: "Energi (Wh)",
+          text: "Daya (W)",
         },
         // max: maxDataValue,
       },
@@ -81,15 +100,51 @@ function RealChart({ data }: { data: RealData[] }) {
     xaxis: {
       type: "datetime" as "datetime",
       // categories: ["1", "2", "3", "4", "5"],
+      // categories: timestamps,
       labels: {
         format: "HH:mm:ss",
         datetimeUTC: false,
       },
     },
     tooltip: {
-      shared: true,
-      x: {
-        format: "dd/MM/yy HH:mm",
+      // shared: true,
+      // x: {
+      //   format: "dd/MM/yy HH:mm",
+      // },
+      custom: function ({
+        seriesIndex,
+        dataPointIndex,
+        w,
+      }: {
+        seriesIndex: number;
+        dataPointIndex: number;
+        w: any;
+      }) {
+        const data = w.config.series[seriesIndex].data[dataPointIndex];
+        return `<div class="bg-white shadow-md ">
+        <div class="bg-gray-300 px-3 py-1 flex justify-between text-xs font-semibold">
+        <div>${format(new Date(data.x), "dd/MM/yyyy")}</div>
+        <div>${format(new Date(data.x), "hh:mm:ss")}</div>
+        </div>
+        <div class="flex flex-col text-sm p-3">
+        <div class="flex flex-row gap-10 justify-between border-b-2">
+        <div class="">Daya</div>
+        <div class="font-semibold">${FormatNumber(data.y)} W</div>
+        </div>
+        <div class="flex flex-row gap-10 justify-between border-b-2">
+        <div class="">Tegangan</div>
+        <div class="font-semibold">${FormatNumber(
+          data.additionalInfo.voltage
+        )} V</div>
+        </div>
+        <div class="flex flex-row gap-10 justify-between">
+        <div class="">Arus</div>
+        <div class="font-semibold">${data.additionalInfo.current} A</div>
+        </div>
+          
+            </div>
+            </div>
+            `;
       },
     },
     stroke: {
@@ -110,7 +165,7 @@ function RealChart({ data }: { data: RealData[] }) {
   );
 }
 
-function EnergyDailyChart({
+export function PowerDailyChart({
   data,
   outdoorData,
   dailyDate,
@@ -119,62 +174,59 @@ function EnergyDailyChart({
   outdoorData: OutdoorSolarData[];
   dailyDate: Date | null;
 }) {
-  // const y1Data = [20, 40, 60, 80, 90];
-
-  // const barData: number[] = [];
-  // const timestamps: string[] = [];
-  // const y1Data: number[] = [];
-
-  // data?.map((data) => {
-  //   barData.push(data.value.energy);
-  //   // timestamps.push(data.db_created_at);
-  // });
-
-  // outdoorData?.map((data) => {
-  //   y1Data.push(data.value);
-  //   timestamps.push(data.created_at);
-  // });
-
   const newObject = data?.map((data) => {
     return {
-      date: data.db_created_at,
-      energy:
-        data.value.energy !== null
-          ? twoDecimalPlaces(data.value.energy)
-          : data.value.energy,
+      // date: data.db_created_at,
+      // power:
+      //   data.value.power !== null
+      //     ? twoDecimalPlaces(data.value.power)
+      //     : data.value.power,
+      x: data.db_created_at,
+      y:
+        data.value.power !== null
+          ? twoDecimalPlaces(data.value.power)
+          : data.value.power,
+      additionalInfo: {
+        voltage:
+          data.value.voltage !== null
+            ? twoDecimalPlaces(data.value.voltage)
+            : data.value.voltage,
+        current:
+          data.value.current !== null
+            ? twoDecimalPlaces(data.value.current)
+            : data.value.current,
+      },
     };
   });
 
-  const y0Data = newObject?.map((data) => Object.values(data));
+  // const y0Data = newObject?.map((data) => Object.values(data));
 
-  const y1Data = outdoorData?.map((data) => Object.values(data));
+  // const newOutdoorObject = outdoorData?.map((data) => {
+  //   return {
+  //     x: data.created_at,
+  //     y: data.value,
+  //   };
+  // });
+  // console.log(newOutdoorObject);
 
-  // console.log(y0Data[0][0]);
-  // console.log(tes_data);
-
-  // console.log(y1Data.length, barData.length, timestamps.length);
-
-  // if y1data.length > barData.length, then slice y1data
-  // if y1data.length < barData.length, then slice barData
-
-  // if (y1Data.length > barData.length) {
-  //   y1Data.splice(0, y1Data.length - barData.length);
-  // }
+  // const y1Data = outdoorData?.map((data) => Object.values(data));
 
   const series = [
     {
-      name: "Energi",
-      data: y0Data as number[][],
+      name: "Daya",
+      // data: y0Data as number[][],
+      data: newObject,
       fill: {
         colors: ["#A300D6"],
       },
     },
-    {
-      name: "Solar Irradiance",
-      data: y1Data as number[][],
-      yAxisIndex: 1,
-      fill: { colors: ["#FFD600"] },
-    },
+    // {
+    //   name: "Solar Irradiance",
+    //   // data: y1Data as number[][],
+    //   data: newOutdoorObject,
+    //   yAxisIndex: 1,
+    //   fill: { colors: ["#FFD600"] },
+    // },
   ];
 
   // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
@@ -204,17 +256,17 @@ function EnergyDailyChart({
     yaxis: [
       {
         title: {
-          text: "Energi (Wh)",
+          text: "Daya (W)",
         },
         // max: maxDataValue,
       },
-      {
-        opposite: true,
-        title: {
-          text: "Solar Irradiance (W/m^2)",
-        },
-        // max: maxDataValue,
-      },
+      // {
+      //   opposite: true,
+      //   title: {
+      //     text: "Solar Irradiance (W/m^2)",
+      //   },
+      //   // max: maxDataValue,
+      // },
     ],
     xaxis: {
       type: "datetime" as "datetime",
@@ -223,12 +275,77 @@ function EnergyDailyChart({
         format: "HH:mm:ss",
         datetimeUTC: false,
       },
-      max: dailyDate?.getTime(),
+      // max: dailyDate?.getTime(),
     },
     tooltip: {
-      shared: true,
-      x: {
-        format: "dd/MM/yy HH:mm",
+      // shared: true,
+      // x: {
+      //   format: "dd/MM/yy HH:mm",
+      // },
+      // custom: function ({
+      //   series,
+      //   seriesIndex,
+      //   dataPointIndex,
+      //   w,
+      // }: {
+      //   series: any;
+      //   seriesIndex: number;
+      //   dataPointIndex: number;
+      //   w: any;
+      // }) {
+      //   let tooltip = '<div class="custom-tooltip">';
+      //   tooltip +=
+      //     '<span class="series-name">' +
+      //     w.globals.seriesNames[seriesIndex] +
+      //     "</span>";
+      //   tooltip +=
+      //     '<span class="value">' +
+      //     series[seriesIndex][dataPointIndex] +
+      //     "</span>";
+      //   console.log(w.globals.initialConfig.series);
+      //   if (w.globals.seriesNames[seriesIndex] === "Daya") {
+      //     tooltip +=
+      //       '<span class="additional-info">Additional info for Daya series</span>';
+      //   }
+      //   tooltip += "</div>";
+      //   return tooltip;
+      // },
+
+      custom: function ({
+        seriesIndex,
+        dataPointIndex,
+        w,
+        series,
+      }: {
+        seriesIndex: number;
+        dataPointIndex: number;
+        w: any;
+        series: any;
+      }) {
+        const data = w.config.series[seriesIndex].data[dataPointIndex];
+        return `<div class="bg-white shadow-md ">
+        <div class="bg-gray-300 px-3 py-1 flex justify-between text-xs font-semibold">
+        <div>${format(new Date(data.x), "dd/MM/yyyy")}</div>
+        <div>${format(new Date(data.x), "hh:mm:ss")}</div>
+        </div>
+        <div class="flex flex-col text-sm p-3">
+          <div class="flex flex-row gap-10 justify-between border-b-2">
+            <div class="">Daya</div>
+            <div class="font-semibold">${FormatNumber(data.y)} W</div>
+            </div>
+            <div class="flex flex-row gap-10 justify-between border-b-2">
+            <div class="">Tegangan</div>
+            <div class="font-semibold">${FormatNumber(
+              data.additionalInfo.voltage
+            )} V</div>
+            </div>
+            <div class="flex flex-row gap-10 justify-between">
+            <div class="">Arus</div>
+            <div class="font-semibold">${data.additionalInfo.current} A</div>
+            </div>
+            </div>
+            </div>
+            `;
       },
     },
     stroke: {
@@ -242,6 +359,158 @@ function EnergyDailyChart({
         options={options}
         series={series}
         type="area"
+        width={1100}
+        height={420}
+      />
+    </>
+  );
+}
+
+function EnergyDailyChart({
+  data,
+}: // outdoorData,
+// dailyDate,
+{
+  data: DailyData[];
+  // outdoorData: OutdoorSolarData[];
+  // dailyDate: Date | null;
+}) {
+  // const y1Data = [20, 40, 60, 80, 90];
+
+  // const barData: number[] = [];
+  // const timestamps: string[] = [];
+  // const y1Data: number[] = [];
+
+  // data?.map((data) => {
+  //   barData.push(data.value.energy);
+  //   // timestamps.push(data.db_created_at);
+  // });
+
+  // outdoorData?.map((data) => {
+  //   y1Data.push(data.value);
+  //   timestamps.push(data.created_at);
+  // });
+
+  const newObject = data?.map((data) => {
+    return {
+      date: data.db_created_at,
+      energy:
+        data.value.energy !== null
+          ? twoDecimalPlaces(data.value.energy)
+          : data.value.energy,
+    };
+  });
+
+  const y0Data = newObject?.map((data) => Object.values(data));
+
+  // const y1Data = outdoorData?.map((data) => Object.values(data));
+
+  // console.log(y0Data[0][0]);
+  // console.log(tes_data);
+
+  // console.log(y1Data.length, barData.length, timestamps.length);
+
+  // if y1data.length > barData.length, then slice y1data
+  // if y1data.length < barData.length, then slice barData
+
+  // if (y1Data.length > barData.length) {
+  //   y1Data.splice(0, y1Data.length - barData.length);
+  // }
+
+  const series = [
+    {
+      name: "Energi",
+      data: y0Data as number[][],
+      fill: {
+        colors: ["#A300D6"],
+      },
+    },
+    // {
+    //   name: "Solar Irradiance",
+    //   data: y1Data as number[][],
+    //   yAxisIndex: 1,
+    //   fill: { colors: ["#FFD600"] },
+    // },
+  ];
+
+  // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
+
+  // dailyDate?.setHours(23, 59, 59, 999);
+
+  const options = {
+    // colors: ["#378ffd", "#e6e600"],
+    chart: {
+      stacked: false,
+      zoom: {
+        type: "x" as "x",
+        enabled: true,
+        autoScaleYaxis: true,
+      },
+      toolbar: {
+        autoSelected: "zoom" as "zoom",
+      },
+    },
+    plotOptions: {
+      bar: {
+        // horizontal: false,
+        barWidth: "100%", // Adjust this value to control the width of the bars
+        // distributed: true, // Distribute bars evenly without gaps
+        rangeBarOverlap: true,
+      },
+    },
+    dataLabels: {
+      enabled: false,
+    },
+    markers: {
+      size: 0,
+    },
+
+    yaxis: [
+      {
+        title: {
+          text: "Energi (Wh)",
+        },
+        // max: maxDataValue,
+      },
+      // {
+      //   opposite: true,
+      //   title: {
+      //     text: "Solar Irradiance (W/m^2)",
+      //   },
+      //   // max: maxDataValue,
+      // },
+    ],
+    xaxis: {
+      type: "datetime" as "datetime",
+      // categories: timestamps,
+      labels: {
+        format: "HH:mm:ss",
+        datetimeUTC: false,
+      },
+      // max: dailyDate?.getTime(),
+    },
+    tooltip: {
+      // shared: true,
+      x: {
+        format: "dd/MM/yy HH:mm",
+      },
+      y: {
+        formatter: function (value: number) {
+          return FormatNumber(value) + " Wh";
+        },
+      },
+    },
+    stroke: {
+      width: 2,
+    },
+  };
+
+  return (
+    <>
+      <ApexChart
+        options={options}
+        series={series}
+        type="bar"
         width={1100}
         height={420}
       />
@@ -294,6 +563,11 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
       x: {
         format: "ddd, dd/MM/yy",
       },
+      y: {
+        formatter: function (value: number) {
+          return FormatNumber(value) + " Wh";
+        },
+      },
     },
   };
 
@@ -330,7 +604,7 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
   ];
 
   data?.map((data) => {
-    barData.push(data.value.sum_bulanan_energi);
+    barData.push(data.value.sum_bulanan_energi as number);
     timestamps.push(monthNames[data.bulan_ke - 1]);
   });
 
@@ -355,7 +629,7 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
     yaxis: [
       {
         title: {
-          text: "Energi (kWh)",
+          text: "Energi (Wh)",
         },
       },
     ],
@@ -365,6 +639,11 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
     tooltip: {
       x: {
         format: "MMMM",
+      },
+      y: {
+        formatter: function (value: number) {
+          return FormatNumber(value) + " Wh";
+        },
       },
     },
   };
@@ -388,7 +667,7 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
 
   data?.map((data) => {
     efficiencyData.push(data.efficiency);
-    timestamps.push(data.timestamp);
+    timestamps.push(data.timestamp as Date);
   });
 
   const series = [

@@ -8,6 +8,7 @@ import { DatePicker } from "@mui/x-date-pickers";
 
 import { RealTimeCard } from "@/components/cards";
 import {
+  PowerDailyChart,
   EnergyDailyChart,
   EnergyMonthlyChart,
   EnergyYearlyChart,
@@ -16,6 +17,11 @@ import { DailyData, MonthlyData, YearlyData } from "@/types/types";
 
 import { useWindFetch } from "@/hooks/wind.hooks";
 
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { SERVER_EBT_URL } from "@/configs/url";
+import harian from "@/dummies/angin/harian.json";
+
 import { realTimeCardItems } from "@/utils";
 
 import { format } from "date-fns";
@@ -23,6 +29,7 @@ import { format } from "date-fns";
 export default function TurbinAngin() {
   const [open, setOpen] = useState(false);
 
+  const [powerDate, setPowerDate] = useState<Date | null>(new Date());
   const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
@@ -32,6 +39,25 @@ export default function TurbinAngin() {
     monthlyDate,
     yearlyDate
   );
+
+  const dailyPower = useQuery({
+    queryKey: [
+      "dailyData",
+      { data: "turbin", waktu: format(powerDate as Date, "yyyy-MM-dd") },
+    ],
+    queryFn: async () => {
+      const res = await axios.get(
+        `${SERVER_EBT_URL}/ebt/harian?data=turbin&waktu=${format(
+          powerDate as Date,
+          "yyyy-MM-dd"
+        )}`
+      );
+      return res.data.value as DailyData[];
+    },
+    // placeholderData: harian.value,
+
+    // onError: () => snackbarHandler.open(),
+  });
 
   return (
     <>
@@ -76,11 +102,9 @@ export default function TurbinAngin() {
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
-                  <Skeleton variant="rectangular" width={208} height={288} />
-                  <Skeleton variant="rectangular" width={208} height={288} />
                 </>
               )}
-              {realData.isError && <p>Error...</p>}
+
               {realData.isSuccess && (
                 <>
                   <RealTimeCard
@@ -98,23 +122,87 @@ export default function TurbinAngin() {
                     unit="Watt"
                     title="Daya"
                   />
-                  <RealTimeCard
-                    value={realData.data[4]?.energy}
-                    unit="kWh"
-                    title="Energi"
-                  />
-                  <RealTimeCard
-                    value={realData.data[4]?.power_factor}
-                    unit="-"
-                    title="Power Factor"
-                  />
                 </>
               )}
             </div>
           </div>
         </section>
 
-        <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
+        <section
+          id="daya-harian"
+          className="mt-9 flex flex-col bg-white shadow-md"
+        >
+          <div className="mx-9 my-10">
+            <div className="flex flex-row justify-between">
+              <div className="flex flex-col gap-2">
+                <h3 className="text-2xl font-bold">
+                  Produksi Daya <span className="text-[#9747FF]">Harian</span>
+                </h3>
+                {/* {dailyData.isSuccess && (
+                  <p className="italic text-sm text-[#378ffd]">
+                    Last updated :{" "}
+                    {format(
+                      new Date(
+                        dailyData.data[dailyData.data.length - 1].db_created_at
+                      ),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
+                )} */}
+                {realData.isSuccess && (
+                  <p className="italic text-sm ">
+                    Last updated :{" "}
+                    {format(
+                      new Date(realData.data[4]?.db_created_at),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
+                )}
+                {/* {latestOutdoor.isSuccess && (
+                  <p className="italic text-sm text-[#4ee294]">
+                    Last updated :{" "}
+                    {format(
+                      new Date(latestOutdoor.data.data.lastUpdate),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
+                )} */}
+              </div>
+              <DatePicker
+                label="Masukkan Tanggal"
+                value={powerDate}
+                views={["year", "month", "day"]}
+                defaultValue={new Date()}
+                onChange={(newValue) => setPowerDate(newValue)}
+                disableFuture
+                format="dd/MM/yyyy"
+                className="mr-16"
+              />
+            </div>
+            <div className="mt-9 ml-16 mr-2">
+              <PowerDailyChart
+                // data={dailyPower.data as DailyData[]}
+                data={harian.value}
+                // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
+                outdoorData={[]}
+                dailyDate={powerDate as Date}
+              />
+              {dailyPower.isSuccess ? (
+                <></>
+              ) : (
+                <Skeleton variant="rectangular" width={1100} height={435} />
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="energi-harian"
+          className="mt-9 flex flex-col bg-white shadow-md"
+        >
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
@@ -146,8 +234,8 @@ export default function TurbinAngin() {
               {dailyData.isSuccess ? (
                 <EnergyDailyChart
                   data={dailyData.data as DailyData[]}
-                  outdoorData={[]}
-                  dailyDate={dailyDate}
+                  // outdoorData={[]}
+                  // dailyDate={dailyDate}
                 />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />

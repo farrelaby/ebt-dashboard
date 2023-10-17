@@ -24,11 +24,11 @@ export const realTimeCardItems: RealTimeCardItem[] = [
     unit: "Watt",
     title: "Daya",
   },
-  {
-    valueKey: "energy",
-    unit: "Wh",
-    title: "Energi",
-  },
+  // {
+  //   valueKey: "energy",
+  //   unit: "Wh",
+  //   title: "Energi",
+  // },
   {
     valueKey: "power_factor",
     unit: "",

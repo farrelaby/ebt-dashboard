@@ -1,9 +1,14 @@
 import Head from "next/head";
+import Image from "next/image";
 import { useState, useCallback } from "react";
 
 import { format, set } from "date-fns";
 
-import { Skeleton } from "@mui/material";
+import { ErrorSnackbar } from "@/components/snackbars";
+import { useErrorSnackbar } from "@/hooks/snackbars.hooks";
+
+import { Skeleton, Tooltip } from "@mui/material";
+// import Tooltip from "@mui/material";
 import { DatePicker } from "@mui/x-date-pickers";
 
 import { useQuery, useQueries } from "@tanstack/react-query";
@@ -13,7 +18,21 @@ import { EfficiencyChart } from "@/components/charts";
 
 import { OutdoorSolarEfficiencyData } from "@/types/types";
 
+import efficiencyDummy from "@/dummies/surya/efisiensi.json";
+
+const tooltipTitle = (
+  <>
+    <p className="text-sm">
+      Efisiensi daya dihitung dengan membagi{" "}
+      <b>daya yang dihasilkan oleh panel surya</b> dengan{" "}
+      <b>daya yang diterima oleh panel surya dari matahari</b>.
+    </p>
+  </>
+);
+
 export default function PanelSuryaEfisiensi() {
+  const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
+
   const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
 
   const changeDate = useCallback((newDate: Date | null) => {
@@ -31,6 +50,7 @@ export default function PanelSuryaEfisiensi() {
       setDailyDate(new Date(res.data.data.lastUpdate as string));
       return res.data.data.lastUpdate as string;
     },
+    onError: () => snackbarHandler.open(),
     // staleTime: Infinity,
     // cacheTime: Infinity,
     // select: (data: RealData[]) => data[4],
@@ -49,6 +69,7 @@ export default function PanelSuryaEfisiensi() {
       );
       return res.data as OutdoorSolarEfficiencyData[];
     },
+    initialData: efficiencyDummy,
   });
 
   // const [outdoorSolar, efficiencyData] = useQueries({
@@ -97,15 +118,36 @@ export default function PanelSuryaEfisiensi() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Solar-Panel.svg" />
       </Head>
+
+      <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
+
       <div className="pb-8">
         {/* <h2>aku Efisiensi solar</h2> */}
         <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold">
-                  <span className="text-[#9747FF]">Efisiensi</span> Energi
-                </h3>
+                <div className="flex flex-row gap-2 justify-center">
+                  <h3 className="text-2xl font-bold">
+                    <span className="text-[#9747FF]">Efisiensi</span> Daya
+                    Produksi
+                  </h3>
+                  <Tooltip
+                    title={tooltipTitle}
+                    placement="right"
+                    arrow
+                    sx={{ backgroundColor: "white", color: "black" }}
+                  >
+                    <button>
+                      <Image
+                        src="/question-mark.svg"
+                        alt="question mark"
+                        width={18}
+                        height={18}
+                      />
+                    </button>
+                  </Tooltip>
+                </div>
                 {outdoorSolar.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
@@ -141,10 +183,8 @@ export default function PanelSuryaEfisiensi() {
                 <EfficiencyChart
                   data={efficiencyData.data as OutdoorSolarEfficiencyData[]}
                 />
-              ) : efficiencyData.isLoading ? (
-                <Skeleton variant="rectangular" width={1100} height={435} />
               ) : (
-                <h1>error</h1>
+                <Skeleton variant="rectangular" width={1100} height={435} />
               )}
             </div>
           </div>

@@ -13,10 +13,10 @@ import { format, getMonth, getYear } from "date-fns";
 
 import { SERVER_EBT_URL, SERVER_HEB_URL } from "@/configs/url";
 
-import terbaru from "../dummies/surya/terbaru.json";
-import harian from "../dummies/surya/harian.json";
-import bulanan from "../dummies/surya/bulanan.json";
-import tahunan from "../dummies/surya/tahunan.json";
+import terbaru from "@/dummies/surya/terbaru.json";
+import harian from "@/dummies/surya/harian.json";
+import bulanan from "@/dummies/surya/bulanan.json";
+import tahunan from "@/dummies/surya/tahunan.json";
 
 export const useSolarFetch = (
   device: "suryaAC" | "suryaDC",

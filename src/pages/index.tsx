@@ -32,34 +32,34 @@ export default function Home() {
     setSolarDropdown(event.target.value);
   };
 
-  const [solarReal, windReal] = useQueries({
-    queries: [
-      {
-        queryKey: ["realData", { data: `${solarDropdown}` }],
-        queryFn: async () => {
-          const res = await axios.get(
-            `http://10.46.10.128:5000/ebt?data=${solarDropdown}`
-          );
-          return res.data.value as RealData[];
-        },
+  // const [solarReal, windReal] = useQueries({
+  //   queries: [
+  //     {
+  //       queryKey: ["realData", { data: `${solarDropdown}` }],
+  //       queryFn: async () => {
+  //         const res = await axios.get(
+  //           `http://10.46.10.128:5000/ebt?data=${solarDropdown}`
+  //         );
+  //         return res.data.value as RealData[];
+  //       },
 
-        onError: () => snackbarHandler.open(),
-        initialData: terbaru.value,
-      },
-      {
-        queryKey: ["realData", { data: "turbin" }],
-        queryFn: async () => {
-          const res = await axios.get(
-            "http://10.46.10.128:5000/ebt?data=turbin"
-          );
-          return res.data.value as RealData[];
-        },
+  //       onError: () => snackbarHandler.open(),
+  //       initialData: terbaru.value,
+  //     },
+  //     {
+  //       queryKey: ["realData", { data: "turbin" }],
+  //       queryFn: async () => {
+  //         const res = await axios.get(
+  //           "http://10.46.10.128:5000/ebt?data=turbin"
+  //         );
+  //         return res.data.value as RealData[];
+  //       },
 
-        onError: () => snackbarHandler.open(),
-        initialData: terbaru.value,
-      },
-    ],
-  });
+  //       onError: () => snackbarHandler.open(),
+  //       initialData: terbaru.value,
+  //     },
+  //   ],
+  // });
 
   return (
     <>
@@ -70,7 +70,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
+      {/* <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} /> */}
 
       <div className="min-h-screen pb-8">
         <header className="flex flex-row pl-6">
@@ -109,11 +109,13 @@ export default function Home() {
               </select>
             </div>
             <div className="flex flex-col mt-3 gap-4 ">
-              {solarReal.isSuccess ? (
+              <RealChart data={terbaru.value} />
+
+              {/* {solarReal.isSuccess ? (
                 <RealChart data={solarReal.data} />
               ) : (
                 <Skeleton variant="rounded" width={650} height={290} />
-              )}
+              )} */}
 
               {/* <div className="flex flex-row gap-4 mt-2 justify-center">
                 {solarReal.isSuccess ? (
@@ -147,11 +149,13 @@ export default function Home() {
             </div>
             <div className="flex flex-col mt-3 gap-4">
               {/* <div className="bg-slate-300 rounded-lg h-96 w-[1080px]"></div> */}
-              {windReal.isSuccess ? (
+              <RealChart data={terbaru.value} />
+
+              {/* {windReal.isSuccess ? (
                 <RealChart data={windReal.data} />
               ) : (
                 <Skeleton variant="rounded" width={650} height={290} />
-              )}
+              )} */}
               {/* <div className="flex flex-row gap-4 mt-2 justify-center">
                 {windReal.isSuccess ? (
                   <>

@@ -20,7 +20,11 @@ import { useWindFetch } from "@/hooks/wind.hooks";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { SERVER_EBT_URL } from "@/configs/url";
+
+import terbaru from "@/dummies/angin/terbaru.json";
 import harian from "@/dummies/angin/harian.json";
+import bulanan from "@/dummies/angin/bulanan.json";
+import tahunan from "@/dummies/angin/tahunan.json";
 
 import { realTimeCardItems } from "@/utils";
 
@@ -34,30 +38,30 @@ export default function TurbinAngin() {
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-  const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
-    dailyDate,
-    monthlyDate,
-    yearlyDate
-  );
+  // const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
+  //   dailyDate,
+  //   monthlyDate,
+  //   yearlyDate
+  // );
 
-  const dailyPower = useQuery({
-    queryKey: [
-      "dailyData",
-      { data: "turbin", waktu: format(powerDate as Date, "yyyy-MM-dd") },
-    ],
-    queryFn: async () => {
-      const res = await axios.get(
-        `${SERVER_EBT_URL}/ebt/harian?data=turbin&waktu=${format(
-          powerDate as Date,
-          "yyyy-MM-dd"
-        )}`
-      );
-      return res.data.value as DailyData[];
-    },
-    // placeholderData: harian.value,
+  // const dailyPower = useQuery({
+  //   queryKey: [
+  //     "dailyData",
+  //     { data: "turbin", waktu: format(powerDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `${SERVER_EBT_URL}/ebt/harian?data=turbin&waktu=${format(
+  //         powerDate as Date,
+  //         "yyyy-MM-dd"
+  //       )}`
+  //     );
+  //     return res.data.value as DailyData[];
+  //   },
+  //   // placeholderData: harian.value,
 
-    // onError: () => snackbarHandler.open(),
-  });
+  //   // onError: () => snackbarHandler.open(),
+  // });
 
   return (
     <>
@@ -76,13 +80,26 @@ export default function TurbinAngin() {
           onClose={() => setOpen(false)}
         />
 
-        <section className="mt-4 flex flex-col bg-white shadow-md">
+        <section
+          id="realtime"
+          className="mt-4 flex flex-col bg-white shadow-md"
+        >
           <div className="mx-9 my-10">
             <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-bold">
                 Data <span className="text-[#9747FF]">Terbaru</span>
               </h3>
-              {realData.isSuccess ? (
+
+              <p className="italic text-sm">
+                Last updated :{" "}
+                {format(
+                  new Date(terbaru.value[4]?.db_created_at),
+                  "dd/MM/yyyy HH:mm:ss"
+                )}{" "}
+                WIB
+              </p>
+
+              {/* {realData.isSuccess ? (
                 <p className="italic text-sm">
                   Last updated :{" "}
                   {format(
@@ -93,19 +110,36 @@ export default function TurbinAngin() {
                 </p>
               ) : (
                 <></>
-              )}
+              )} */}
+
               {/* <p className="italic">Last updated : {}</p> */}
             </div>
             <div className="mt-9 flex flex-row gap-6 justify-center">
-              {realData.isLoading && (
+              <RealTimeCard
+                value={terbaru.value[4]?.voltage}
+                unit="Volt"
+                title="Tegangan"
+              />
+              <RealTimeCard
+                value={terbaru.value[4]?.current}
+                unit="Ampere"
+                title="Arus"
+              />
+              <RealTimeCard
+                value={terbaru.value[4]?.power}
+                unit="Watt"
+                title="Daya"
+              />
+
+              {/* {realData.isLoading && (
                 <>
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
                 </>
-              )}
+              )} */}
 
-              {realData.isSuccess && (
+              {/* {realData.isSuccess && (
                 <>
                   <RealTimeCard
                     value={realData.data[4]?.voltage}
@@ -123,7 +157,7 @@ export default function TurbinAngin() {
                     title="Daya"
                   />
                 </>
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -150,7 +184,17 @@ export default function TurbinAngin() {
                     WIB
                   </p>
                 )} */}
-                {realData.isSuccess && (
+
+                <p className="italic text-sm ">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
@@ -159,7 +203,8 @@ export default function TurbinAngin() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
+
                 {/* {latestOutdoor.isSuccess && (
                   <p className="italic text-sm text-[#4ee294]">
                     Last updated :{" "}
@@ -190,11 +235,18 @@ export default function TurbinAngin() {
                 outdoorData={[]}
                 dailyDate={powerDate as Date}
               />
-              {dailyPower.isSuccess ? (
-                <></>
+
+              {/* {dailyPower.isSuccess ? (
+                <PowerDailyChart
+                data={dailyPower.data as DailyData[]}
+                // data={harian.value}
+                // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
+                outdoorData={[]}
+                dailyDate={powerDate as Date}
+              />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -209,7 +261,17 @@ export default function TurbinAngin() {
                 <h3 className="text-2xl font-bold">
                   Produksi Energi <span className="text-[#9747FF]">Harian</span>
                 </h3>
-                {realData.isSuccess && (
+
+                <p className="italic text-sm ">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -217,7 +279,7 @@ export default function TurbinAngin() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Tanggal"
@@ -231,7 +293,9 @@ export default function TurbinAngin() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {dailyData.isSuccess ? (
+              <EnergyDailyChart data={harian.value} />
+
+              {/* {dailyData.isSuccess ? (
                 <EnergyDailyChart
                   data={dailyData.data as DailyData[]}
                   // outdoorData={[]}
@@ -239,7 +303,7 @@ export default function TurbinAngin() {
                 />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -252,7 +316,16 @@ export default function TurbinAngin() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
-                {realData.isSuccess && (
+
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy"
+                  )}
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -260,7 +333,7 @@ export default function TurbinAngin() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Bulan"
@@ -274,11 +347,13 @@ export default function TurbinAngin() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {monthlyData.isSuccess ? (
+              <EnergyMonthlyChart data={bulanan.value} />
+
+              {/* {monthlyData.isSuccess ? (
                 <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -291,7 +366,16 @@ export default function TurbinAngin() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Tahunan</span>
                 </h3>
-                {realData.isSuccess && (
+
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy"
+                  )}
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -299,7 +383,7 @@ export default function TurbinAngin() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Tahun"
@@ -313,11 +397,13 @@ export default function TurbinAngin() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {yearlyData.isSuccess ? (
+              <EnergyYearlyChart data={tahunan.value} />
+
+              {/* {yearlyData.isSuccess ? (
                 <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>

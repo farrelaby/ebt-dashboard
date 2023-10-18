@@ -30,7 +30,11 @@ import { useSolarFetch, useOutdoorSolarFetch } from "@/hooks/solar.hooks";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { SERVER_EBT_URL } from "@/configs/url";
+
+import terbaru from "@/dummies/surya/terbaru.json";
 import harian from "@/dummies/surya/harian.json";
+import bulanan from "@/dummies/surya/bulanan.json";
+import tahunan from "@/dummies/surya/tahunan.json";
 
 import { realTimeCardItems } from "@/utils";
 
@@ -53,46 +57,46 @@ export default function PanelSuryaAC() {
     yearly: useCallback((date: Date | null) => setYearlyDate(date), []),
   };
 
-  const dailyPower = useQuery({
-    queryKey: [
-      "dailyData",
-      { data: "suryaAC", waktu: format(powerDate as Date, "yyyy-MM-dd") },
-    ],
-    queryFn: async () => {
-      const res = await axios.get(
-        `${SERVER_EBT_URL}/ebt/harian?data=suryaAC&waktu=${format(
-          powerDate as Date,
-          "yyyy-MM-dd"
-        )}`
-      );
-      return res.data.value as DailyData[];
-    },
-    placeholderData: harian.value,
-    onError: () => snackbarHandler.open(),
-  });
+  // const dailyPower = useQuery({
+  //   queryKey: [
+  //     "dailyData",
+  //     { data: "suryaAC", waktu: format(powerDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `${SERVER_EBT_URL}/ebt/harian?data=suryaAC&waktu=${format(
+  //         powerDate as Date,
+  //         "yyyy-MM-dd"
+  //       )}`
+  //     );
+  //     return res.data.value as DailyData[];
+  //   },
+  //   placeholderData: harian.value,
+  //   onError: () => snackbarHandler.open(),
+  // });
 
-  const outdoorSolarData = useQuery({
-    queryKey: [
-      "outdoorSolarData",
-      { tanggal: format(powerDate as Date, "yyyy-MM-dd") },
-    ],
-    queryFn: async () => {
-      const res = await axios.get(
-        `/api/solar?tanggal=${format(powerDate as Date, "yyyy-MM-dd")}`
-      );
+  // const outdoorSolarData = useQuery({
+  //   queryKey: [
+  //     "outdoorSolarData",
+  //     { tanggal: format(powerDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `/api/solar?tanggal=${format(powerDate as Date, "yyyy-MM-dd")}`
+  //     );
 
-      return res.data as OutdoorSolarData[];
-    },
-  });
+  //     return res.data as OutdoorSolarData[];
+  //   },
+  // });
 
-  const [realData, dailyData, monthlyData, yearlyData] = useSolarFetch(
-    "suryaAC",
-    dailyDate,
-    monthlyDate,
-    yearlyDate
-  );
+  // const [realData, dailyData, monthlyData, yearlyData] = useSolarFetch(
+  //   "suryaAC",
+  //   dailyDate,
+  //   monthlyDate,
+  //   yearlyDate
+  // );
 
-  const latestOutdoor = useOutdoorSolarFetch();
+  // const latestOutdoor = useOutdoorSolarFetch();
 
   return (
     <>
@@ -103,7 +107,7 @@ export default function PanelSuryaAC() {
         <link rel="icon" href="/Solar-Panel.svg" />
       </Head>
 
-      <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
+      {/* <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} /> */}
 
       <div className="pb-8">
         {/* <div className="flex flex-row place-content-between">
@@ -164,7 +168,16 @@ export default function PanelSuryaAC() {
               <h3 className="text-2xl font-bold">
                 Data <span className="text-[#9747FF]">Terbaru</span>
               </h3>
-              {realData.isSuccess ? (
+              <p className="italic text-sm">
+                Last updated :{" "}
+                {format(
+                  new Date(terbaru.value[4]?.db_created_at),
+                  "dd/MM/yyyy HH:mm:ss"
+                )}{" "}
+                WIB
+              </p>
+
+              {/* {realData.isSuccess ? (
                 <p className="italic text-sm">
                   Last updated :{" "}
                   {format(
@@ -175,11 +188,28 @@ export default function PanelSuryaAC() {
                 </p>
               ) : (
                 <></>
-              )}
+              )} */}
+
               {/* <p className="italic">Last updated : {}</p> */}
             </div>
             <div className="mt-9 flex flex-row gap-6 justify-center">
-              {realData.isError && (
+              <RealTimeCard
+                value={terbaru.value[4]?.voltage}
+                unit="Volt"
+                title="Tegangan"
+              />
+              <RealTimeCard
+                value={terbaru.value[4]?.current}
+                unit="Ampere"
+                title="Arus"
+              />
+              <RealTimeCard
+                value={terbaru.value[4]?.power}
+                unit="Watt"
+                title="Daya"
+              />
+
+              {/* {realData.isError && (
                 <>
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
@@ -187,18 +217,10 @@ export default function PanelSuryaAC() {
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
                 </>
-              )}
+              )} */}
 
-              {realData.isSuccess && (
+              {/* {realData.isSuccess && (
                 <>
-                  {/* {realTimeCardItems.map((item, index) => (
-                    <RealTimeCard
-                      key={index}
-                      value={realData.data[4][item.valueKey]}
-                      unit={item.unit}
-                      title={item.title}
-                    />
-                  ))} */}
                   <RealTimeCard
                     value={realData.data[4]?.voltage}
                     unit="Volt"
@@ -215,7 +237,7 @@ export default function PanelSuryaAC() {
                     title="Daya"
                   />
                 </>
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -242,7 +264,17 @@ export default function PanelSuryaAC() {
                     WIB
                   </p>
                 )} */}
-                {realData.isSuccess && (
+
+                <p className="italic text-sm ">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
@@ -251,7 +283,8 @@ export default function PanelSuryaAC() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
+
                 {/* {latestOutdoor.isSuccess && (
                   <p className="italic text-sm text-[#4ee294]">
                     Last updated :{" "}
@@ -275,7 +308,12 @@ export default function PanelSuryaAC() {
               />
             </div>
             <div className="mt-9 ml-16 mr-2">
-              {dailyPower.isSuccess || outdoorSolarData.isSuccess ? (
+              <PowerDailyChart
+                data={harian.value}
+                outdoorData={[]}
+                dailyDate={powerDate as Date}
+              />
+              {/* {dailyPower.isSuccess || outdoorSolarData.isSuccess ? (
                 <PowerDailyChart
                   data={dailyPower.data as DailyData[]}
                   // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
@@ -284,7 +322,7 @@ export default function PanelSuryaAC() {
                 />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -311,7 +349,17 @@ export default function PanelSuryaAC() {
                     WIB
                   </p>
                 )} */}
-                {realData.isSuccess && (
+
+                <p className="italic text-sm ">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -320,7 +368,8 @@ export default function PanelSuryaAC() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
+
                 {/* {latestOutdoor.isSuccess && (
                   <p className="italic text-sm text-[#4ee294]">
                     Last updated :{" "}
@@ -344,11 +393,13 @@ export default function PanelSuryaAC() {
               />
             </div>
             <div className="mt-9 ml-16 mr-2">
-              {dailyData.isSuccess || outdoorSolarData.isSuccess ? (
+              <EnergyDailyChart data={harian.value} />
+
+              {/* {dailyData.isSuccess || outdoorSolarData.isSuccess ? (
                 <EnergyDailyChart data={dailyData.data as DailyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -372,7 +423,16 @@ export default function PanelSuryaAC() {
                     )}{" "}
                   </p>
                 )} */}
-                {realData.isSuccess && (
+
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy"
+                  )}
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -380,7 +440,7 @@ export default function PanelSuryaAC() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Bulan"
@@ -394,11 +454,13 @@ export default function PanelSuryaAC() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {monthlyData.isSuccess ? (
+              <EnergyMonthlyChart data={bulanan.value} />
+
+              {/* {monthlyData.isSuccess ? (
                 <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -422,7 +484,15 @@ export default function PanelSuryaAC() {
                     )}{" "}
                   </p>
                 )} */}
-                {realData.isSuccess && (
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy"
+                  )}
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -430,7 +500,7 @@ export default function PanelSuryaAC() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Tahun"
@@ -444,11 +514,13 @@ export default function PanelSuryaAC() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {yearlyData.isSuccess ? (
+              <EnergyYearlyChart data={tahunan.value} />
+
+              {/* {yearlyData.isSuccess ? (
                 <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>

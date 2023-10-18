@@ -19,6 +19,7 @@ import { EfficiencyChart } from "@/components/charts";
 import { OutdoorSolarEfficiencyData } from "@/types/types";
 
 import efficiencyDummy from "@/dummies/surya/efisiensi.json";
+import terbaru from "@/dummies/surya/terbaru.json";
 
 const tooltipTitle = (
   <>
@@ -39,38 +40,38 @@ export default function PanelSuryaEfisiensi() {
     setDailyDate(newDate);
   }, []);
 
-  const outdoorSolar = useQuery({
-    queryKey: ["realData", "outdoor", "solar_power"],
-    queryFn: async () => {
-      const res = await axios.get(
-        `http://10.46.10.128:3001/site/outdoor/solar_power
-        `
-      );
-      // console.log(res.data);
-      setDailyDate(new Date(res.data.data.lastUpdate as string));
-      return res.data.data.lastUpdate as string;
-    },
-    onError: () => snackbarHandler.open(),
-    // staleTime: Infinity,
-    // cacheTime: Infinity,
-    // select: (data: RealData[]) => data[4],
-  });
-  // // outdoorSolar.isSuccess && setDailyDate(new Date(outdoorSolar.data as string));
+  // const outdoorSolar = useQuery({
+  //   queryKey: ["realData", "outdoor", "solar_power"],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `http://10.46.10.128:3001/site/outdoor/solar_power
+  //       `
+  //     );
+  //     // console.log(res.data);
+  //     setDailyDate(new Date(res.data.data.lastUpdate as string));
+  //     return res.data.data.lastUpdate as string;
+  //   },
+  //   onError: () => snackbarHandler.open(),
+  //   // staleTime: Infinity,
+  //   // cacheTime: Infinity,
+  //   // select: (data: RealData[]) => data[4],
+  // });
+  // // // outdoorSolar.isSuccess && setDailyDate(new Date(outdoorSolar.data as string));
 
-  const efficiencyData = useQuery({
-    queryKey: [
-      "efisiensi",
-      "solar",
-      { tanggal: format(dailyDate as Date, "yyyy-MM-dd") },
-    ],
-    queryFn: async () => {
-      const res = await axios.get(
-        `/api/solar/paralel?tanggal=${format(dailyDate as Date, "yyyy-MM-dd")}`
-      );
-      return res.data as OutdoorSolarEfficiencyData[];
-    },
-    initialData: efficiencyDummy,
-  });
+  // const efficiencyData = useQuery({
+  //   queryKey: [
+  //     "efisiensi",
+  //     "solar",
+  //     { tanggal: format(dailyDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `/api/solar/paralel?tanggal=${format(dailyDate as Date, "yyyy-MM-dd")}`
+  //     );
+  //     return res.data as OutdoorSolarEfficiencyData[];
+  //   },
+  //   initialData: efficiencyDummy,
+  // });
 
   // const [outdoorSolar, efficiencyData] = useQueries({
   //   queries: [
@@ -148,7 +149,16 @@ export default function PanelSuryaEfisiensi() {
                     </button>
                   </Tooltip>
                 </div>
-                {outdoorSolar.isSuccess && (
+
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+                {/* {outdoorSolar.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -157,10 +167,22 @@ export default function PanelSuryaEfisiensi() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
               </div>
 
-              {outdoorSolar.isSuccess ? (
+              <DatePicker
+                label="Masukkan Tanggal"
+                value={dailyDate}
+                views={["year", "month", "day"]}
+                defaultValue={new Date()}
+                onChange={changeDate}
+                disableFuture
+                format="dd/MM/yyyy"
+                className="mr-16"
+                // maxDate={new Date(outdoorSolar.data)}
+              />
+
+              {/* {outdoorSolar.isSuccess ? (
                 <DatePicker
                   label="Masukkan Tanggal"
                   value={dailyDate}
@@ -176,16 +198,18 @@ export default function PanelSuryaEfisiensi() {
                 <>
                   <Skeleton variant="rectangular" width={200} height={50} />
                 </>
-              )}
+              )} */}
             </div>
             <div className="mt-9 ml-16 mr-2">
-              {efficiencyData.isSuccess ? (
+              <EfficiencyChart data={efficiencyDummy} />
+
+              {/* {efficiencyData.isSuccess ? (
                 <EfficiencyChart
                   data={efficiencyData.data as OutdoorSolarEfficiencyData[]}
                 />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>

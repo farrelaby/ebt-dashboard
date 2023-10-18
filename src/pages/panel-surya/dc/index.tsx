@@ -28,7 +28,11 @@ import {
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { SERVER_EBT_URL } from "@/configs/url";
+
+import terbaru from "@/dummies/surya/terbaru.json";
 import harian from "@/dummies/surya/harian.json";
+import bulanan from "@/dummies/surya/bulanan.json";
+import tahunan from "@/dummies/surya/tahunan.json";
 
 import { useSolarFetch, useOutdoorSolarFetch } from "@/hooks/solar.hooks";
 
@@ -42,32 +46,32 @@ export default function PanelSuryaDC() {
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-  const [realData, dailyData, monthlyData, yearlyData] = useSolarFetch(
-    "suryaDC",
-    dailyDate,
-    monthlyDate,
-    yearlyDate
-  );
+  // const [realData, dailyData, monthlyData, yearlyData] = useSolarFetch(
+  //   "suryaDC",
+  //   dailyDate,
+  //   monthlyDate,
+  //   yearlyDate
+  // );
 
-  const latestOutdoor = useOutdoorSolarFetch();
+  // const latestOutdoor = useOutdoorSolarFetch();
 
-  const dailyPower = useQuery({
-    queryKey: [
-      "dailyData",
-      { data: "suryaAC", waktu: format(powerDate as Date, "yyyy-MM-dd") },
-    ],
-    queryFn: async () => {
-      const res = await axios.get(
-        `${SERVER_EBT_URL}/ebt/harian?data=suryaAC&waktu=${format(
-          powerDate as Date,
-          "yyyy-MM-dd"
-        )}`
-      );
-      return res.data.value as DailyData[];
-    },
-    placeholderData: harian.value,
-    onError: () => snackbarHandler.open(),
-  });
+  // const dailyPower = useQuery({
+  //   queryKey: [
+  //     "dailyData",
+  //     { data: "suryaAC", waktu: format(powerDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `${SERVER_EBT_URL}/ebt/harian?data=suryaAC&waktu=${format(
+  //         powerDate as Date,
+  //         "yyyy-MM-dd"
+  //       )}`
+  //     );
+  //     return res.data.value as DailyData[];
+  //   },
+  //   placeholderData: harian.value,
+  //   onError: () => snackbarHandler.open(),
+  // });
 
   return (
     <>
@@ -78,7 +82,7 @@ export default function PanelSuryaDC() {
         <link rel="icon" href="/Solar-Panel.svg" />
       </Head>
 
-      <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
+      {/* <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} /> */}
 
       <div className="pb-8">
         <DownloadButton onClick={() => setOpen(true)} />
@@ -88,13 +92,26 @@ export default function PanelSuryaDC() {
           onClose={() => setOpen(false)}
         />
 
-        <div className="mt-4 flex flex-col bg-white shadow-md">
+        <section
+          id="realtime"
+          className="mt-4 flex flex-col bg-white shadow-md"
+        >
           <div className="mx-9 my-10">
             <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-bold">
                 Data <span className="text-[#9747FF]">Terbaru</span>
               </h3>
-              {realData.isSuccess && (
+
+              <p className="italic text-sm">
+                Last updated :{" "}
+                {format(
+                  new Date(terbaru.value[4]?.db_created_at),
+                  "dd/MM/yyyy HH:mm:ss"
+                )}{" "}
+                WIB
+              </p>
+
+              {/* {realData.isSuccess && (
                 <p className="italic text-sm">
                   Last updated :{" "}
                   {format(
@@ -103,20 +120,37 @@ export default function PanelSuryaDC() {
                   )}{" "}
                   WIB
                 </p>
-              )}
+              )} */}
+
               {/* <p className="italic">Last updated : {}</p> */}
             </div>
             <div className="mt-9 flex flex-row gap-6 justify-center">
-              {realData.isLoading ||
+              <RealTimeCard
+                value={terbaru.value[4]?.voltage}
+                unit="Volt"
+                title="Tegangan"
+              />
+              <RealTimeCard
+                value={terbaru.value[4]?.current}
+                unit="Ampere"
+                title="Arus"
+              />
+              <RealTimeCard
+                value={terbaru.value[4]?.power}
+                unit="Watt"
+                title="Daya"
+              />
+
+              {/* {realData.isLoading ||
                 (realData.isError && (
                   <>
                     <Skeleton variant="rectangular" width={208} height={288} />
                     <Skeleton variant="rectangular" width={208} height={288} />
                     <Skeleton variant="rectangular" width={208} height={288} />
                   </>
-                ))}
+                ))} */}
 
-              {realData.isSuccess && (
+              {/* {realData.isSuccess && (
                 <>
                   <RealTimeCard
                     value={realData.data[4]?.voltage}
@@ -134,20 +168,11 @@ export default function PanelSuryaDC() {
                     title="Daya"
                   />
                 </>
-                // <>
-                //   {realTimeCardItems.map((item, index) => (
-                //     <RealTimeCard
-                //       key={index}
-                //       value={realData.data[4][item.valueKey]}
-                //       unit={item.unit}
-                //       title={item.title}
-                //     />
-                //   ))}
-                // </>
-              )}
+            
+              )} */}
             </div>
           </div>
-        </div>
+        </section>
 
         <section
           id="daya-harian"
@@ -171,7 +196,16 @@ export default function PanelSuryaDC() {
                     WIB
                   </p>
                 )} */}
-                {realData.isSuccess && (
+                <p className="italic text-sm ">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
@@ -180,7 +214,7 @@ export default function PanelSuryaDC() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
                 {/* {latestOutdoor.isSuccess && (
                   <p className="italic text-sm text-[#4ee294]">
                     Last updated :{" "}
@@ -204,7 +238,14 @@ export default function PanelSuryaDC() {
               />
             </div>
             <div className="mt-9 ml-16 mr-2">
-              {dailyPower.isSuccess ? (
+              <PowerDailyChart
+                data={harian.value as DailyData[]}
+                // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
+                outdoorData={[]}
+                dailyDate={powerDate as Date}
+              />
+
+              {/* {dailyPower.isSuccess ? (
                 <PowerDailyChart
                   data={dailyPower.data as DailyData[]}
                   // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
@@ -213,7 +254,7 @@ export default function PanelSuryaDC() {
                 />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -240,7 +281,16 @@ export default function PanelSuryaDC() {
                     WIB
                   </p>
                 )} */}
-                {realData.isSuccess && (
+                <p className="italic text-sm ">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -249,7 +299,8 @@ export default function PanelSuryaDC() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
+
                 {/* {latestOutdoor.isSuccess && (
                   <p className="italic text-sm text-[#4ee294]">
                     Last updated :{" "}
@@ -273,7 +324,9 @@ export default function PanelSuryaDC() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {dailyData.isSuccess ? (
+              <EnergyDailyChart data={harian.value} />
+
+              {/* {dailyData.isSuccess ? (
                 <EnergyDailyChart
                   data={dailyData.data as DailyData[]}
                   // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
@@ -281,7 +334,7 @@ export default function PanelSuryaDC() {
                 />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -294,7 +347,15 @@ export default function PanelSuryaDC() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
-                {realData.isSuccess && (
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy"
+                  )}
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -302,7 +363,7 @@ export default function PanelSuryaDC() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Bulan"
@@ -316,11 +377,13 @@ export default function PanelSuryaDC() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {monthlyData.isSuccess ? (
+              <EnergyMonthlyChart data={bulanan.value} />
+
+              {/* {monthlyData.isSuccess ? (
                 <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>
@@ -333,7 +396,16 @@ export default function PanelSuryaDC() {
                   Produksi Energi{" "}
                   <span className="text-[#9747FF]">Tahunan</span>
                 </h3>
-                {realData.isSuccess && (
+
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy"
+                  )}
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -341,7 +413,7 @@ export default function PanelSuryaDC() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Tahun"
@@ -355,11 +427,13 @@ export default function PanelSuryaDC() {
               />
             </div>
             <div className="mt-9 ml-16">
-              {yearlyData.isSuccess ? (
+              <EnergyYearlyChart data={tahunan.value} />
+
+              {/* {yearlyData.isSuccess ? (
                 <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>

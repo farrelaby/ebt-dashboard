@@ -15,7 +15,7 @@ import { RealChart } from "@/components/charts";
 
 import { useState } from "react";
 
-import terbaru from "../dummies/surya/terbaru.json";
+import terbaru from "../dummies/surya/ac/terbaru.json";
 
 export default function Home() {
   // const [toastOpen, setToastOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function Home() {
         },
 
         onError: () => snackbarHandler.open(),
-        initialData: terbaru.value,
+        // initialData: terbaru.value,
       },
       {
         queryKey: ["realData", { data: "turbin" }],
@@ -56,7 +56,7 @@ export default function Home() {
         },
 
         onError: () => snackbarHandler.open(),
-        initialData: terbaru.value,
+        // initialData: terbaru.value,
       },
     ],
   });

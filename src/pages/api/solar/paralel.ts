@@ -91,7 +91,7 @@ export default async function handler(
     // where sensorId = 'fa9c9a3a-8768-48f3-a184-5686cba421fe' and (created_at BETWEEN ${dayBeforeSQL} AND ${tanggalSQL}) and MINUTE(created_at) % 5 = 0`;
     // console.log(outdoorData);
 
-    console.time("paralel");
+    // console.time("paralel");
     const [panel, outdoor] = await Promise.allSettled([
       panelFetch,
       outdoorFetch,
@@ -109,7 +109,7 @@ export default async function handler(
     } else {
       return res.status(500).send("Server Error");
     }
-    console.timeEnd("paralel");
+    // console.timeEnd("paralel");
 
     // console.log(panelData);
 

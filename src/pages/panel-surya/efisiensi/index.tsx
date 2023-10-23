@@ -18,7 +18,7 @@ import { EfficiencyChart } from "@/components/charts";
 
 import { OutdoorSolarEfficiencyData } from "@/types/types";
 
-import efficiencyDummy from "@/dummies/surya/efisiensi.json";
+import efficiencyDummy from "@/dummies/surya/ac/efisiensi.json";
 
 const tooltipTitle = (
   <>
@@ -47,11 +47,14 @@ export default function PanelSuryaEfisiensi() {
         `
       );
       // console.log(res.data);
-      setDailyDate(new Date(res.data.data.lastUpdate as string));
       return res.data.data.lastUpdate as string;
     },
     onError: () => snackbarHandler.open(),
+    onSuccess: (data) => {
+      setDailyDate(new Date(data));
+    },
     // staleTime: Infinity,
+    refetchOnMount: "always",
     // cacheTime: Infinity,
     // select: (data: RealData[]) => data[4],
   });
@@ -69,7 +72,7 @@ export default function PanelSuryaEfisiensi() {
       );
       return res.data as OutdoorSolarEfficiencyData[];
     },
-    initialData: efficiencyDummy,
+    // initialData: efficiencyDummy,
   });
 
   // const [outdoorSolar, efficiencyData] = useQueries({
@@ -123,8 +126,11 @@ export default function PanelSuryaEfisiensi() {
 
       <div className="pb-8">
         {/* <h2>aku Efisiensi solar</h2> */}
-        <section id="harian" className="mt-9 flex flex-col bg-white shadow-md">
-          <div className="mx-9 my-10">
+        <section
+          id="harian"
+          className="mt-2 flex flex-col bg-white shadow-md rounded-3xl"
+        >
+          <div className="mx-9 my-6">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <div className="flex flex-row gap-2 justify-center">
@@ -163,7 +169,7 @@ export default function PanelSuryaEfisiensi() {
               {outdoorSolar.isSuccess ? (
                 <DatePicker
                   label="Masukkan Tanggal"
-                  value={dailyDate}
+                  // value={dailyDate}
                   views={["year", "month", "day"]}
                   defaultValue={new Date(outdoorSolar.data)}
                   onChange={changeDate}

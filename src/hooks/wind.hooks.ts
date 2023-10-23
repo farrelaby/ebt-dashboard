@@ -25,7 +25,7 @@ export const useWindFetch = (
           const res = await axios.get(`${SERVER_EBT_URL}/ebt?data=turbin`);
           return res.data.value as RealData[];
         },
-        placeholderData: terbaru.value,
+        // placeholderData: terbaru.value,
       },
       {
         queryKey: [
@@ -41,7 +41,7 @@ export const useWindFetch = (
           );
           return res.data.value as DailyData[];
         },
-        placeholderData: harian.value,
+        // placeholderData: harian.value,
       },
       {
         queryKey: [
@@ -60,7 +60,7 @@ export const useWindFetch = (
           );
           return res.data.value as MonthlyData[];
         },
-        placeholderData: bulanan.value,
+        // placeholderData: bulanan.value,
       },
       {
         queryKey: [
@@ -78,7 +78,7 @@ export const useWindFetch = (
           );
           return res.data.value as YearlyData[];
         },
-        placeholderData: tahunan.value,
+        // placeholderData: tahunan.value,
       },
     ],
   });

@@ -4,9 +4,11 @@ import { DownloadButton } from "../../components/button";
 import { DownloadModal } from "@/components/modal";
 
 import { Skeleton } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers";
 
-import { RealTimeCard } from "@/components/cards";
+import { EnergyOverviewCard } from "@/components/cards";
 import {
   PowerDailyChart,
   EnergyDailyChart,
@@ -18,7 +20,7 @@ import { DailyData, MonthlyData, YearlyData } from "@/types/types";
 import { useWindFetch } from "@/hooks/wind.hooks";
 
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { SERVER_EBT_URL } from "@/configs/url";
 
 import terbaru from "@/dummies/angin/terbaru.json";
@@ -38,11 +40,13 @@ export default function TurbinAngin() {
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
-  // const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
-  //   dailyDate,
-  //   monthlyDate,
-  //   yearlyDate
-  // );
+  const [selectedParameter, setSelectedParameter] = useState<string>("energi");
+
+  const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
+    dailyDate,
+    monthlyDate,
+    yearlyDate
+  );
 
   // const dailyPower = useQuery({
   //   queryKey: [
@@ -63,6 +67,27 @@ export default function TurbinAngin() {
   //   // onError: () => snackbarHandler.open(),
   // });
 
+  const queryClient = useQueryClient();
+
+  const todayEnergy = queryClient.getQueryData<MonthlyData[]>([
+    "monthlyData",
+    {
+      data: "turbin",
+      bulan: new Date().getMonth() + 1,
+      tahun: new Date().getFullYear(),
+    },
+  ]);
+
+  const thisMonthEnergy = queryClient.getQueryData<YearlyData[]>([
+    "yearlyData",
+    {
+      data: "turbin",
+      tahun: new Date().getFullYear(),
+    },
+  ]);
+
+  // console.log(todayEnergy);
+
   return (
     <>
       <Head>
@@ -80,10 +105,7 @@ export default function TurbinAngin() {
           onClose={() => setOpen(false)}
         />
 
-        <section
-          id="realtime"
-          className="mt-4 flex flex-col bg-white shadow-md"
-        >
+        {/* <section className="mt-4 flex flex-col bg-white shadow-md">
           <div className="mx-9 my-10">
             <div className="flex flex-col gap-2">
               <h3 className="text-2xl font-bold">
@@ -110,9 +132,7 @@ export default function TurbinAngin() {
                 </p>
               ) : (
                 <></>
-              )} */}
-
-              {/* <p className="italic">Last updated : {}</p> */}
+              )}
             </div>
             <div className="mt-9 flex flex-row gap-6 justify-center">
               <RealTimeCard
@@ -137,7 +157,7 @@ export default function TurbinAngin() {
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
                 </>
-              )} */}
+              )}
 
               {/* {realData.isSuccess && (
                 <>
@@ -157,12 +177,90 @@ export default function TurbinAngin() {
                     title="Daya"
                   />
                 </>
-              )} */}
+              )} 
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section
+        <div className="grid grid-cols-6 grid-rows-2 grid-flow-col gap-4 pt-2">
+          <section
+            id="daya-jam"
+            className="col-span-5 row-span-2 flex flex-col bg-white shadow-md rounded-3xl "
+          >
+            <div className="mx-9 mt-6 mb-2">
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col gap-1">
+                  <div className="text-2xl font-bold flex flex-row gap-2 items-center">
+                    <p>Produksi</p>
+                    <Select
+                      value={selectedParameter}
+                      size="small"
+                      sx={{ fontWeight: 700, fontSize: "1.3rem" }}
+                      onChange={(e) => setSelectedParameter(e.target.value)}
+                      variant="standard"
+                    >
+                      <MenuItem value="energi">Energi</MenuItem>
+                      <MenuItem value="daya">Daya</MenuItem>
+                    </Select>
+                    <p className="text-[#9747FF]">24 Jam</p>
+                  </div>
+
+                  {realData.isSuccess && (
+                    <p className="italic text-sm ">
+                      Last updated :{" "}
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy HH:mm:ss"
+                      )}{" "}
+                      WIB
+                    </p>
+                  )}
+                </div>
+                <DatePicker
+                  label="Masukkan Tanggal"
+                  value={dailyDate}
+                  views={["year", "month", "day"]}
+                  defaultValue={new Date()}
+                  onChange={(newValue) => setDailyDate(newValue)}
+                  disableFuture
+                  format="dd/MM/yyyy"
+                />
+              </div>
+              <div className="mt-3">
+                {dailyData.isSuccess ? (
+                  selectedParameter == "daya" ? (
+                    <PowerDailyChart data={dailyData.data as DailyData[]} />
+                  ) : (
+                    <EnergyDailyChart data={dailyData.data as DailyData[]} />
+                  )
+                ) : (
+                  <Skeleton variant="rectangular" width={"100%"} height={435} />
+                )}
+              </div>
+            </div>
+          </section>
+
+          <EnergyOverviewCard
+            title="Hari Ini"
+            value={
+              todayEnergy != undefined && todayEnergy.length != 0
+                ? todayEnergy[todayEnergy?.length - 1]?.value
+                    .sum_harian_energi / 1000
+                : 0
+            }
+          />
+          <EnergyOverviewCard
+            title="Bulan Ini"
+            value={
+              thisMonthEnergy != undefined
+                ? (thisMonthEnergy[thisMonthEnergy.length - 1].value
+                    .sum_bulanan_energi as number) / 1000 ?? 0
+                : 0
+            }
+          />
+        </div>
+
+        {/* <section
           id="daya-harian"
           className="mt-9 flex flex-col bg-white shadow-md"
         >
@@ -172,7 +270,7 @@ export default function TurbinAngin() {
                 <h3 className="text-2xl font-bold">
                   Produksi Daya <span className="text-[#9747FF]">Harian</span>
                 </h3>
-                {/* {dailyData.isSuccess && (
+                {dailyData.isSuccess && (
                   <p className="italic text-sm text-[#378ffd]">
                     Last updated :{" "}
                     {format(
@@ -183,18 +281,8 @@ export default function TurbinAngin() {
                     )}{" "}
                     WIB
                   </p>
-                )} */}
-
-                <p className="italic text-sm ">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy HH:mm:ss"
-                  )}{" "}
-                  WIB
-                </p>
-
-                {/* {realData.isSuccess && (
+                )}
+                {realData.isSuccess && (
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
@@ -203,9 +291,8 @@ export default function TurbinAngin() {
                     )}{" "}
                     WIB
                   </p>
-                )} */}
-
-                {/* {latestOutdoor.isSuccess && (
+                )}
+                {latestOutdoor.isSuccess && (
                   <p className="italic text-sm text-[#4ee294]">
                     Last updated :{" "}
                     {format(
@@ -214,7 +301,7 @@ export default function TurbinAngin() {
                     )}{" "}
                     WIB
                   </p>
-                )} */}
+                )}
               </div>
               <DatePicker
                 label="Masukkan Tanggal"
@@ -229,11 +316,8 @@ export default function TurbinAngin() {
             </div>
             <div className="mt-9 ml-16 mr-2">
               <PowerDailyChart
-                // data={dailyPower.data as DailyData[]}
-                data={harian.value}
-                // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
-                outdoorData={[]}
-                dailyDate={powerDate as Date}
+                data={dailyPower.data as DailyData[]}
+                // data={harian.value}
               />
 
               {/* {dailyPower.isSuccess ? (
@@ -246,12 +330,12 @@ export default function TurbinAngin() {
               />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )} */}
+              )} 
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section
+        {/* <section
           id="energi-harian"
           className="mt-9 flex flex-col bg-white shadow-md"
         >
@@ -279,7 +363,7 @@ export default function TurbinAngin() {
                       "dd/MM/yyyy"
                     )}
                   </p>
-                )} */}
+                )}
               </div>
               <DatePicker
                 label="Masukkan Tanggal"
@@ -295,7 +379,7 @@ export default function TurbinAngin() {
             <div className="mt-9 ml-16">
               <EnergyDailyChart data={harian.value} />
 
-              {/* {dailyData.isSuccess ? (
+              {dailyData.isSuccess ? (
                 <EnergyDailyChart
                   data={dailyData.data as DailyData[]}
                   // outdoorData={[]}
@@ -303,18 +387,20 @@ export default function TurbinAngin() {
                 />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )} */}
+              )} 
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section id="bulanan" className="mt-9 flex flex-col bg-white shadow-md">
+        <section
+          id="harian"
+          className="mt-9 flex flex-col bg-white shadow-md rounded-3xl"
+        >
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold">
-                  Produksi Energi{" "}
-                  <span className="text-[#9747FF]">Bulanan</span>
+                  Produksi Energi <span className="text-[#9747FF]">Harian</span>
                 </h3>
 
                 <p className="italic text-sm">
@@ -343,10 +429,10 @@ export default function TurbinAngin() {
                 disableFuture
                 openTo="month"
                 views={["month", "year"]}
-                className="mr-16"
+                // className="mr-16"
               />
             </div>
-            <div className="mt-9 ml-16">
+            <div className="mt-9 ">
               <EnergyMonthlyChart data={bulanan.value} />
 
               {/* {monthlyData.isSuccess ? (
@@ -358,13 +444,16 @@ export default function TurbinAngin() {
           </div>
         </section>
 
-        <section id="tahunan" className="mt-9 flex flex-col bg-white shadow-md">
+        <section
+          id="bulanan"
+          className="mt-9 flex flex-col bg-white shadow-md rounded-3xl"
+        >
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold">
                   Produksi Energi{" "}
-                  <span className="text-[#9747FF]">Tahunan</span>
+                  <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
 
                 <p className="italic text-sm">
@@ -393,10 +482,10 @@ export default function TurbinAngin() {
                 disableFuture
                 openTo="year"
                 views={["year"]}
-                className="mr-16"
+                // className="mr-16"
               />
             </div>
-            <div className="mt-9 ml-16">
+            <div className="mt-9 ">
               <EnergyYearlyChart data={tahunan.value} />
 
               {/* {yearlyData.isSuccess ? (

@@ -1,0 +1,86 @@
+{
+  "suryaDC_id": 6,
+  "tahun": "2023",
+  "units": [
+    {
+      "avg_bulanan_tegangan": "V",
+      "avg_bulanan_arus": "A",
+      "sum_bulanan_daya": "W",
+      "sum_bulanan_energi": "Wh"
+    }
+  ],
+  "value": [
+    {
+      "bulan_ke": 1,
+      "value": {
+        "avg_bulanan_tegangan": 48.67,
+        "avg_bulanan_arus": 2.16,
+        "sum_bulanan_daya": 440535.52,
+        "sum_bulanan_energi": 36711.29
+      }
+    },
+    {
+      "bulan_ke": 2,
+      "value": {
+        "avg_bulanan_tegangan": 52.54,
+        "avg_bulanan_arus": 2.55,
+        "sum_bulanan_daya": 262673.62,
+        "sum_bulanan_energi": 21889.47
+      }
+    },
+    {
+      "bulan_ke": 3,
+      "value": {
+        "avg_bulanan_tegangan": 50.08,
+        "avg_bulanan_arus": 1.46,
+        "sum_bulanan_daya": 700763.05,
+        "sum_bulanan_energi": 58396.92
+      }
+    },
+    {
+      "bulan_ke": 4,
+      "value": {
+        "avg_bulanan_tegangan": 51.63,
+        "avg_bulanan_arus": 1.73,
+        "sum_bulanan_daya": 692191.82,
+        "sum_bulanan_energi": 57682.65
+      }
+    },
+    {
+      "bulan_ke": 5,
+      "value": {
+        "avg_bulanan_tegangan": 55.43,
+        "avg_bulanan_arus": 2.06,
+        "sum_bulanan_daya": 346486.17,
+        "sum_bulanan_energi": 28873.85
+      }
+    },
+    {
+      "bulan_ke": 6,
+      "value": {
+        "avg_bulanan_tegangan": 50.78,
+        "avg_bulanan_arus": 1.36,
+        "sum_bulanan_daya": 1062454.5,
+        "sum_bulanan_energi": 88537.87
+      }
+    },
+    {
+      "bulan_ke": 7,
+      "value": {
+        "avg_bulanan_tegangan": 51.35,
+        "avg_bulanan_arus": 1.03,
+        "sum_bulanan_daya": 252240.27,
+        "sum_bulanan_energi": 21020.02
+      }
+    },
+    {
+      "bulan_ke": 10,
+      "value": {
+        "avg_bulanan_tegangan": 61.87,
+        "avg_bulanan_arus": 2.26,
+        "sum_bulanan_daya": 243055.7,
+        "sum_bulanan_energi": 20254.64
+      }
+    }
+  ]
+}

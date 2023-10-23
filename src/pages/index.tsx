@@ -15,7 +15,7 @@ import { RealChart } from "@/components/charts";
 
 import { useState } from "react";
 
-import terbaru from "../dummies/surya/terbaru.json";
+import terbaru from "../dummies/surya/ac/terbaru.json";
 
 export default function Home() {
   // const [toastOpen, setToastOpen] = useState(false);

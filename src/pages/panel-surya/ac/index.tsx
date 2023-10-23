@@ -9,34 +9,31 @@ import { ErrorSnackbar } from "@/components/snackbars";
 import { useErrorSnackbar } from "@/hooks/snackbars.hooks";
 
 import { Skeleton } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers";
 
-import { RealTimeCard } from "@/components/cards";
+import { EnergyOverviewCard } from "@/components/cards";
 import {
   PowerDailyChart,
   EnergyDailyChart,
   EnergyMonthlyChart,
   EnergyYearlyChart,
 } from "@/components/charts";
-import {
-  DailyData,
-  MonthlyData,
-  YearlyData,
-  OutdoorSolarData,
-} from "@/types/types";
+import { DailyData, MonthlyData, YearlyData } from "@/types/types";
 
-import { useSolarFetch, useOutdoorSolarFetch } from "@/hooks/solar.hooks";
+import { useSolarFetch } from "@/hooks/solar.hooks";
 
 import axios from "axios";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { SERVER_EBT_URL } from "@/configs/url";
 
-import terbaru from "@/dummies/surya/terbaru.json";
-import harian from "@/dummies/surya/harian.json";
-import bulanan from "@/dummies/surya/bulanan.json";
-import tahunan from "@/dummies/surya/tahunan.json";
+import terbaru from "@/dummies/surya/ac/terbaru.json";
+import harian from "@/dummies/surya/ac/harian.json";
+import bulanan from "@/dummies/surya/ac/bulanan.json";
+import tahunan from "@/dummies/surya/ac/tahunan.json";
 
-import { realTimeCardItems } from "@/utils";
+// import { realTimeCardItems } from "@/utils";
 
 export default function PanelSuryaAC() {
   const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
@@ -45,18 +42,38 @@ export default function PanelSuryaAC() {
   const openModal = useCallback(() => setOpen(true), []);
   const closeModal = useCallback(() => setOpen(false), []);
 
-  const [powerDate, setPowerDate] = useState<Date | null>(new Date());
+  // const [powerDate, setPowerDate] = useState<Date | null>(new Date());
   const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
 
+  const [selectedParameter, setSelectedParameter] = useState<string>("energi");
+
   const changeDate = {
-    power: useCallback((date: Date | null) => setPowerDate(date), []),
+    // power: useCallback((date: Date | null) => setPowerDate(date), []),
     daily: useCallback((date: Date | null) => setDailyDate(date), []),
     monthly: useCallback((date: Date | null) => setMonthlyDate(date), []),
     yearly: useCallback((date: Date | null) => setYearlyDate(date), []),
   };
 
+  // const dailyPower = useQuery({
+  //   queryKey: [
+  //     "dailyData",
+  //     { data: "suryaAC", waktu: format(powerDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `${SERVER_EBT_URL}/ebt/harian?data=suryaAC&waktu=${format(
+  //         powerDate as Date,
+  //         "yyyy-MM-dd"
+  //       )}`
+  //     );
+  //     return res.data.value as DailyData[];
+  //   },
+  //   placeholderData: harian.value,
+  //   onError: () => snackbarHandler.open(),
+  //   // staleTime: 1000 * 60 * 3,
+  // });
   // const dailyPower = useQuery({
   //   queryKey: [
   //     "dailyData",
@@ -84,7 +101,19 @@ export default function PanelSuryaAC() {
   //     const res = await axios.get(
   //       `/api/solar?tanggal=${format(powerDate as Date, "yyyy-MM-dd")}`
   //     );
+  // const outdoorSolarData = useQuery({
+  //   queryKey: [
+  //     "outdoorSolarData",
+  //     { tanggal: format(powerDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `/api/solar?tanggal=${format(powerDate as Date, "yyyy-MM-dd")}`
+  //     );
 
+  //     return res.data as OutdoorSolarData[];
+  //   },
+  // });
   //     return res.data as OutdoorSolarData[];
   //   },
   // });
@@ -95,8 +124,6 @@ export default function PanelSuryaAC() {
   //   monthlyDate,
   //   yearlyDate
   // );
-
-  // const latestOutdoor = useOutdoorSolarFetch();
 
   return (
     <>
@@ -110,56 +137,15 @@ export default function PanelSuryaAC() {
       {/* <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} /> */}
 
       <div className="pb-8">
-        {/* <div className="flex flex-row place-content-between">
-          <DownloadButton onClick={openModal} />
-          <div className=" bg-white shadow-md rounded">
-            <div className=" flex gap-2 place-items-center">
-              <p className=" italic ml-2 border-r-2 border-r-[#9747FF] pr-2">
-                Last Update
-              </p>
-              <div className="flex flex-col mr-2">
-                <div className="flex gap-1 place-items-center">
-                  <p>Panel surya</p>
-                  {realData.isSuccess ? (
-                    <span className="text-sm">
-                      :{" "}
-                      {format(
-                        new Date(realData.data[4]?.db_created_at),
-                        "dd/MM/yyyy HH:mm:ss"
-                      )}{" "}
-                      WIB
-                    </span>
-                  ) : (
-                    <Skeleton variant="text" width={150} height={20} />
-                  )}
-                </div>
-                <div className="flex gap-1 place-items-center justify-between">
-                  <p>Outdoor</p>
-                  {latestOutdoor.isSuccess ? (
-                    <span className="text-sm">
-                      :{" "}
-                      {format(
-                        new Date(latestOutdoor.data.data.lastUpdate),
-                        "dd/MM/yyyy HH:mm:ss"
-                      )}{" "}
-                      WIB
-                    </span>
-                  ) : (
-                    <Skeleton variant="text" width={150} height={20} />
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
         <DownloadButton onClick={openModal} />
+
         <DownloadModal
           modalTitle="Panel Surya AC"
           open={open}
           onClose={closeModal}
         />
 
-        <section
+        {/* <section
           id="realtime"
           className="mt-4 flex flex-col bg-white shadow-md"
         >
@@ -188,9 +174,7 @@ export default function PanelSuryaAC() {
                 </p>
               ) : (
                 <></>
-              )} */}
-
-              {/* <p className="italic">Last updated : {}</p> */}
+              )}
             </div>
             <div className="mt-9 flex flex-row gap-6 justify-center">
               <RealTimeCard
@@ -217,10 +201,11 @@ export default function PanelSuryaAC() {
                   <Skeleton variant="rectangular" width={208} height={288} />
                   <Skeleton variant="rectangular" width={208} height={288} />
                 </>
-              )} */}
+              )}
 
               {/* {realData.isSuccess && (
                 <>
+                
                   <RealTimeCard
                     value={realData.data[4]?.voltage}
                     unit="Volt"
@@ -237,129 +222,99 @@ export default function PanelSuryaAC() {
                     title="Daya"
                   />
                 </>
-              )} */}
+              )} 
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section
-          id="daya-harian"
-          className="mt-9 flex flex-col bg-white shadow-md"
-        >
-          <div className="mx-9 my-10">
-            <div className="flex flex-row justify-between">
-              <div className="flex flex-col gap-2">
-                <h3 className="text-2xl font-bold">
-                  Produksi Daya <span className="text-[#9747FF]">Harian</span>
-                </h3>
-                {/* {dailyData.isSuccess && (
-                  <p className="italic text-sm text-[#378ffd]">
-                    Last updated :{" "}
-                    {format(
-                      new Date(
-                        dailyData.data[dailyData.data.length - 1].db_created_at
-                      ),
-                      "dd/MM/yyyy HH:mm:ss"
-                    )}{" "}
-                    WIB
-                  </p>
-                )} */}
+        <div className="grid grid-cols-6 grid-rows-2 grid-flow-col gap-4 pt-2">
+          <section
+            id="daya-jam"
+            className="col-span-5 row-span-2 flex flex-col bg-white shadow-md rounded-3xl "
+          >
+            <div className="mx-9 mt-6 mb-2">
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col gap-1">
+                  <div className="text-2xl font-bold flex flex-row gap-2 items-center">
+                    <p>Produksi</p>
+                    <Select
+                      value={selectedParameter}
+                      size="small"
+                      sx={{ fontWeight: 700, fontSize: "1.3rem" }}
+                      onChange={(e) => setSelectedParameter(e.target.value)}
+                      variant="standard"
+                    >
+                      <MenuItem value="energi">Energi</MenuItem>
+                      <MenuItem value="daya">Daya</MenuItem>
+                    </Select>
+                    <p className="text-[#9747FF]">24 Jam</p>
+                  </div>
 
-                <p className="italic text-sm ">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy HH:mm:ss"
-                  )}{" "}
-                  WIB
-                </p>
-
-                {/* {realData.isSuccess && (
+                  {/* {realData.isSuccess && (
+                    <p className="italic text-sm ">
+                      Last updated :{" "}
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy HH:mm:ss"
+                      )}{" "}
+                      WIB
+                    </p>
+                  )} */}
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
-                      new Date(realData.data[4]?.db_created_at),
+                      new Date(terbaru.value[4]?.db_created_at),
                       "dd/MM/yyyy HH:mm:ss"
                     )}{" "}
                     WIB
                   </p>
-                )} */}
+                </div>
+                <DatePicker
+                  label="Masukkan Tanggal"
+                  value={dailyDate}
+                  views={["year", "month", "day"]}
+                  defaultValue={new Date()}
+                  onChange={changeDate.daily}
+                  disableFuture
+                  format="dd/MM/yyyy"
+                />
+              </div>
+              <div className="mt-3">
+                {selectedParameter == "daya" ? (
+                  <PowerDailyChart data={harian.value as DailyData[]} />
+                ) : (
+                  <EnergyDailyChart data={harian.value as DailyData[]} />
+                )}
 
-                {/* {latestOutdoor.isSuccess && (
-                  <p className="italic text-sm text-[#4ee294]">
-                    Last updated :{" "}
-                    {format(
-                      new Date(latestOutdoor.data.data.lastUpdate),
-                      "dd/MM/yyyy HH:mm:ss"
-                    )}{" "}
-                    WIB
-                  </p>
+                {/* {dailyData.isSuccess ? (
+                  selectedParameter == "daya" ? (
+                    <PowerDailyChart data={dailyData.data as DailyData[]} />
+                  ) : (
+                    <EnergyDailyChart data={dailyData.data as DailyData[]} />
+                  )
+                ) : (
+                  <Skeleton variant="rectangular" width={"100%"} height={435} />
                 )} */}
               </div>
-              <DatePicker
-                label="Masukkan Tanggal"
-                value={powerDate}
-                views={["year", "month", "day"]}
-                defaultValue={new Date()}
-                onChange={changeDate.power}
-                disableFuture
-                format="dd/MM/yyyy"
-                className="mr-16"
-              />
             </div>
-            <div className="mt-9 ml-16 mr-2">
-              <PowerDailyChart
-                data={harian.value}
-                outdoorData={[]}
-                dailyDate={powerDate as Date}
-              />
-              {/* {dailyPower.isSuccess || outdoorSolarData.isSuccess ? (
-                <PowerDailyChart
-                  data={dailyPower.data as DailyData[]}
-                  // outdoorData={outdoorSolarData.data as OutdoorSolarData[]}
-                  outdoorData={[]}
-                  dailyDate={powerDate as Date}
-                />
-              ) : (
-                <Skeleton variant="rectangular" width={1100} height={435} />
-              )} */}
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <section
-          id="energi-harian"
-          className="mt-9 flex flex-col bg-white shadow-md"
+          <EnergyOverviewCard title="Hari Ini" value={10} />
+          <EnergyOverviewCard title="Bulan Ini" value={100} />
+        </div>
+
+        {/* <section
+          id="energi-jam"
+          className="mt-9 flex flex-col bg-white  shadow-md rounded-3xl "
         >
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold">
-                  Produksi Energi <span className="text-[#9747FF]">Harian</span>
+                  Produksi Energi <span className="text-[#9747FF]">24 Jam</span>
                 </h3>
-                {/* {dailyData.isSuccess && (
-                  <p className="italic text-sm text-[#378ffd]">
-                    Last updated :{" "}
-                    {format(
-                      new Date(
-                        dailyData.data[dailyData.data.length - 1].db_created_at
-                      ),
-                      "dd/MM/yyyy HH:mm:ss"
-                    )}{" "}
-                    WIB
-                  </p>
-                )} */}
-
-                <p className="italic text-sm ">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy HH:mm:ss"
-                  )}{" "}
-                  WIB
-                </p>
-
-                {/* {realData.isSuccess && (
+                
+                {realData.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -368,18 +323,8 @@ export default function PanelSuryaAC() {
                     )}{" "}
                     WIB
                   </p>
-                )} */}
-
-                {/* {latestOutdoor.isSuccess && (
-                  <p className="italic text-sm text-[#4ee294]">
-                    Last updated :{" "}
-                    {format(
-                      new Date(latestOutdoor.data.data.lastUpdate),
-                      "dd/MM/yyyy HH:mm:ss"
-                    )}{" "}
-                    WIB
-                  </p>
-                )} */}
+                )}
+                
               </div>
               <DatePicker
                 label="Masukkan Tanggal"
@@ -399,18 +344,20 @@ export default function PanelSuryaAC() {
                 <EnergyDailyChart data={dailyData.data as DailyData[]} />
               ) : (
                 <Skeleton variant="rectangular" width={1100} height={435} />
-              )} */}
+              )}
             </div>
           </div>
-        </section>
+        </section> */}
 
-        <section id="bulanan" className="mt-9 flex flex-col bg-white shadow-md">
+        <section
+          id="harian"
+          className="mt-9 flex flex-col bg-white  shadow-md rounded-3xl"
+        >
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold">
-                  Produksi Energi{" "}
-                  <span className="text-[#9747FF]">Bulanan</span>
+                  Produksi Energi <span className="text-[#9747FF]">Harian</span>
                 </h3>
                 {/* {monthlyData.isSuccess && (
                   <p className="italic text-sm ">
@@ -450,10 +397,10 @@ export default function PanelSuryaAC() {
                 disableFuture
                 openTo="month"
                 views={["month", "year"]}
-                className="mr-16"
+                // className="mr-16"
               />
             </div>
-            <div className="mt-9 ml-16">
+            <div className="mt-9 ">
               <EnergyMonthlyChart data={bulanan.value} />
 
               {/* {monthlyData.isSuccess ? (
@@ -465,13 +412,16 @@ export default function PanelSuryaAC() {
           </div>
         </section>
 
-        <section id="tahunan" className="mt-9 flex flex-col bg-white shadow-md">
+        <section
+          id="bulanan"
+          className="mt-9 flex flex-col bg-white  shadow-md rounded-3xl"
+        >
           <div className="mx-9 my-10">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold">
                   Produksi Energi{" "}
-                  <span className="text-[#9747FF]">Tahunan</span>
+                  <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
                 {/* {monthlyData.isSuccess && (
                   <p className="italic text-sm ">
@@ -510,10 +460,10 @@ export default function PanelSuryaAC() {
                 disableFuture
                 openTo="year"
                 views={["year"]}
-                className="mr-16"
+                // className="mr-16"
               />
             </div>
-            <div className="mt-9 ml-16">
+            <div className="mt-9 ">
               <EnergyYearlyChart data={tahunan.value} />
 
               {/* {yearlyData.isSuccess ? (

@@ -1,0 +1,276 @@
+{
+  "suryaDC_id": 6,
+  "bulan": "6",
+  "tahun": "2023",
+  "units": [
+    {
+      "avg_harian_tegangan": "V",
+      "avg_harian_arus": "A",
+      "sum_harian_daya": "W",
+      "sum_harian_energi": "Wh"
+    }
+  ],
+  "value": [
+    {
+      "tanggal": "Thu, 01 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 39.55,
+        "avg_harian_arus": 0.76,
+        "sum_harian_daya": 8366.21,
+        "sum_harian_energi": 697.18
+      }
+    },
+    {
+      "tanggal": "Sat, 03 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 56.15,
+        "avg_harian_arus": 1.66,
+        "sum_harian_daya": 27153.92,
+        "sum_harian_energi": 2262.83
+      }
+    },
+    {
+      "tanggal": "Sun, 04 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.98,
+        "avg_harian_arus": 1.3,
+        "sum_harian_daya": 35914.31,
+        "sum_harian_energi": 2992.86
+      }
+    },
+    {
+      "tanggal": "Mon, 05 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.78,
+        "avg_harian_arus": 1.01,
+        "sum_harian_daya": 28462.81,
+        "sum_harian_energi": 2371.9
+      }
+    },
+    {
+      "tanggal": "Tue, 06 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.88,
+        "avg_harian_arus": 0.85,
+        "sum_harian_daya": 24482.43,
+        "sum_harian_energi": 2040.2
+      }
+    },
+    {
+      "tanggal": "Wed, 07 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 49.43,
+        "avg_harian_arus": 0.7,
+        "sum_harian_daya": 19633.06,
+        "sum_harian_energi": 1636.09
+      }
+    },
+    {
+      "tanggal": "Thu, 08 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 54.54,
+        "avg_harian_arus": 1.53,
+        "sum_harian_daya": 39513.87,
+        "sum_harian_energi": 3292.82
+      }
+    },
+    {
+      "tanggal": "Fri, 09 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 49.27,
+        "avg_harian_arus": 1.83,
+        "sum_harian_daya": 49868.33,
+        "sum_harian_energi": 4155.69
+      }
+    },
+    {
+      "tanggal": "Sat, 10 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.64,
+        "avg_harian_arus": 1.78,
+        "sum_harian_daya": 49477.17,
+        "sum_harian_energi": 4123.1
+      }
+    },
+    {
+      "tanggal": "Sun, 11 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 51.5,
+        "avg_harian_arus": 1.05,
+        "sum_harian_daya": 29465.88,
+        "sum_harian_energi": 2455.49
+      }
+    },
+    {
+      "tanggal": "Mon, 12 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.95,
+        "avg_harian_arus": 1.54,
+        "sum_harian_daya": 42659.93,
+        "sum_harian_energi": 3554.99
+      }
+    },
+    {
+      "tanggal": "Tue, 13 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.31,
+        "avg_harian_arus": 1.85,
+        "sum_harian_daya": 51015.36,
+        "sum_harian_energi": 4251.28
+      }
+    },
+    {
+      "tanggal": "Wed, 14 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.26,
+        "avg_harian_arus": 1.77,
+        "sum_harian_daya": 49119.61,
+        "sum_harian_energi": 4093.3
+      }
+    },
+    {
+      "tanggal": "Thu, 15 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.27,
+        "avg_harian_arus": 1.27,
+        "sum_harian_daya": 35802.74,
+        "sum_harian_energi": 2983.56
+      }
+    },
+    {
+      "tanggal": "Fri, 16 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.13,
+        "avg_harian_arus": 1.6,
+        "sum_harian_daya": 45111.88,
+        "sum_harian_energi": 3759.32
+      }
+    },
+    {
+      "tanggal": "Sat, 17 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 49.6,
+        "avg_harian_arus": 1.44,
+        "sum_harian_daya": 40983.65,
+        "sum_harian_energi": 3415.3
+      }
+    },
+    {
+      "tanggal": "Sun, 18 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 51.88,
+        "avg_harian_arus": 1.15,
+        "sum_harian_daya": 32717.69,
+        "sum_harian_energi": 2726.47
+      }
+    },
+    {
+      "tanggal": "Mon, 19 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 51.86,
+        "avg_harian_arus": 1.32,
+        "sum_harian_daya": 37637.22,
+        "sum_harian_energi": 3136.44
+      }
+    },
+    {
+      "tanggal": "Tue, 20 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 51.82,
+        "avg_harian_arus": 1.41,
+        "sum_harian_daya": 40105.88,
+        "sum_harian_energi": 3342.16
+      }
+    },
+    {
+      "tanggal": "Wed, 21 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.66,
+        "avg_harian_arus": 1.38,
+        "sum_harian_daya": 39203.57,
+        "sum_harian_energi": 3266.96
+      }
+    },
+    {
+      "tanggal": "Thu, 22 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 49.23,
+        "avg_harian_arus": 1.64,
+        "sum_harian_daya": 45554.58,
+        "sum_harian_energi": 3796.22
+      }
+    },
+    {
+      "tanggal": "Fri, 23 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 51.82,
+        "avg_harian_arus": 1.4,
+        "sum_harian_daya": 39560.16,
+        "sum_harian_energi": 3296.68
+      }
+    },
+    {
+      "tanggal": "Sat, 24 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.63,
+        "avg_harian_arus": 2.09,
+        "sum_harian_daya": 57843.19,
+        "sum_harian_energi": 4820.27
+      }
+    },
+    {
+      "tanggal": "Sun, 25 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.81,
+        "avg_harian_arus": 1.69,
+        "sum_harian_daya": 47641.4,
+        "sum_harian_energi": 3970.12
+      }
+    },
+    {
+      "tanggal": "Mon, 26 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.83,
+        "avg_harian_arus": 1.32,
+        "sum_harian_daya": 37190.58,
+        "sum_harian_energi": 3099.22
+      }
+    },
+    {
+      "tanggal": "Tue, 27 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 51.23,
+        "avg_harian_arus": 1.03,
+        "sum_harian_daya": 28966.94,
+        "sum_harian_energi": 2413.91
+      }
+    },
+    {
+      "tanggal": "Wed, 28 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.85,
+        "avg_harian_arus": 0.7,
+        "sum_harian_daya": 20439.23,
+        "sum_harian_energi": 1703.27
+      }
+    },
+    {
+      "tanggal": "Thu, 29 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.18,
+        "avg_harian_arus": 1.0,
+        "sum_harian_daya": 28261.29,
+        "sum_harian_energi": 2355.11
+      }
+    },
+    {
+      "tanggal": "Fri, 30 Jun 2023 00:00:00 GMT",
+      "value": {
+        "avg_harian_tegangan": 50.98,
+        "avg_harian_arus": 1.08,
+        "sum_harian_daya": 30301.61,
+        "sum_harian_energi": 2525.13
+      }
+    }
+  ]
+}

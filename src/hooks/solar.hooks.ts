@@ -13,10 +13,10 @@ import { format, getMonth, getYear } from "date-fns";
 
 import { SERVER_EBT_URL, SERVER_HEB_URL } from "@/configs/url";
 
-import terbaru from "@/dummies/surya/terbaru.json";
-import harian from "@/dummies/surya/harian.json";
-import bulanan from "@/dummies/surya/bulanan.json";
-import tahunan from "@/dummies/surya/tahunan.json";
+import terbaru from "@/dummies/surya/dc/terbaru.json";
+import harian from "@/dummies/surya/dc/harian.json";
+import bulanan from "@/dummies/surya/dc/bulanan.json";
+import tahunan from "@/dummies/surya/dc/tahunan.json";
 
 export const useSolarFetch = (
   device: "suryaAC" | "suryaDC",
@@ -36,7 +36,7 @@ export const useSolarFetch = (
           return res.data.value as RealData[];
         },
         // select: (data: RealData[]) => data[4],
-        placeholderData: terbaru.value,
+        // placeholderData: terbaru.value,
       },
       {
         queryKey: [
@@ -52,7 +52,7 @@ export const useSolarFetch = (
           );
           return res.data.value as DailyData[];
         },
-        placeholderData: harian.value,
+        // placeholderData: harian.value,
       },
       {
         queryKey: [
@@ -71,7 +71,7 @@ export const useSolarFetch = (
           );
           return res.data.value as MonthlyData[];
         },
-        placeholderData: bulanan.value,
+        // placeholderData: bulanan.value,
       },
       {
         queryKey: [
@@ -89,7 +89,7 @@ export const useSolarFetch = (
           );
           return res.data.value as YearlyData[];
         },
-        placeholderData: tahunan.value,
+        // placeholderData: tahunan.value,
       },
       // {
       //   queryKey: [

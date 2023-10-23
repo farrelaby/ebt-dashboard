@@ -28,7 +28,7 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
     sub(new Date(), { days: 1 })
   );
   const [endValue, setEndValue] = useState<Date | null>(new Date());
-  const [fileFormat, setFileFormat] = useState("csv");
+  const [fileFormat, setFileFormat] = useState("xls");
 
   const deviceParam = {
     "Panel Surya AC": "suryaAC",
@@ -74,8 +74,8 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
           </div>
           <h3>Pilih format file</h3>
           <Select value={fileFormat} onChange={handleFormatChange}>
-            <MenuItem value="csv">CSV</MenuItem>
-            <MenuItem value="xml">XML</MenuItem>
+            <MenuItem value="xls">XLS (Excel Spreadsheet)</MenuItem>
+            <MenuItem value="csv">CSV (Comma Separated Value)</MenuItem>
           </Select>
           <div className="flex flex-row gap-4 mt-4 justify-end">
             {/* http://10.46.10.128:5000/ebt/download/report/csv?data=suryaDC&from=2023-02-21&to=2023-02-25 */}

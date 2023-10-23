@@ -11,9 +11,10 @@ import { twoDecimalPlaces } from "@/utils";
 import FormatNumber from "@/utils/numFormatter";
 import { format } from "date-fns";
 
-import { useMemo } from "react";
+import { use, useMemo } from "react";
 
 import dynamic from "next/dynamic";
+import { title } from "process";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function RealChart({ data }: { data: RealData[] }) {
@@ -124,7 +125,7 @@ function RealChart({ data }: { data: RealData[] }) {
         return `<div class="bg-white shadow-md ">
         <div class="bg-gray-300 px-3 py-1 flex justify-between text-xs font-semibold">
         <div>${format(new Date(data.x), "dd/MM/yyyy")}</div>
-        <div>${format(new Date(data.x), "hh:mm:ss")}</div>
+        <div>${format(new Date(data.x), "HH:mm:ss")}</div>
         </div>
         <div class="flex flex-col text-sm p-3">
         <div class="flex flex-row gap-10 justify-between border-b-2">
@@ -167,12 +168,12 @@ function RealChart({ data }: { data: RealData[] }) {
 
 export function PowerDailyChart({
   data,
-  outdoorData,
-  dailyDate,
-}: {
+}: // outdoorData,
+// dailyDate,
+{
   data: DailyData[];
-  outdoorData: OutdoorSolarData[];
-  dailyDate: Date | null;
+  // outdoorData: OutdoorSolarData[];
+  // dailyDate: Date | null;
 }) {
   const newObject = data?.map((data) => {
     return {
@@ -231,7 +232,7 @@ export function PowerDailyChart({
 
   // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
 
-  dailyDate?.setHours(23, 59, 59, 999);
+  // dailyDate?.setHours(23, 59, 59, 999);
 
   const options = {
     // colors: ["#378ffd", "#e6e600"],
@@ -326,7 +327,7 @@ export function PowerDailyChart({
         return `<div class="bg-white shadow-md ">
         <div class="bg-gray-300 px-3 py-1 flex justify-between text-xs font-semibold">
         <div>${format(new Date(data.x), "dd/MM/yyyy")}</div>
-        <div>${format(new Date(data.x), "hh:mm:ss")}</div>
+        <div>${format(new Date(data.x), "HH:mm:ss")}</div>
         </div>
         <div class="flex flex-col text-sm p-3">
           <div class="flex flex-row gap-10 justify-between border-b-2">
@@ -359,7 +360,7 @@ export function PowerDailyChart({
         options={options}
         series={series}
         type="area"
-        width={1100}
+        width={"100%"}
         height={420}
       />
     </>
@@ -402,6 +403,8 @@ function EnergyDailyChart({
   });
 
   const y0Data = newObject?.map((data) => Object.values(data));
+
+  // console.log(y0Data);
 
   // const y1Data = outdoorData?.map((data) => Object.values(data));
 
@@ -446,16 +449,17 @@ function EnergyDailyChart({
         enabled: true,
         autoScaleYaxis: true,
       },
+
       toolbar: {
         autoSelected: "zoom" as "zoom",
       },
     },
     plotOptions: {
       bar: {
-        // horizontal: false,
-        barWidth: "100%", // Adjust this value to control the width of the bars
-        // distributed: true, // Distribute bars evenly without gaps
-        rangeBarOverlap: true,
+        columnWidth: "100%",
+        strokeWidth: 2,
+        borderRadius: 5,
+        borderRadiusApplication: "end" as "end",
       },
     },
     dataLabels: {
@@ -489,6 +493,7 @@ function EnergyDailyChart({
       },
       // max: dailyDate?.getTime(),
     },
+
     tooltip: {
       // shared: true,
       x: {
@@ -511,7 +516,7 @@ function EnergyDailyChart({
         options={options}
         series={series}
         type="bar"
-        width={1100}
+        width={"100%"}
         height={420}
       />
     </>
@@ -540,8 +545,17 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
       zoom: {
         enabled: false,
       },
+
       toolbar: {
         autoSelected: "zoom" as "zoom",
+      },
+    },
+    plotOptions: {
+      bar: {
+        columnWidth: "100%",
+        strokeWidth: 2,
+        borderRadius: 5,
+        borderRadiusApplication: "end" as "end",
       },
     },
     dataLabels: {
@@ -577,7 +591,7 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
         options={options}
         series={series}
         type="bar"
-        width={1100}
+        width={"100%"}
         height={420}
       />
     </>
@@ -622,6 +636,14 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
         enabled: false,
       },
     },
+    plotOptions: {
+      bar: {
+        columnWidth: "100%",
+        strokeWidth: 2,
+        borderRadius: 5,
+        borderRadiusApplication: "end" as "end",
+      },
+    },
     dataLabels: {
       enabled: false,
     },
@@ -654,7 +676,7 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
         options={options}
         series={series}
         type="bar"
-        width={1100}
+        width={"100%"}
         height={420}
       />
     </>
@@ -741,7 +763,7 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
         options={options}
         series={series}
         type="line"
-        width={1100}
+        width={"100%"}
         height={420}
       />
     </>
@@ -755,3 +777,108 @@ export {
   RealChart,
   EfficiencyChart,
 };
+
+import { useState, useEffect } from "react";
+
+export function ComparisonChart({
+  firstData,
+  secondData,
+  parameter,
+}: {
+  firstData: number[][];
+  secondData: number[][];
+  parameter: string;
+}) {
+  const [titleText, setTitleText] = useState<string>("");
+  const [tooltipUnit, setTooltipUnit] = useState<string>("");
+
+  useEffect(() => {
+    if (parameter === "daya") {
+      setTitleText("Daya (W)");
+      setTooltipUnit("W");
+    } else if (parameter === "tegangan") {
+      setTitleText("Tegangan (V)");
+      setTooltipUnit("V");
+    } else if (parameter === "arus") {
+      setTitleText("Arus (A)");
+      setTooltipUnit("A");
+    }
+  }, [parameter]);
+
+  const series = [
+    {
+      name: "AC",
+      data: firstData as number[][],
+      fill: {
+        colors: ["#A300D6"],
+      },
+    },
+    {
+      name: "DC",
+      data: secondData as number[][],
+      yAxisIndex: 1,
+      fill: { colors: ["#FFD600"] },
+    },
+  ];
+
+  const options = {
+    chart: {
+      stacked: false,
+      zoom: {
+        type: "x" as "x",
+        enabled: true,
+        autoScaleYaxis: true,
+      },
+
+      toolbar: {
+        autoSelected: "zoom" as "zoom",
+      },
+    },
+
+    dataLabels: {
+      enabled: false,
+    },
+    markers: {
+      size: 0,
+    },
+
+    yaxis: [
+      {
+        title: {
+          text: titleText,
+        },
+      },
+    ],
+    xaxis: {
+      type: "datetime" as "datetime",
+
+      labels: {
+        format: "HH:mm:ss",
+        datetimeUTC: false,
+      },
+    },
+
+    tooltip: {
+      x: {
+        format: "dd/MM/yy HH:mm",
+      },
+      y: {
+        formatter: function (value: number) {
+          return FormatNumber(value) + ` ${tooltipUnit}`;
+        },
+      },
+    },
+    stroke: {
+      width: 2,
+    },
+  };
+  return (
+    <ApexChart
+      options={options}
+      series={series}
+      type="area"
+      width={"100%"}
+      height={420}
+    />
+  );
+}

@@ -1,0 +1,69 @@
+{
+    "suryaAC_id": 7,
+    "units": [
+      {
+        "voltage": "V",
+        "current": "A",
+        "power": "W",
+        "energy": "Wh"
+      }
+    ],
+    "value": [
+      {
+        "client_id": 7,
+        "db_created_at": "2023-10-10 08:15:59.257387",
+        "send_to_db_at": "2023-10-10 08:15:55.337929",
+        "processing_time": "0:00:00.176857",
+        "voltage": 59.1,
+        "current": 5.401,
+        "power": 319.199,
+        "energy": 26.5999,
+        "power_factor": 0.41
+      },
+      {
+        "client_id": 7,
+        "db_created_at": "2023-10-10 08:20:59.632539",
+        "send_to_db_at": "2023-10-10 08:20:55.710503",
+        "processing_time": "0:00:00.174539",
+        "voltage": 59.5,
+        "current": 5.954,
+        "power": 354.263,
+        "energy": 29.5219,
+        "power_factor": 0.48
+      },
+      {
+        "client_id": 7,
+        "db_created_at": "2023-10-10 08:25:59.935761",
+        "send_to_db_at": "2023-10-10 08:25:56.024140",
+        "processing_time": "0:00:00.179551",
+        "voltage": 59.6,
+        "current": 8.238,
+        "power": 490.985,
+        "energy": 40.9154,
+        "power_factor": 0.85
+      },
+      {
+        "client_id": 7,
+        "db_created_at": "2023-10-10 08:31:00.329999",
+        "send_to_db_at": "2023-10-10 08:30:56.427487",
+        "processing_time": "0:00:00.180836",
+        "voltage": 58.4,
+        "current": 8.049,
+        "power": 470.062,
+        "energy": 39.1718,
+        "power_factor": 0.8
+      },
+      {
+        "client_id": 7,
+        "db_created_at": "2023-10-10 08:36:00.689153",
+        "send_to_db_at": "2023-10-10 08:35:56.779106",
+        "processing_time": "0:00:00.180415",
+        "voltage": 58.0,
+        "current": 4.848,
+        "power": 281.184,
+        "energy": 23.432,
+        "power_factor": 0.94
+      }
+    ]
+  }
+  

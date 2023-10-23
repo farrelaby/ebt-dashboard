@@ -1,0 +1,3301 @@
+{
+  "suryaDC_id": 6,
+  "units": [
+    {
+      "voltage": "V",
+      "current": "A",
+      "power": "W",
+      "energy": "Wh"
+    }
+  ],
+  "value": [
+    {
+      "db_created_at": "2023-06-10 00:02:27.634186",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:02:11.801760",
+        "processing_time": "0:00:00.185697",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:07:43.759246",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:07:28.053604",
+        "processing_time": "0:00:00.176900",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:13:00.044444",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:12:44.206252",
+        "processing_time": "0:00:00.190807",
+        "voltage": 0.32,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:18:16.158175",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:18:00.515597",
+        "processing_time": "0:00:00.197827",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:23:33.298355",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:23:16.620520",
+        "processing_time": "0:00:00.182068",
+        "voltage": 0.39,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:28:49.020747",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:28:33.730892",
+        "processing_time": "0:00:00.184641",
+        "voltage": 0.46,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:34:05.216543",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:33:49.448556",
+        "processing_time": "0:00:00.183981",
+        "voltage": 0.52,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:39:21.327441",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:39:05.644501",
+        "processing_time": "0:00:00.178377",
+        "voltage": 0.45,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:44:37.521252",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:44:21.727886",
+        "processing_time": "0:00:00.181728",
+        "voltage": 0.46,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:49:53.654360",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:49:37.909600",
+        "processing_time": "0:00:00.192149",
+        "voltage": 0.68,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 00:54:53.979959",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:54:54.030575",
+        "processing_time": "0:00:00.174523",
+        "voltage": 0.66,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:00:10.002022",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 00:59:54.479071",
+        "processing_time": "0:00:00.185840",
+        "voltage": 0.46,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:05:26.186252",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:05:10.451344",
+        "processing_time": "0:00:00.197169",
+        "voltage": 0.55,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:10:42.392969",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:10:26.566030",
+        "processing_time": "0:00:00.182238",
+        "voltage": 0.49,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:15:58.617863",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:15:42.703596",
+        "processing_time": "0:00:00.186092",
+        "voltage": 0.36,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:21:14.728291",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:20:59.000436",
+        "processing_time": "0:00:00.191931",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:26:30.884140",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:26:15.096433",
+        "processing_time": "0:00:00.172937",
+        "voltage": 0.32,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:32:03.682390",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:31:31.234753",
+        "processing_time": "0:00:00.183343",
+        "voltage": 0.39,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:37:19.853110",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:37:03.960169",
+        "processing_time": "0:00:00.187265",
+        "voltage": 0.46,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:42:35.997622",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:42:20.232459",
+        "processing_time": "0:00:00.197021",
+        "voltage": 0.51,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:47:52.160844",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:47:36.439969",
+        "processing_time": "0:00:00.201695",
+        "voltage": 0.59,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:53:08.310069",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:52:52.494380",
+        "processing_time": "0:00:00.179179",
+        "voltage": 0.68,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 01:58:24.485250",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 01:58:08.690395",
+        "processing_time": "0:00:00.202168",
+        "voltage": 0.74,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:03:40.621401",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:03:24.861091",
+        "processing_time": "0:00:00.193434",
+        "voltage": 0.55,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:08:56.809374",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:08:41.019733",
+        "processing_time": "0:00:00.193252",
+        "voltage": 0.42,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:14:12.944213",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:13:57.140823",
+        "processing_time": "0:00:00.194573",
+        "voltage": 0.42,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:19:29.122415",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:19:13.314940",
+        "processing_time": "0:00:00.185916",
+        "voltage": 0.59,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:24:45.261526",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:24:29.442327",
+        "processing_time": "0:00:00.177985",
+        "voltage": 0.71,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:30:01.444963",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:29:45.640901",
+        "processing_time": "0:00:00.182214",
+        "voltage": 0.69,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:35:17.570121",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:35:01.817341",
+        "processing_time": "0:00:00.193756",
+        "voltage": 0.78,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:40:34.388326",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:40:18.997148",
+        "processing_time": "0:00:00.184925",
+        "voltage": 0.84,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:45:50.534617",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:45:34.781603",
+        "processing_time": "0:00:00.195002",
+        "voltage": 0.88,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:51:06.708385",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:50:50.906922",
+        "processing_time": "0:00:00.180644",
+        "voltage": 0.79,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 02:56:22.853198",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 02:56:07.057966",
+        "processing_time": "0:00:00.178578",
+        "voltage": 0.85,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:01:39.034486",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:01:23.157491",
+        "processing_time": "0:00:00.181390",
+        "voltage": 0.86,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:06:55.177251",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:06:39.363778",
+        "processing_time": "0:00:00.181910",
+        "voltage": 0.9,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:12:11.352895",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:11:55.460500",
+        "processing_time": "0:00:00.191128",
+        "voltage": 0.78,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:17:11.700110",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:17:11.636348",
+        "processing_time": "0:00:00.180211",
+        "voltage": 0.9,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:22:27.673897",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:22:12.056306",
+        "processing_time": "0:00:00.192182",
+        "voltage": 0.72,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:27:43.922715",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:27:28.027877",
+        "processing_time": "0:00:00.184822",
+        "voltage": 0.69,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:32:59.993485",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:32:44.299427",
+        "processing_time": "0:00:00.182461",
+        "voltage": 0.77,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:38:16.155792",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:38:00.359573",
+        "processing_time": "0:00:00.183318",
+        "voltage": 0.71,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:43:32.304059",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:43:16.530873",
+        "processing_time": "0:00:00.177282",
+        "voltage": 0.74,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:48:48.480151",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:48:32.676359",
+        "processing_time": "0:00:00.176914",
+        "voltage": 0.74,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:54:04.635264",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:53:48.838412",
+        "processing_time": "0:00:00.184703",
+        "voltage": 0.72,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 03:59:20.790146",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 03:59:05.015412",
+        "processing_time": "0:00:00.184626",
+        "voltage": 0.65,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:04:36.961035",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:04:21.155144",
+        "processing_time": "0:00:00.185313",
+        "voltage": 0.66,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:09:53.114432",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:09:37.348562",
+        "processing_time": "0:00:00.194815",
+        "voltage": 0.49,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:15:09.274189",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:14:53.469219",
+        "processing_time": "0:00:00.192169",
+        "voltage": 0.56,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:20:25.440901",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:20:09.620433",
+        "processing_time": "0:00:00.184584",
+        "voltage": 0.64,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:25:41.593453",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:25:25.817699",
+        "processing_time": "0:00:00.197308",
+        "voltage": 0.7,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:30:57.768141",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:30:41.938537",
+        "processing_time": "0:00:00.183536",
+        "voltage": 0.69,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:36:13.908520",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:35:58.063574",
+        "processing_time": "0:00:00.192599",
+        "voltage": 0.64,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:41:30.082153",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:41:14.154746",
+        "processing_time": "0:00:00.178675",
+        "voltage": 0.8,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:46:30.494811",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:46:30.441653",
+        "processing_time": "0:00:00.188326",
+        "voltage": 0.9,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:51:47.671745",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:51:31.877080",
+        "processing_time": "0:00:00.181062",
+        "voltage": 0.91,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 04:57:03.835067",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 04:56:47.967825",
+        "processing_time": "0:00:00.181702",
+        "voltage": 0.91,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:02:19.991580",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:02:04.130005",
+        "processing_time": "0:00:00.183703",
+        "voltage": 0.87,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:07:36.153446",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:07:20.345207",
+        "processing_time": "0:00:00.180990",
+        "voltage": 1.11,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:12:52.309478",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:12:36.510611",
+        "processing_time": "0:00:00.182103",
+        "voltage": 1.87,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:18:08.480483",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:17:52.678265",
+        "processing_time": "0:00:00.190197",
+        "voltage": 4.71,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:23:24.634583",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:23:08.829556",
+        "processing_time": "0:00:00.185540",
+        "voltage": 9.13,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:28:40.794998",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:28:24.891569",
+        "processing_time": "0:00:00.182419",
+        "voltage": 9.97,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:33:56.957457",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:33:41.088589",
+        "processing_time": "0:00:00.182344",
+        "voltage": 40.75,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:39:13.114103",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:38:57.207637",
+        "processing_time": "0:00:00.199639",
+        "voltage": 24.77,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:44:29.278453",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:44:13.409836",
+        "processing_time": "0:00:00.183600",
+        "voltage": 46.42,
+        "current": 0.02,
+        "power": 0.9284,
+        "energy": 0.07737
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:49:45.438006",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:49:29.635174",
+        "processing_time": "0:00:00.178067",
+        "voltage": 26.49,
+        "current": 0.03,
+        "power": 0.7947,
+        "energy": 0.06622
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 05:55:01.597998",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 05:54:45.727058",
+        "processing_time": "0:00:00.180894",
+        "voltage": 53.95,
+        "current": 0.04,
+        "power": 2.158,
+        "energy": 0.17983
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:00:17.752847",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:00:01.893865",
+        "processing_time": "0:00:00.197324",
+        "voltage": 69.28,
+        "current": 0.05,
+        "power": 3.464,
+        "energy": 0.28867
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:05:33.925821",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:05:18.059281",
+        "processing_time": "0:00:00.193217",
+        "voltage": 102.92,
+        "current": 0.05,
+        "power": 5.146,
+        "energy": 0.42883
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:10:50.078805",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:10:34.291490",
+        "processing_time": "0:00:00.186040",
+        "voltage": 83.93,
+        "current": 0.07,
+        "power": 5.8751,
+        "energy": 0.48959
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:16:06.246102",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:15:50.433645",
+        "processing_time": "0:00:00.199770",
+        "voltage": 105.56,
+        "current": 0.05,
+        "power": 5.278,
+        "energy": 0.43983
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:21:22.402520",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:21:06.619981",
+        "processing_time": "0:00:00.191759",
+        "voltage": 105.55,
+        "current": 0.05,
+        "power": 5.2775,
+        "energy": 0.43979
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:26:38.572746",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:26:22.766180",
+        "processing_time": "0:00:00.195883",
+        "voltage": 114.43,
+        "current": 0.05,
+        "power": 5.7215,
+        "energy": 0.47679
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:31:54.720203",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:31:38.942955",
+        "processing_time": "0:00:00.197177",
+        "voltage": 117.81,
+        "current": 0.04,
+        "power": 4.7124,
+        "energy": 0.3927
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:37:11.518023",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:36:56.109684",
+        "processing_time": "0:00:00.184617",
+        "voltage": 120.18,
+        "current": 0.07,
+        "power": 8.4126,
+        "energy": 0.70105
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:42:27.734934",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:42:11.879284",
+        "processing_time": "0:00:00.181491",
+        "voltage": 120.23,
+        "current": 0.07,
+        "power": 8.4161,
+        "energy": 0.70134
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:47:43.851320",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:47:28.091150",
+        "processing_time": "0:00:00.184784",
+        "voltage": 99.86,
+        "current": 0.37,
+        "power": 36.9482,
+        "energy": 3.07902
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:52:59.996527",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:52:44.226994",
+        "processing_time": "0:00:00.190969",
+        "voltage": 97.87,
+        "current": 0.39,
+        "power": 38.1693,
+        "energy": 3.18077
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 06:58:16.168298",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 06:58:00.377439",
+        "processing_time": "0:00:00.177068",
+        "voltage": 103.93,
+        "current": 0.57,
+        "power": 59.2401,
+        "energy": 4.93667
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:03:32.317690",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:03:16.452874",
+        "processing_time": "0:00:00.186704",
+        "voltage": 102.0,
+        "current": 0.39,
+        "power": 39.78,
+        "energy": 3.315
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:08:48.490929",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:08:32.739333",
+        "processing_time": "0:00:00.188486",
+        "voltage": 105.99,
+        "current": 0.64,
+        "power": 67.8336,
+        "energy": 5.6528
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:14:04.716610",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:13:48.888969",
+        "processing_time": "0:00:00.193083",
+        "voltage": 96.0,
+        "current": 0.42,
+        "power": 40.32,
+        "energy": 3.36
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:19:20.816983",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:19:05.096321",
+        "processing_time": "0:00:00.193817",
+        "voltage": 103.98,
+        "current": 0.32,
+        "power": 33.2736,
+        "energy": 2.7728
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:24:36.959157",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:24:21.156062",
+        "processing_time": "0:00:00.185455",
+        "voltage": 104.01,
+        "current": 0.6,
+        "power": 62.406,
+        "energy": 5.2005
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:29:54.204464",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:29:37.307502",
+        "processing_time": "0:00:00.187060",
+        "voltage": 106.02,
+        "current": 0.86,
+        "power": 91.1772,
+        "energy": 7.5981
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:35:10.187331",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:34:54.569624",
+        "processing_time": "0:00:00.196755",
+        "voltage": 106.06,
+        "current": 1.11,
+        "power": 117.727,
+        "energy": 9.81055
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:40:26.081202",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:40:10.536255",
+        "processing_time": "0:00:00.183680",
+        "voltage": 112.01,
+        "current": 1.28,
+        "power": 143.373,
+        "energy": 11.9477
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:45:42.228395",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:45:26.413792",
+        "processing_time": "0:00:00.193436",
+        "voltage": 114.14,
+        "current": 1.09,
+        "power": 124.413,
+        "energy": 10.3677
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:50:58.426374",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:50:42.569264",
+        "processing_time": "0:00:00.182797",
+        "voltage": 114.17,
+        "current": 1.6,
+        "power": 182.672,
+        "energy": 15.2227
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 07:56:14.536450",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 07:55:58.803024",
+        "processing_time": "0:00:00.187077",
+        "voltage": 106.09,
+        "current": 1.95,
+        "power": 206.876,
+        "energy": 17.2396
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:01:30.723596",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:01:14.880825",
+        "processing_time": "0:00:00.187029",
+        "voltage": 108.21,
+        "current": 2.69,
+        "power": 291.085,
+        "energy": 24.2571
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:06:46.855444",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:06:31.016812",
+        "processing_time": "0:00:00.197039",
+        "voltage": 116.21,
+        "current": 2.89,
+        "power": 335.847,
+        "energy": 27.9872
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:12:03.034176",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:11:47.153888",
+        "processing_time": "0:00:00.181256",
+        "voltage": 108.33,
+        "current": 5.68,
+        "power": 615.314,
+        "energy": 51.2762
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:17:19.178560",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:17:03.452612",
+        "processing_time": "0:00:00.186143",
+        "voltage": 108.21,
+        "current": 1.4,
+        "power": 151.494,
+        "energy": 12.6245
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:22:35.449548",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:22:19.557663",
+        "processing_time": "0:00:00.188692",
+        "voltage": 106.36,
+        "current": 6.15,
+        "power": 654.114,
+        "energy": 54.5095
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:27:51.581432",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:27:35.806103",
+        "processing_time": "0:00:00.187084",
+        "voltage": 104.16,
+        "current": 1.54,
+        "power": 160.406,
+        "energy": 13.3672
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:33:07.671365",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:32:52.143377",
+        "processing_time": "0:00:00.187414",
+        "voltage": 108.42,
+        "current": 6.29,
+        "power": 681.962,
+        "energy": 56.8302
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:38:23.842998",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:38:08.047463",
+        "processing_time": "0:00:00.186079",
+        "voltage": 108.3,
+        "current": 4.56,
+        "power": 493.848,
+        "energy": 41.154
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:43:40.011404",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:43:24.230278",
+        "processing_time": "0:00:00.194199",
+        "voltage": 102.24,
+        "current": 1.34,
+        "power": 137.002,
+        "energy": 11.4168
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:48:56.127866",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:48:40.383608",
+        "processing_time": "0:00:00.189702",
+        "voltage": 106.19,
+        "current": 1.41,
+        "power": 149.728,
+        "energy": 12.4773
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:54:12.290692",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:53:56.504460",
+        "processing_time": "0:00:00.177840",
+        "voltage": 112.14,
+        "current": 1.91,
+        "power": 214.187,
+        "energy": 17.8489
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 08:59:28.444831",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 08:59:12.611649",
+        "processing_time": "0:00:00.185477",
+        "voltage": 102.25,
+        "current": 1.15,
+        "power": 117.588,
+        "energy": 9.79896
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:04:44.599618",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:04:28.857613",
+        "processing_time": "0:00:00.181149",
+        "voltage": 106.22,
+        "current": 2.01,
+        "power": 213.502,
+        "energy": 17.7918
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:10:01.799118",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:09:44.932424",
+        "processing_time": "0:00:00.186153",
+        "voltage": 94.33,
+        "current": 3.81,
+        "power": 359.397,
+        "energy": 29.9498
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:15:17.568332",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:15:02.191712",
+        "processing_time": "0:00:00.186554",
+        "voltage": 104.48,
+        "current": 6.47,
+        "power": 675.986,
+        "energy": 56.3321
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:20:33.725191",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:20:17.952631",
+        "processing_time": "0:00:00.180197",
+        "voltage": 104.5,
+        "current": 6.63,
+        "power": 692.835,
+        "energy": 57.7363
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:25:34.156009",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:25:34.140197",
+        "processing_time": "0:00:00.190723",
+        "voltage": 96.59,
+        "current": 7.24,
+        "power": 699.312,
+        "energy": 58.276
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:30:50.053517",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:30:34.564105",
+        "processing_time": "0:00:00.197052",
+        "voltage": 102.59,
+        "current": 7.38,
+        "power": 757.114,
+        "energy": 63.0928
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:36:06.204797",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:35:50.455911",
+        "processing_time": "0:00:00.200036",
+        "voltage": 102.3,
+        "current": 3.76,
+        "power": 384.648,
+        "energy": 32.054
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:41:22.376654",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:41:06.630278",
+        "processing_time": "0:00:00.197158",
+        "voltage": 102.59,
+        "current": 7.42,
+        "power": 761.218,
+        "energy": 63.4348
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:46:38.545206",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:46:22.770595",
+        "processing_time": "0:00:00.183445",
+        "voltage": 102.58,
+        "current": 7.31,
+        "power": 749.86,
+        "energy": 62.4883
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:51:54.698569",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:51:38.935672",
+        "processing_time": "0:00:00.175275",
+        "voltage": 94.63,
+        "current": 6.95,
+        "power": 657.679,
+        "energy": 54.8065
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 09:57:10.843691",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 09:56:55.086451",
+        "processing_time": "0:00:00.179285",
+        "voltage": 102.32,
+        "current": 1.44,
+        "power": 147.341,
+        "energy": 12.2784
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:02:27.022915",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:02:11.237993",
+        "processing_time": "0:00:00.189549",
+        "voltage": 102.46,
+        "current": 6.02,
+        "power": 616.809,
+        "energy": 51.4008
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:07:43.166330",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:07:27.409512",
+        "processing_time": "0:00:00.186658",
+        "voltage": 105.68,
+        "current": 1.93,
+        "power": 203.962,
+        "energy": 16.9969
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:12:59.336956",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:12:43.564648",
+        "processing_time": "0:00:00.195771",
+        "voltage": 106.6,
+        "current": 8.32,
+        "power": 886.912,
+        "energy": 73.9093
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:18:32.114150",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:17:59.735809",
+        "processing_time": "0:00:00.195935",
+        "voltage": 106.6,
+        "current": 7.57,
+        "power": 806.962,
+        "energy": 67.2468
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:23:48.282779",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:23:32.400667",
+        "processing_time": "0:00:00.183335",
+        "voltage": 96.63,
+        "current": 8.88,
+        "power": 858.074,
+        "energy": 71.5062
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:29:04.531945",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:28:48.667533",
+        "processing_time": "0:00:00.182293",
+        "voltage": 98.3,
+        "current": 1.9,
+        "power": 186.77,
+        "energy": 15.5642
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:34:20.600447",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:34:04.901742",
+        "processing_time": "0:00:00.181679",
+        "voltage": 100.36,
+        "current": 3.44,
+        "power": 345.238,
+        "energy": 28.7699
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:39:36.757217",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:39:20.994281",
+        "processing_time": "0:00:00.183317",
+        "voltage": 104.27,
+        "current": 1.61,
+        "power": 167.875,
+        "energy": 13.9896
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:44:52.924592",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:44:37.150435",
+        "processing_time": "0:00:00.196948",
+        "voltage": 104.27,
+        "current": 1.61,
+        "power": 167.875,
+        "energy": 13.9896
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:50:09.075332",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:49:53.326474",
+        "processing_time": "0:00:00.190821",
+        "voltage": 102.61,
+        "current": 8.88,
+        "power": 911.177,
+        "energy": 75.9314
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 10:55:25.248991",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 10:55:09.443161",
+        "processing_time": "0:00:00.183403",
+        "voltage": 98.24,
+        "current": 2.72,
+        "power": 267.213,
+        "energy": 22.2677
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:00:41.395553",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:00:25.599433",
+        "processing_time": "0:00:00.183352",
+        "voltage": 96.65,
+        "current": 8.78,
+        "power": 848.587,
+        "energy": 70.7156
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:06:14.191715",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:05:41.686382",
+        "processing_time": "0:00:00.177773",
+        "voltage": 106.28,
+        "current": 1.6,
+        "power": 170.048,
+        "energy": 14.1707
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:11:30.997839",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:11:15.578404",
+        "processing_time": "0:00:00.192122",
+        "voltage": 106.24,
+        "current": 1.56,
+        "power": 165.734,
+        "energy": 13.8112
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:16:48.216927",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:16:31.388818",
+        "processing_time": "0:00:00.192151",
+        "voltage": 106.27,
+        "current": 2.28,
+        "power": 242.296,
+        "energy": 20.1913
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:22:03.957144",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:21:48.530543",
+        "processing_time": "0:00:00.184343",
+        "voltage": 110.31,
+        "current": 2.04,
+        "power": 225.032,
+        "energy": 18.7527
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:27:20.123894",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:27:04.350767",
+        "processing_time": "0:00:00.181863",
+        "voltage": 99.8,
+        "current": 2.39,
+        "power": 238.522,
+        "energy": 19.8768
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:32:36.280885",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:32:20.497454",
+        "processing_time": "0:00:00.177690",
+        "voltage": 104.28,
+        "current": 2.4,
+        "power": 250.272,
+        "energy": 20.856
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:37:52.443354",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:37:36.679626",
+        "processing_time": "0:00:00.183347",
+        "voltage": 90.64,
+        "current": 8.14,
+        "power": 737.81,
+        "energy": 61.4841
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:43:08.599867",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:42:52.818712",
+        "processing_time": "0:00:00.176680",
+        "voltage": 102.57,
+        "current": 8.24,
+        "power": 845.177,
+        "energy": 70.4314
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:48:24.770637",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:48:08.977092",
+        "processing_time": "0:00:00.185288",
+        "voltage": 98.53,
+        "current": 8.68,
+        "power": 855.24,
+        "energy": 71.27
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:53:41.031444",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:53:25.168317",
+        "processing_time": "0:00:00.189744",
+        "voltage": 98.59,
+        "current": 8.47,
+        "power": 835.057,
+        "energy": 69.5881
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 11:58:57.186054",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 11:58:41.323689",
+        "processing_time": "0:00:00.190881",
+        "voltage": 94.71,
+        "current": 8.73,
+        "power": 826.818,
+        "energy": 68.9015
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:04:13.323567",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:03:57.411512",
+        "processing_time": "0:00:00.185216",
+        "voltage": 98.65,
+        "current": 8.4,
+        "power": 828.66,
+        "energy": 69.055
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:09:29.557945",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:09:13.636409",
+        "processing_time": "0:00:00.180292",
+        "voltage": 89.51,
+        "current": 8.82,
+        "power": 789.478,
+        "energy": 65.7898
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:14:45.651305",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:14:29.754501",
+        "processing_time": "0:00:00.185842",
+        "voltage": 94.69,
+        "current": 8.56,
+        "power": 810.546,
+        "energy": 67.5455
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:20:01.836965",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:19:45.900497",
+        "processing_time": "0:00:00.193417",
+        "voltage": 96.66,
+        "current": 8.6,
+        "power": 831.276,
+        "energy": 69.273
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:25:17.980677",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:25:02.040705",
+        "processing_time": "0:00:00.184734",
+        "voltage": 98.57,
+        "current": 6.3,
+        "power": 620.991,
+        "energy": 51.7492
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:30:34.160932",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:30:18.213107",
+        "processing_time": "0:00:00.186913",
+        "voltage": 92.76,
+        "current": 8.93,
+        "power": 828.347,
+        "energy": 69.0289
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:35:34.578523",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:35:34.440322",
+        "processing_time": "0:00:00.183776",
+        "voltage": 100.38,
+        "current": 2.44,
+        "power": 244.927,
+        "energy": 20.4106
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:40:50.446040",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:40:34.873833",
+        "processing_time": "0:00:00.183615",
+        "voltage": 102.62,
+        "current": 7.06,
+        "power": 724.497,
+        "energy": 60.3748
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:46:06.615476",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:45:50.740942",
+        "processing_time": "0:00:00.185917",
+        "voltage": 104.35,
+        "current": 2.66,
+        "power": 277.571,
+        "energy": 23.1309
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:51:22.935743",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:51:06.923269",
+        "processing_time": "0:00:00.181906",
+        "voltage": 98.91,
+        "current": 9.03,
+        "power": 893.157,
+        "energy": 74.4298
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 12:56:30.493726",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 12:56:23.282967",
+        "processing_time": "0:00:00.177178",
+        "voltage": 98.67,
+        "current": 7.91,
+        "power": 780.48,
+        "energy": 65.04
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:01:46.826855",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:01:30.839226",
+        "processing_time": "0:00:00.183126",
+        "voltage": 98.64,
+        "current": 8.03,
+        "power": 792.079,
+        "energy": 66.0066
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:07:02.973241",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:06:47.133612",
+        "processing_time": "0:00:00.193325",
+        "voltage": 96.61,
+        "current": 7.83,
+        "power": 756.456,
+        "energy": 63.038
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:12:19.113771",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:12:03.299625",
+        "processing_time": "0:00:00.184541",
+        "voltage": 96.67,
+        "current": 7.43,
+        "power": 718.258,
+        "energy": 59.8548
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:17:51.941071",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:17:19.403521",
+        "processing_time": "0:00:00.190179",
+        "voltage": 96.66,
+        "current": 7.85,
+        "power": 758.781,
+        "energy": 63.2318
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:23:08.129045",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:22:52.405849",
+        "processing_time": "0:00:00.185479",
+        "voltage": 96.69,
+        "current": 7.74,
+        "power": 748.381,
+        "energy": 62.3651
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:28:08.438884",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:28:08.358267",
+        "processing_time": "0:00:00.189759",
+        "voltage": 100.7,
+        "current": 7.37,
+        "power": 742.159,
+        "energy": 61.8466
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:33:24.342883",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:33:08.759700",
+        "processing_time": "0:00:00.193485",
+        "voltage": 100.65,
+        "current": 7.01,
+        "power": 705.557,
+        "energy": 58.7964
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:38:41.528020",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:38:24.602074",
+        "processing_time": "0:00:00.185997",
+        "voltage": 100.59,
+        "current": 6.97,
+        "power": 701.112,
+        "energy": 58.426
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:43:57.284722",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:43:41.879057",
+        "processing_time": "0:00:00.189636",
+        "voltage": 104.5,
+        "current": 5.91,
+        "power": 617.595,
+        "energy": 51.4663
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:49:13.440145",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:48:57.570837",
+        "processing_time": "0:00:00.184652",
+        "voltage": 102.61,
+        "current": 6.63,
+        "power": 680.304,
+        "energy": 56.692
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:54:21.023374",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:54:13.748536",
+        "processing_time": "0:00:00.191820",
+        "voltage": 104.6,
+        "current": 6.5,
+        "power": 679.9,
+        "energy": 56.6583
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 13:59:36.778881",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 13:59:21.379948",
+        "processing_time": "0:00:00.193678",
+        "voltage": 98.34,
+        "current": 2.66,
+        "power": 261.584,
+        "energy": 21.7987
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:04:52.960586",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:04:37.088587",
+        "processing_time": "0:00:00.182308",
+        "voltage": 102.57,
+        "current": 6.32,
+        "power": 648.242,
+        "energy": 54.0202
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:10:09.109360",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:09:53.259337",
+        "processing_time": "0:00:00.182594",
+        "voltage": 102.57,
+        "current": 6.29,
+        "power": 645.165,
+        "energy": 53.7638
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:15:25.260388",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:15:09.368146",
+        "processing_time": "0:00:00.181955",
+        "voltage": 102.5,
+        "current": 6.24,
+        "power": 639.6,
+        "energy": 53.3
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:20:41.419147",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:20:25.624061",
+        "processing_time": "0:00:00.180239",
+        "voltage": 98.49,
+        "current": 5.64,
+        "power": 555.484,
+        "energy": 46.2903
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:25:57.578225",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:25:41.728189",
+        "processing_time": "0:00:00.182001",
+        "voltage": 104.48,
+        "current": 5.21,
+        "power": 544.341,
+        "energy": 45.3617
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:30:57.912796",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:30:57.887028",
+        "processing_time": "0:00:00.184983",
+        "voltage": 104.42,
+        "current": 4.86,
+        "power": 507.481,
+        "energy": 42.2901
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:36:13.884808",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:35:58.317834",
+        "processing_time": "0:00:00.182248",
+        "voltage": 98.4,
+        "current": 4.69,
+        "power": 461.496,
+        "energy": 38.458
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:41:30.042447",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:41:14.351528",
+        "processing_time": "0:00:00.185942",
+        "voltage": 106.39,
+        "current": 4.32,
+        "power": 459.605,
+        "energy": 38.3004
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:46:46.188937",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:46:30.450314",
+        "processing_time": "0:00:00.184695",
+        "voltage": 102.37,
+        "current": 4.9,
+        "power": 501.613,
+        "energy": 41.8011
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:52:02.371000",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:51:46.685792",
+        "processing_time": "0:00:00.181990",
+        "voltage": 106.37,
+        "current": 4.56,
+        "power": 485.047,
+        "energy": 40.4206
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 14:57:18.575497",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 14:57:02.677460",
+        "processing_time": "0:00:00.192515",
+        "voltage": 110.37,
+        "current": 4.05,
+        "power": 446.999,
+        "energy": 37.2499
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:02:34.989900",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:02:18.894035",
+        "processing_time": "0:00:00.181174",
+        "voltage": 110.37,
+        "current": 3.77,
+        "power": 416.095,
+        "energy": 34.6746
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:08:07.584890",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:07:35.192894",
+        "processing_time": "0:00:00.176832",
+        "voltage": 104.35,
+        "current": 3.87,
+        "power": 403.835,
+        "energy": 33.6529
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:13:23.741256",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:13:07.892445",
+        "processing_time": "0:00:00.194374",
+        "voltage": 102.39,
+        "current": 3.81,
+        "power": 390.106,
+        "energy": 32.5088
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:18:39.903017",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:18:24.052977",
+        "processing_time": "0:00:00.183251",
+        "voltage": 106.32,
+        "current": 3.44,
+        "power": 365.741,
+        "energy": 30.4784
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:23:56.037569",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:23:40.215914",
+        "processing_time": "0:00:00.190935",
+        "voltage": 106.35,
+        "current": 3.2,
+        "power": 340.32,
+        "energy": 28.36
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:29:12.445867",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:28:56.285928",
+        "processing_time": "0:00:00.179754",
+        "voltage": 108.35,
+        "current": 2.95,
+        "power": 319.633,
+        "energy": 26.636
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:34:29.614515",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:34:13.790095",
+        "processing_time": "0:00:00.182149",
+        "voltage": 108.37,
+        "current": 2.85,
+        "power": 308.854,
+        "energy": 25.7379
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:39:45.780767",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:39:29.884238",
+        "processing_time": "0:00:00.201038",
+        "voltage": 104.29,
+        "current": 2.65,
+        "power": 276.368,
+        "energy": 23.0307
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:45:01.929247",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:44:46.149809",
+        "processing_time": "0:00:00.207216",
+        "voltage": 104.29,
+        "current": 2.51,
+        "power": 261.768,
+        "energy": 21.814
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:50:18.103055",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:50:02.262879",
+        "processing_time": "0:00:00.180469",
+        "voltage": 104.31,
+        "current": 2.22,
+        "power": 231.568,
+        "energy": 19.2973
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 15:55:34.252951",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 15:55:18.378913",
+        "processing_time": "0:00:00.182233",
+        "voltage": 112.26,
+        "current": 1.9,
+        "power": 213.294,
+        "energy": 17.7745
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:00:50.419455",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:00:34.578222",
+        "processing_time": "0:00:00.184540",
+        "voltage": 108.32,
+        "current": 1.8,
+        "power": 194.976,
+        "energy": 16.248
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:06:06.591580",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:05:50.666273",
+        "processing_time": "0:00:00.189457",
+        "voltage": 110.32,
+        "current": 1.66,
+        "power": 183.131,
+        "energy": 15.2609
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:11:22.761590",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:11:06.872192",
+        "processing_time": "0:00:00.185924",
+        "voltage": 106.23,
+        "current": 1.49,
+        "power": 158.283,
+        "energy": 13.1902
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:16:23.068143",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:16:22.981390",
+        "processing_time": "0:00:00.198987",
+        "voltage": 106.23,
+        "current": 1.34,
+        "power": 142.348,
+        "energy": 11.8624
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:21:39.039201",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:21:23.264798",
+        "processing_time": "0:00:00.183007",
+        "voltage": 106.18,
+        "current": 1.11,
+        "power": 117.86,
+        "energy": 9.82165
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:26:55.150735",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:26:39.330506",
+        "processing_time": "0:00:00.184320",
+        "voltage": 106.21,
+        "current": 0.92,
+        "power": 97.7132,
+        "energy": 8.14277
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:32:11.352236",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:31:55.513923",
+        "processing_time": "0:00:00.183450",
+        "voltage": 102.22,
+        "current": 0.78,
+        "power": 79.7316,
+        "energy": 6.6443
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:37:27.580692",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:37:11.733813",
+        "processing_time": "0:00:00.177213",
+        "voltage": 102.24,
+        "current": 0.62,
+        "power": 63.3888,
+        "energy": 5.2824
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:42:43.619574",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:42:27.984844",
+        "processing_time": "0:00:00.201107",
+        "voltage": 102.16,
+        "current": 0.5,
+        "power": 51.08,
+        "energy": 4.25667
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:47:59.828044",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:47:44.083138",
+        "processing_time": "0:00:00.181165",
+        "voltage": 110.19,
+        "current": 0.3,
+        "power": 33.057,
+        "energy": 2.75475
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:53:00.262862",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:53:00.249135",
+        "processing_time": "0:00:00.183610",
+        "voltage": 90.25,
+        "current": 0.27,
+        "power": 24.3675,
+        "energy": 2.03063
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 16:58:16.156562",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 16:58:00.655404",
+        "processing_time": "0:00:00.180408",
+        "voltage": 94.21,
+        "current": 0.19,
+        "power": 17.8999,
+        "energy": 1.49166
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:03:32.300029",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:03:16.548821",
+        "processing_time": "0:00:00.188078",
+        "voltage": 84.2,
+        "current": 0.16,
+        "power": 13.472,
+        "energy": 1.12267
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:08:48.471379",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:08:32.680064",
+        "processing_time": "0:00:00.179452",
+        "voltage": 94.08,
+        "current": 0.1,
+        "power": 9.408,
+        "energy": 0.784
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:14:04.639437",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:13:48.860480",
+        "processing_time": "0:00:00.187380",
+        "voltage": 78.44,
+        "current": 0.08,
+        "power": 6.2752,
+        "energy": 0.52293
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:19:20.802624",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:19:05.037032",
+        "processing_time": "0:00:00.205137",
+        "voltage": 78.63,
+        "current": 0.06,
+        "power": 4.7178,
+        "energy": 0.39315
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:24:36.964834",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:24:21.170978",
+        "processing_time": "0:00:00.178201",
+        "voltage": 53.53,
+        "current": 0.04,
+        "power": 2.1412,
+        "energy": 0.17843
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:29:53.128832",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:29:37.309062",
+        "processing_time": "0:00:00.181093",
+        "voltage": 62.57,
+        "current": 0.02,
+        "power": 1.2514,
+        "energy": 0.10428
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:35:09.288402",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:34:53.478631",
+        "processing_time": "0:00:00.184727",
+        "voltage": 63.27,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:40:25.431500",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:40:09.560538",
+        "processing_time": "0:00:00.179605",
+        "voltage": 41.84,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:45:41.609286",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:45:25.789067",
+        "processing_time": "0:00:00.184725",
+        "voltage": 32.71,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:50:57.744607",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:50:41.982165",
+        "processing_time": "0:00:00.184495",
+        "voltage": 9.28,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 17:56:13.905436",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 17:55:58.124607",
+        "processing_time": "0:00:00.179865",
+        "voltage": 5.39,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:01:30.068789",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:01:14.286683",
+        "processing_time": "0:00:00.187938",
+        "voltage": 2.18,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:06:46.231297",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:06:30.356121",
+        "processing_time": "0:00:00.182204",
+        "voltage": 1.04,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:12:02.407203",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:11:46.497653",
+        "processing_time": "0:00:00.183659",
+        "voltage": 0.65,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:17:18.564721",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:17:02.774595",
+        "processing_time": "0:00:00.190454",
+        "voltage": 0.41,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:22:34.725208",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:22:18.868392",
+        "processing_time": "0:00:00.182143",
+        "voltage": 0.32,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:27:50.913064",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:27:34.980209",
+        "processing_time": "0:00:00.179641",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:33:07.119557",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:32:51.273516",
+        "processing_time": "0:00:00.192028",
+        "voltage": 0.28,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:38:07.455150",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:38:07.376267",
+        "processing_time": "0:00:00.180870",
+        "voltage": 0.29,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:43:23.480106",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:43:07.840037",
+        "processing_time": "0:00:00.194140",
+        "voltage": 0.37,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:48:39.556590",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:48:23.726434",
+        "processing_time": "0:00:00.176771",
+        "voltage": 0.79,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:53:55.704244",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:53:39.865926",
+        "processing_time": "0:00:00.179607",
+        "voltage": 0.79,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 18:59:11.875532",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 18:58:56.030552",
+        "processing_time": "0:00:00.183605",
+        "voltage": 0.51,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:04:28.042259",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:04:12.221500",
+        "processing_time": "0:00:00.192798",
+        "voltage": 0.55,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:09:44.193887",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:09:28.350931",
+        "processing_time": "0:00:00.194667",
+        "voltage": 0.5,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:15:00.339761",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:14:44.553110",
+        "processing_time": "0:00:00.193837",
+        "voltage": 0.73,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:20:16.495862",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:20:00.711731",
+        "processing_time": "0:00:00.196112",
+        "voltage": 0.75,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:25:32.661287",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:25:16.762678",
+        "processing_time": "0:00:00.176569",
+        "voltage": 0.78,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:30:48.811974",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:30:32.970079",
+        "processing_time": "0:00:00.183215",
+        "voltage": 0.64,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:36:04.978344",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:35:49.130976",
+        "processing_time": "0:00:00.180864",
+        "voltage": 0.73,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:41:21.132719",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:41:05.331148",
+        "processing_time": "0:00:00.183993",
+        "voltage": 0.42,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:46:37.298956",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:46:21.470448",
+        "processing_time": "0:00:00.183340",
+        "voltage": 0.43,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:51:53.452712",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:51:37.612618",
+        "processing_time": "0:00:00.178387",
+        "voltage": 0.61,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 19:57:09.619895",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 19:56:53.782574",
+        "processing_time": "0:00:00.181436",
+        "voltage": 0.64,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:02:25.788758",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:02:09.959625",
+        "processing_time": "0:00:00.181991",
+        "voltage": 0.65,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:07:41.940590",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:07:26.122102",
+        "processing_time": "0:00:00.194375",
+        "voltage": 0.49,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:12:58.096488",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:12:42.293377",
+        "processing_time": "0:00:00.201044",
+        "voltage": 0.35,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:18:14.264585",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:17:58.446383",
+        "processing_time": "0:00:00.180251",
+        "voltage": 0.33,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:23:30.460122",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:23:14.544766",
+        "processing_time": "0:00:00.198470",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:28:46.592732",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:28:30.694477",
+        "processing_time": "0:00:00.195790",
+        "voltage": 0.28,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:34:02.803045",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:33:46.834273",
+        "processing_time": "0:00:00.178212",
+        "voltage": 0.27,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:39:18.912425",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:39:03.115767",
+        "processing_time": "0:00:00.179448",
+        "voltage": 0.27,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:44:35.081458",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:44:19.176721",
+        "processing_time": "0:00:00.190569",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:49:51.268001",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:49:35.368880",
+        "processing_time": "0:00:00.175085",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 20:55:07.377587",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 20:54:51.516009",
+        "processing_time": "0:00:00.189574",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:00:23.547167",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:00:07.626773",
+        "processing_time": "0:00:00.180051",
+        "voltage": 0.34,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:05:39.692805",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:05:23.815061",
+        "processing_time": "0:00:00.188828",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:10:55.977908",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:10:39.941621",
+        "processing_time": "0:00:00.186312",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:16:12.011460",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:15:56.216096",
+        "processing_time": "0:00:00.184675",
+        "voltage": 0.45,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:21:28.177933",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:21:12.237359",
+        "processing_time": "0:00:00.180897",
+        "voltage": 0.35,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:26:44.328018",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:26:28.403480",
+        "processing_time": "0:00:00.187417",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:32:00.501867",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:31:44.686399",
+        "processing_time": "0:00:00.183517",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:37:16.647966",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:37:00.854742",
+        "processing_time": "0:00:00.179565",
+        "voltage": 0.34,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:42:32.837371",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:42:17.008289",
+        "processing_time": "0:00:00.189710",
+        "voltage": 0.33,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:47:48.961393",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:47:33.187415",
+        "processing_time": "0:00:00.194786",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:53:05.170526",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:52:49.225169",
+        "processing_time": "0:00:00.181230",
+        "voltage": 0.32,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 21:58:21.283158",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 21:58:05.498666",
+        "processing_time": "0:00:00.179702",
+        "voltage": 0.34,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:03:37.472614",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:03:21.564409",
+        "processing_time": "0:00:00.178250",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:08:53.603139",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:08:37.828677",
+        "processing_time": "0:00:00.189098",
+        "voltage": 0.28,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:14:09.787740",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:13:53.880728",
+        "processing_time": "0:00:00.184135",
+        "voltage": 0.28,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:19:25.945871",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:19:10.043078",
+        "processing_time": "0:00:00.177016",
+        "voltage": 0.29,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:24:42.106873",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:24:26.220981",
+        "processing_time": "0:00:00.194086",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:29:58.246455",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:29:42.368101",
+        "processing_time": "0:00:00.181881",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:35:15.490181",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:34:58.514153",
+        "processing_time": "0:00:00.189797",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:40:31.199116",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:40:15.846585",
+        "processing_time": "0:00:00.179744",
+        "voltage": 0.32,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:45:31.629613",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:45:31.577944",
+        "processing_time": "0:00:00.187106",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:50:47.512112",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:50:31.914466",
+        "processing_time": "0:00:00.178395",
+        "voltage": 0.29,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 22:56:03.705691",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 22:55:47.867444",
+        "processing_time": "0:00:00.178381",
+        "voltage": 0.29,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:01:19.815344",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:01:04.095864",
+        "processing_time": "0:00:00.179760",
+        "voltage": 0.29,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:06:36.019330",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:06:20.176203",
+        "processing_time": "0:00:00.178890",
+        "voltage": 0.29,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:11:52.225929",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:11:36.370937",
+        "processing_time": "0:00:00.194654",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:17:08.304115",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:16:52.736940",
+        "processing_time": "0:00:00.198232",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:22:24.455324",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:22:08.696083",
+        "processing_time": "0:00:00.200730",
+        "voltage": 0.3,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:27:40.612024",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:27:24.761834",
+        "processing_time": "0:00:00.180006",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:32:56.769573",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:32:40.928532",
+        "processing_time": "0:00:00.182286",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:38:12.922949",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:37:57.089589",
+        "processing_time": "0:00:00.183317",
+        "voltage": 0.32,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:43:29.085364",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:43:13.244689",
+        "processing_time": "0:00:00.178528",
+        "voltage": 0.33,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:48:45.237388",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:48:29.406354",
+        "processing_time": "0:00:00.180053",
+        "voltage": 0.34,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:54:01.410220",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:53:45.567813",
+        "processing_time": "0:00:00.181529",
+        "voltage": 0.32,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    },
+    {
+      "db_created_at": "2023-06-10 23:59:17.575345",
+      "value": {
+        "client_id": 6,
+        "send_to_db_at": "2023-06-10 23:59:01.710935",
+        "processing_time": "0:00:00.174798",
+        "voltage": 0.31,
+        "current": 0.0,
+        "power": 0.0,
+        "energy": 0.0
+      }
+    }
+  ]
+}

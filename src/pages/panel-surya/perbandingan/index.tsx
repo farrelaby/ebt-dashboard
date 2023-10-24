@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { format } from "date-fns";
 
 import { ErrorSnackbar } from "@/components/snackbars";
@@ -16,12 +16,19 @@ import { DailyData, OutdoorSolarData, RealData } from "@/types/types";
 import axios from "axios";
 import { useQuery, useQueries } from "@tanstack/react-query";
 import { SERVER_EBT_URL } from "@/configs/url";
-import harian from "@/dummies/surya/ac/harian.json";
+
+import terbaru from "@/dummies/surya/ac/terbaru.json";
+import dayaAc from "@/dummies/surya/perbandingan/daya/ac.json";
+import dayaDc from "@/dummies/surya/perbandingan/daya/dc.json";
+import teganganAc from "@/dummies/surya/perbandingan/tegangan/ac.json";
+import teganganDc from "@/dummies/surya/perbandingan/tegangan/dc.json";
+import arusAc from "@/dummies/surya/perbandingan/arus/ac.json";
+import arusDc from "@/dummies/surya/perbandingan/arus/dc.json";
 
 import { realTimeCardItems } from "@/utils";
 
 export default function PerbandinganAcDc() {
-  const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
+  // const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
 
   const [compareParameter, setCompareParameter] = useState<string>("daya");
 
@@ -37,51 +44,67 @@ export default function PerbandinganAcDc() {
     yearly: useCallback((date: Date | null) => setYearlyDate(date), []),
   };
 
-  const realData = useQuery({
-    queryKey: ["realData", { data: "suryaAC" }],
-    queryFn: async () => {
-      const res = await axios.get(`${SERVER_EBT_URL}/ebt?data=suryaAC`);
+  // const realData = useQuery({
+  //   queryKey: ["realData", { data: "suryaAC" }],
+  //   queryFn: async () => {
+  //     const res = await axios.get(`${SERVER_EBT_URL}/ebt?data=suryaAC`);
 
-      return res.data.value as RealData[];
-    },
-  });
+  //     return res.data.value as RealData[];
+  //   },
+  // });
 
-  const [dataAC, dataDC] = useQueries({
-    queries: [
-      {
-        queryKey: [
-          "AC",
-          compareParameter,
-          format(powerDate as Date, "yyyy-MM-dd"),
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `/api/solar/compare?device=AC&parameter=${compareParameter}&date=${format(
-              powerDate as Date,
-              "yyyy-MM-dd"
-            )}`
-          );
-          return res.data;
-        },
-      },
-      {
-        queryKey: [
-          "DC",
-          compareParameter,
-          format(powerDate as Date, "yyyy-MM-dd"),
-        ],
-        queryFn: async () => {
-          const res = await axios.get(
-            `/api/solar/compare?device=DC&parameter=${compareParameter}&date=${format(
-              powerDate as Date,
-              "yyyy-MM-dd"
-            )}`
-          );
-          return res.data;
-        },
-      },
-    ],
-  });
+  // const [dataAC, dataDC] = useQueries({
+  //   queries: [
+  //     {
+  //       queryKey: [
+  //         "AC",
+  //         compareParameter,
+  //         format(powerDate as Date, "yyyy-MM-dd"),
+  //       ],
+  //       queryFn: async () => {
+  //         const res = await axios.get(
+  //           `/api/solar/compare?device=AC&parameter=${compareParameter}&date=${format(
+  //             powerDate as Date,
+  //             "yyyy-MM-dd"
+  //           )}`
+  //         );
+  //         return res.data;
+  //       },
+  //     },
+  //     {
+  //       queryKey: [
+  //         "DC",
+  //         compareParameter,
+  //         format(powerDate as Date, "yyyy-MM-dd"),
+  //       ],
+  //       queryFn: async () => {
+  //         const res = await axios.get(
+  //           `/api/solar/compare?device=DC&parameter=${compareParameter}&date=${format(
+  //             powerDate as Date,
+  //             "yyyy-MM-dd"
+  //           )}`
+  //         );
+  //         return res.data;
+  //       },
+  //     },
+  //   ],
+  // });
+
+  const [dataAC, setDataAC] = useState<(string | number)[][]>([]);
+  const [dataDC, setDataDC] = useState<(string | number)[][]>([]);
+
+  useEffect(() => {
+    if (compareParameter === "daya") {
+      setDataAC(dayaAc);
+      setDataDC(dayaDc);
+    } else if (compareParameter === "tegangan") {
+      setDataAC(teganganAc);
+      setDataDC(teganganDc);
+    } else if (compareParameter === "arus") {
+      setDataAC(arusAc);
+      setDataDC(arusDc);
+    }
+  }, [compareParameter]);
 
   return (
     <>
@@ -92,7 +115,7 @@ export default function PerbandinganAcDc() {
         <link rel="icon" href="/Solar-Panel.svg" />
       </Head>
 
-      <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
+      {/* <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} /> */}
 
       <div className="pb-8">
         <section
@@ -116,9 +139,20 @@ export default function PerbandinganAcDc() {
                     <MenuItem value="arus">Arus</MenuItem>
                   </Select>
                   <p className="text-[#9747FF]">AC</p>
+                  <p>vs</p>
+                  <p className="text-[#9747FF]">DC</p>
                 </div>
 
-                {realData.isSuccess && (
+                <p className="italic text-sm">
+                  Last updated :{" "}
+                  {format(
+                    new Date(terbaru.value[4]?.db_created_at),
+                    "dd/MM/yyyy HH:mm:ss"
+                  )}{" "}
+                  WIB
+                </p>
+
+                {/* {realData.isSuccess && (
                   <p className="italic text-sm ">
                     Last updated :{" "}
                     {format(
@@ -127,7 +161,7 @@ export default function PerbandinganAcDc() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
               </div>
               <DatePicker
                 label="Masukkan Tanggal"
@@ -140,7 +174,13 @@ export default function PerbandinganAcDc() {
               />
             </div>
             <div className="mt-3">
-              {dataAC.isSuccess && dataDC.isSuccess ? (
+              <ComparisonChart
+                firstData={dataAC as number[][]}
+                secondData={dataDC as number[][]}
+                parameter={compareParameter}
+              />
+
+              {/* {dataAC.isSuccess && dataDC.isSuccess ? (
                 <ComparisonChart
                   firstData={dataAC.data}
                   secondData={dataDC.data}
@@ -148,7 +188,7 @@ export default function PerbandinganAcDc() {
                 />
               ) : (
                 <Skeleton variant="rectangular" width={"100%"} height={435} />
-              )}
+              )} */}
             </div>
           </div>
         </section>

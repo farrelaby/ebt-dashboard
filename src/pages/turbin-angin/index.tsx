@@ -42,11 +42,11 @@ export default function TurbinAngin() {
 
   const [selectedParameter, setSelectedParameter] = useState<string>("energi");
 
-  const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
-    dailyDate,
-    monthlyDate,
-    yearlyDate
-  );
+  // const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
+  //   dailyDate,
+  //   monthlyDate,
+  //   yearlyDate
+  // );
 
   // const dailyPower = useQuery({
   //   queryKey: [
@@ -204,8 +204,16 @@ export default function TurbinAngin() {
                     </Select>
                     <p className="text-[#9747FF]">24 Jam</p>
                   </div>
+                  <p className="italic text-sm ">
+                    Last updated :{" "}
+                    {format(
+                      new Date(terbaru.value[4]?.db_created_at),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </p>
 
-                  {realData.isSuccess && (
+                  {/* {realData.isSuccess && (
                     <p className="italic text-sm ">
                       Last updated :{" "}
                       {format(
@@ -214,7 +222,7 @@ export default function TurbinAngin() {
                       )}{" "}
                       WIB
                     </p>
-                  )}
+                  )} */}
                 </div>
                 <DatePicker
                   label="Masukkan Tanggal"
@@ -227,7 +235,13 @@ export default function TurbinAngin() {
                 />
               </div>
               <div className="mt-3">
-                {dailyData.isSuccess ? (
+                {selectedParameter == "daya" ? (
+                  <PowerDailyChart data={harian.value as DailyData[]} />
+                ) : (
+                  <EnergyDailyChart data={harian.value as DailyData[]} />
+                )}
+
+                {/* {dailyData.isSuccess ? (
                   selectedParameter == "daya" ? (
                     <PowerDailyChart data={dailyData.data as DailyData[]} />
                   ) : (
@@ -235,7 +249,7 @@ export default function TurbinAngin() {
                   )
                 ) : (
                   <Skeleton variant="rectangular" width={"100%"} height={435} />
-                )}
+                )} */}
               </div>
             </div>
           </section>

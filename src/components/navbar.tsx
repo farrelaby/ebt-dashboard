@@ -18,7 +18,8 @@ export default function Navbar({ onMouseEnter, onMouseLeave }: NavbarProps) {
     >
       <div className="py-6 pl-2 flex flex-row gap-5 items-center border-b-2 border-[#dde2ff]">
         <Image
-          src="/ugm_bw.png"
+          unoptimized
+          src="/ugm_bw.PNG"
           alt="logo"
           width={50}
           height={50}

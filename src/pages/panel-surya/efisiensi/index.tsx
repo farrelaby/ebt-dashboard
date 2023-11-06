@@ -135,10 +135,10 @@ export default function PanelSuryaEfisiensi() {
               <div className="flex flex-col gap-2">
                 <div className="flex flex-row gap-2 justify-center">
                   <h3 className="text-2xl font-bold">
-                    <span className="text-[#9747FF]">Efisiensi</span> Daya
-                    Produksi
+                    Rasio Daya <span className="text-[#9747FF]">Input</span> vs{" "}
+                    <span className="text-[#9747FF]">Output</span>
                   </h3>
-                  <Tooltip
+                  {/* <Tooltip
                     title={tooltipTitle}
                     placement="right"
                     arrow
@@ -152,7 +152,7 @@ export default function PanelSuryaEfisiensi() {
                         height={18}
                       />
                     </button>
-                  </Tooltip>
+                  </Tooltip> */}
                 </div>
                 {outdoorSolar.isSuccess && (
                   <p className="italic text-sm">
@@ -190,7 +190,7 @@ export default function PanelSuryaEfisiensi() {
                   data={efficiencyData.data as OutdoorSolarEfficiencyData[]}
                 />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={435} />
+                <Skeleton variant="rectangular" width={"100%"} height={435} />
               )}
             </div>
           </div>

@@ -197,8 +197,8 @@ export default function PanelSuryaAC() {
               <div className="flex flex-row justify-between">
                 <div className="flex flex-col gap-1">
                   <div className="text-2xl font-bold flex flex-row gap-2 items-center">
-                    <p>Produksi</p>
-                    <Select
+                    <p>Produksi Daya</p>
+                    {/* <Select
                       value={selectedParameter}
                       size="small"
                       sx={{ fontWeight: 700, fontSize: "1.3rem" }}
@@ -207,7 +207,7 @@ export default function PanelSuryaAC() {
                     >
                       <MenuItem value="energi">Energi</MenuItem>
                       <MenuItem value="daya">Daya</MenuItem>
-                    </Select>
+                    </Select> */}
                     <p className="text-[#9747FF]">24 Jam</p>
                   </div>
 
@@ -234,12 +234,13 @@ export default function PanelSuryaAC() {
               </div>
               <div className="mt-3">
                 {dailyData.isSuccess ? (
-                  selectedParameter == "daya" ? (
-                    <PowerDailyChart data={dailyData.data as DailyData[]} />
-                  ) : (
-                    <EnergyDailyChart data={dailyData.data as DailyData[]} />
-                  )
+                  <PowerDailyChart data={dailyData.data as DailyData[]} />
                 ) : (
+                  // selectedParameter == "daya" ? (
+                  //   <PowerDailyChart data={dailyData.data as DailyData[]} />
+                  // ) : (
+                  //   <EnergyDailyChart data={dailyData.data as DailyData[]} />
+                  // )
                   <Skeleton variant="rectangular" width={"100%"} height={435} />
                 )}
               </div>
@@ -356,7 +357,7 @@ export default function PanelSuryaAC() {
               {monthlyData.isSuccess ? (
                 <EnergyMonthlyChart data={monthlyData.data as MonthlyData[]} />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={435} />
+                <Skeleton variant="rectangular" width={"100%"} height={435} />
               )}
             </div>
           </div>
@@ -409,7 +410,7 @@ export default function PanelSuryaAC() {
               {yearlyData.isSuccess ? (
                 <EnergyYearlyChart data={yearlyData.data as YearlyData[]} />
               ) : (
-                <Skeleton variant="rectangular" width={1100} height={435} />
+                <Skeleton variant="rectangular" width={"100%"} height={435} />
               )}
             </div>
           </div>

@@ -116,6 +116,8 @@ export default function PerbandinganAcDc() {
                     <MenuItem value="arus">Arus</MenuItem>
                   </Select>
                   <p className="text-[#9747FF]">AC</p>
+                  <p>vs</p>
+                  <p className="text-[#9747FF]">DC</p>
                 </div>
 
                 {realData.isSuccess && (

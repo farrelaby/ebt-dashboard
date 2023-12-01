@@ -10,17 +10,18 @@ function DownloadButton({ onClick }: DownloadButtonProps) {
     <Button
       onClick={onClick}
       variant="contained"
-      color="primary"
+      color="secondary"
       size="medium"
       style={{
         textTransform: "none",
-        backgroundColor: "#000000",
+        backgroundColor: "#9747FF",
+        // backgroundColor: "#000000",
       }}
-      className="m-2"
+      className="m-2 my-4"
     >
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row gap-2 text-lg">
         <Image src="/download-logo.svg" alt="" width={20} height={20} />
-        Download Data Mentah
+        Download Data Excel/CSV
       </div>
     </Button>
   );

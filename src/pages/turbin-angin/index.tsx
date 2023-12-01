@@ -24,7 +24,8 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { SERVER_EBT_URL } from "@/configs/url";
 
 import terbaru from "@/dummies/angin/terbaru.json";
-import harian from "@/dummies/angin/harian.json";
+// import harian from "@/dummies/angin/harian.json";
+import harian from "@/dummies/surya/dc/harian.json";
 import bulanan from "@/dummies/angin/bulanan.json";
 import tahunan from "@/dummies/angin/tahunan.json";
 
@@ -115,7 +116,7 @@ export default function TurbinAngin() {
               <p className="italic text-sm">
                 Last updated :{" "}
                 {format(
-                  new Date(terbaru.value[4]?.db_created_at),
+                  new Date("2023-06-30T23:59:58"),
                   "dd/MM/yyyy HH:mm:ss"
                 )}{" "}
                 WIB
@@ -191,8 +192,8 @@ export default function TurbinAngin() {
               <div className="flex flex-row justify-between">
                 <div className="flex flex-col gap-1">
                   <div className="text-2xl font-bold flex flex-row gap-2 items-center">
-                    <p>Produksi</p>
-                    <Select
+                    <p>Produksi Daya</p>
+                    {/* <Select
                       value={selectedParameter}
                       size="small"
                       sx={{ fontWeight: 700, fontSize: "1.3rem" }}
@@ -201,16 +202,19 @@ export default function TurbinAngin() {
                     >
                       <MenuItem value="energi">Energi</MenuItem>
                       <MenuItem value="daya">Daya</MenuItem>
-                    </Select>
+                    </Select> */}
                     <p className="text-[#9747FF]">24 Jam</p>
                   </div>
-                  <p className="italic text-sm ">
-                    Last updated :{" "}
-                    {format(
-                      new Date(terbaru.value[4]?.db_created_at),
-                      "dd/MM/yyyy HH:mm:ss"
-                    )}{" "}
-                    WIB
+
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 w-fit rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date("2023-06-30T23:59:58"),
+                        "dd/MM/yyyy HH:mm:ss"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
 
                   {/* {realData.isSuccess && (
@@ -235,11 +239,13 @@ export default function TurbinAngin() {
                 />
               </div>
               <div className="mt-3">
-                {selectedParameter == "daya" ? (
+                <PowerDailyChart data={harian.value as DailyData[]} />
+
+                {/* {selectedParameter == "daya" ? (
                   <PowerDailyChart data={harian.value as DailyData[]} />
                 ) : (
                   <EnergyDailyChart data={harian.value as DailyData[]} />
-                )}
+                )} */}
 
                 {/* {dailyData.isSuccess ? (
                   selectedParameter == "daya" ? (
@@ -363,7 +369,7 @@ export default function TurbinAngin() {
                 <p className="italic text-sm ">
                   Last updated :{" "}
                   {format(
-                    new Date(terbaru.value[4]?.db_created_at),
+                    new Date("2023-06-30T23:59:58"),
                     "dd/MM/yyyy HH:mm:ss"
                   )}{" "}
                   WIB
@@ -417,12 +423,11 @@ export default function TurbinAngin() {
                   Produksi Energi <span className="text-[#9747FF]">Harian</span>
                 </h3>
 
-                <p className="italic text-sm">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy"
-                  )}
+                <p className="italic bg-[#9747FF] bg-opacity-30 px-2 w-fit rounded font-semibold">
+                  Update Terbaru :{" "}
+                  <span className="font-bold ">
+                    {format(new Date("2023-06-30T23:59:58"), "dd/MM/yyyy")}{" "}
+                  </span>
                 </p>
 
                 {/* {realData.isSuccess && (
@@ -470,12 +475,11 @@ export default function TurbinAngin() {
                   <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
 
-                <p className="italic text-sm">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy"
-                  )}
+                <p className="italic bg-[#9747FF] bg-opacity-30 px-2 w-fit rounded font-semibold">
+                  Update Terbaru :{" "}
+                  <span className="font-bold ">
+                    {format(new Date("2023-06-30T23:59:58"), "dd/MM/yyyy")}{" "}
+                  </span>
                 </p>
 
                 {/* {realData.isSuccess && (

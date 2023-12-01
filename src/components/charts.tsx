@@ -64,7 +64,7 @@ function RealChart({ data }: { data: RealData[] }) {
 
   // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
 
-  const options = {
+  const options: ApexCharts.ApexOptions = {
     chart: {
       stacked: false,
       zoom: {
@@ -74,6 +74,9 @@ function RealChart({ data }: { data: RealData[] }) {
       },
       toolbar: {
         autoSelected: "zoom" as "zoom",
+        tools: {
+          download: false,
+        },
       },
     },
     dataLabels: {
@@ -234,8 +237,8 @@ export function PowerDailyChart({
 
   // dailyDate?.setHours(23, 59, 59, 999);
 
-  const options = {
-    // colors: ["#378ffd", "#e6e600"],
+  const options: ApexCharts.ApexOptions = {
+    // colors: ["#9747FF"],
     chart: {
       stacked: false,
       zoom: {
@@ -243,8 +246,13 @@ export function PowerDailyChart({
         enabled: true,
         autoScaleYaxis: true,
       },
+
       toolbar: {
         autoSelected: "zoom" as "zoom",
+
+        tools: {
+          download: false,
+        },
       },
     },
     dataLabels: {
@@ -258,6 +266,10 @@ export function PowerDailyChart({
       {
         title: {
           text: "Daya (W)",
+          style: {
+            fontSize: "15px",
+            fontWeight: 600,
+          },
         },
         // max: maxDataValue,
       },
@@ -275,6 +287,14 @@ export function PowerDailyChart({
       labels: {
         format: "HH:mm:ss",
         datetimeUTC: false,
+      },
+      title: {
+        text: "Waktu",
+        style: {
+          fontSize: "15px",
+          fontWeight: 600,
+        },
+        offsetY: 4,
       },
       // max: dailyDate?.getTime(),
     },
@@ -440,7 +460,7 @@ function EnergyDailyChart({
 
   // dailyDate?.setHours(23, 59, 59, 999);
 
-  const options = {
+  const options: ApexCharts.ApexOptions = {
     // colors: ["#378ffd", "#e6e600"],
     chart: {
       stacked: false,
@@ -452,12 +472,16 @@ function EnergyDailyChart({
 
       toolbar: {
         autoSelected: "zoom" as "zoom",
+        tools: {
+          download: false,
+        },
       },
     },
     plotOptions: {
       bar: {
         columnWidth: "100%",
-        strokeWidth: 2,
+        // strokeWidth: 2,
+
         borderRadius: 5,
         borderRadiusApplication: "end" as "end",
       },
@@ -539,7 +563,7 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
     },
   ];
 
-  const options = {
+  const options: ApexCharts.ApexOptions = {
     chart: {
       stacked: false,
       zoom: {
@@ -548,12 +572,15 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
 
       toolbar: {
         autoSelected: "zoom" as "zoom",
+        tools: {
+          download: false,
+        },
       },
     },
     plotOptions: {
       bar: {
         columnWidth: "100%",
-        strokeWidth: 2,
+        // strokeWidth: 2,
         borderRadius: 5,
         borderRadiusApplication: "end" as "end",
       },
@@ -629,17 +656,22 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
     },
   ];
 
-  const options = {
+  const options: ApexCharts.ApexOptions = {
     chart: {
       stacked: false,
       zoom: {
         enabled: false,
       },
+      toolbar: {
+        tools: {
+          download: false,
+        },
+      },
     },
     plotOptions: {
       bar: {
         columnWidth: "100%",
-        strokeWidth: 2,
+        // strokeWidth: 2,
         borderRadius: 5,
         borderRadiusApplication: "end" as "end",
       },
@@ -696,15 +728,15 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
     {
       name: "Efisiensi",
       data: efficiencyData,
-      fill: {
-        colors: ["#A300D6"],
-      },
+      // fill: {
+      //   colors: ["#A300D6"],
+      // },
     },
   ];
 
   // const maxDataValue = Math.max(Math.max(...y1Data), Math.max(...barData));
 
-  const options = {
+  const options: ApexCharts.ApexOptions = {
     chart: {
       stacked: false,
       zoom: {
@@ -714,6 +746,9 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
       },
       toolbar: {
         autoSelected: "zoom" as "zoom",
+        tools: {
+          download: false,
+        },
       },
     },
     dataLabels: {
@@ -746,14 +781,19 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
         datetimeUTC: false,
       },
     },
-    // tooltip: {
-    //   // shared: true,
-    //   x: {
-    //     format: "dd/MM/yy HH:mm",
-    //   },
-    // },
+    tooltip: {
+      x: {
+        format: "dd/MM/yy HH:mm",
+      },
+      y: {
+        formatter: function (value: number) {
+          return FormatNumber(value) + " %";
+        },
+      },
+    },
     stroke: {
       width: 2,
+      curve: "smooth" as "smooth",
     },
   };
 
@@ -821,7 +861,8 @@ export function ComparisonChart({
     },
   ];
 
-  const options = {
+  const options: ApexCharts.ApexOptions = {
+    // colors: ["#9449ff", "#00e396"],
     chart: {
       stacked: false,
       zoom: {
@@ -832,6 +873,9 @@ export function ComparisonChart({
 
       toolbar: {
         autoSelected: "zoom" as "zoom",
+        tools: {
+          download: false,
+        },
       },
     },
 

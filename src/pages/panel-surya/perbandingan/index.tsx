@@ -32,7 +32,9 @@ export default function PerbandinganAcDc() {
 
   const [compareParameter, setCompareParameter] = useState<string>("daya");
 
-  const [powerDate, setPowerDate] = useState<Date | null>(new Date());
+  const [powerDate, setPowerDate] = useState<Date | null>(
+    new Date("2023-06-10T23:59:58")
+  );
   const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
@@ -130,9 +132,27 @@ export default function PerbandinganAcDc() {
                   <Select
                     value={compareParameter}
                     size="small"
-                    sx={{ fontWeight: 700, fontSize: "1.3rem" }}
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: "1.3rem",
+                      "&:focus": {
+                        borderColor: "#80bdff",
+                      },
+                      "'& .MuiInputBase-input'": {
+                        borderRadius: 4,
+                        position: "relative",
+                        // backgroundColor: theme.palette.background.paper,
+                        border: "1px solid #ced4da",
+                        fontSize: 16,
+                        padding: "10px 26px 10px 12px",
+                        // transition: theme.transitions.create([
+                        //   "border-color",
+                        //   "box-shadow",
+                        // ]),
+                      },
+                    }}
                     onChange={(e) => setCompareParameter(e.target.value)}
-                    variant="standard"
+                    variant="outlined"
                   >
                     <MenuItem value="daya">Daya</MenuItem>
                     <MenuItem value="tegangan">Tegangan</MenuItem>
@@ -143,13 +163,15 @@ export default function PerbandinganAcDc() {
                   <p className="text-[#9747FF]">DC</p>
                 </div>
 
-                <p className="italic text-sm">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy HH:mm:ss"
-                  )}{" "}
-                  WIB
+                <p className="italic bg-[#9747FF] bg-opacity-30 px-2 w-fit rounded font-semibold">
+                  Update Terbaru :{" "}
+                  <span className="font-bold ">
+                    {format(
+                      new Date("2023-06-30T23:59:58"),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </span>
                 </p>
 
                 {/* {realData.isSuccess && (

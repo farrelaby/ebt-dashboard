@@ -43,9 +43,15 @@ export default function PanelSuryaAC() {
   const closeModal = useCallback(() => setOpen(false), []);
 
   // const [powerDate, setPowerDate] = useState<Date | null>(new Date());
-  const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
-  const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
-  const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
+  const [dailyDate, setDailyDate] = useState<Date | null>(
+    new Date("2023-06-10T23:59:58")
+  );
+  const [monthlyDate, setMonthlyDate] = useState<Date | null>(
+    new Date("2023-06-10T23:59:58")
+  );
+  const [yearlyDate, setYearlyDate] = useState<Date | null>(
+    new Date("2023-06-10T23:59:58")
+  );
 
   const [selectedParameter, setSelectedParameter] = useState<string>("energi");
 
@@ -157,7 +163,7 @@ export default function PanelSuryaAC() {
               <p className="italic text-sm">
                 Last updated :{" "}
                 {format(
-                  new Date(terbaru.value[4]?.db_created_at),
+                  new Date("2023-06-30T23:59:58"),
                   "dd/MM/yyyy HH:mm:ss"
                 )}{" "}
                 WIB
@@ -236,8 +242,8 @@ export default function PanelSuryaAC() {
               <div className="flex flex-row justify-between">
                 <div className="flex flex-col gap-1">
                   <div className="text-2xl font-bold flex flex-row gap-2 items-center">
-                    <p>Produksi</p>
-                    <Select
+                    <p>Produksi Daya</p>
+                    {/* <Select
                       value={selectedParameter}
                       size="small"
                       sx={{ fontWeight: 700, fontSize: "1.3rem" }}
@@ -246,7 +252,7 @@ export default function PanelSuryaAC() {
                     >
                       <MenuItem value="energi">Energi</MenuItem>
                       <MenuItem value="daya">Daya</MenuItem>
-                    </Select>
+                    </Select> */}
                     <p className="text-[#9747FF]">24 Jam</p>
                   </div>
 
@@ -260,13 +266,15 @@ export default function PanelSuryaAC() {
                       WIB
                     </p>
                   )} */}
-                  <p className="italic text-sm ">
-                    Last updated :{" "}
-                    {format(
-                      new Date(terbaru.value[4]?.db_created_at),
-                      "dd/MM/yyyy HH:mm:ss"
-                    )}{" "}
-                    WIB
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date("2023-06-30T23:59:58"),
+                        "dd/MM/yyyy HH:mm:ss"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 </div>
                 <DatePicker
@@ -280,11 +288,13 @@ export default function PanelSuryaAC() {
                 />
               </div>
               <div className="mt-3">
-                {selectedParameter == "daya" ? (
+                <PowerDailyChart data={harian.value as DailyData[]} />
+
+                {/* {selectedParameter == "daya" ? (
                   <PowerDailyChart data={harian.value as DailyData[]} />
                 ) : (
                   <EnergyDailyChart data={harian.value as DailyData[]} />
-                )}
+                )} */}
 
                 {/* {dailyData.isSuccess ? (
                   selectedParameter == "daya" ? (
@@ -299,8 +309,8 @@ export default function PanelSuryaAC() {
             </div>
           </section>
 
-          <EnergyOverviewCard title="Hari Ini" value={10} />
-          <EnergyOverviewCard title="Bulan Ini" value={100} />
+          <EnergyOverviewCard title="Hari Ini" value={3.98} />
+          <EnergyOverviewCard title="Bulan Ini" value={88.132} />
         </div>
 
         {/* <section
@@ -371,12 +381,11 @@ export default function PanelSuryaAC() {
                   </p>
                 )} */}
 
-                <p className="italic text-sm">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy"
-                  )}
+                <p className="italic bg-[#9747FF] bg-opacity-30 px-2 w-fit rounded font-semibold">
+                  Update Terbaru :{" "}
+                  <span className="font-bold ">
+                    {format(new Date("2023-06-30T23:59:58"), "dd/MM/yyyy")}{" "}
+                  </span>
                 </p>
 
                 {/* {realData.isSuccess && (
@@ -434,12 +443,11 @@ export default function PanelSuryaAC() {
                     )}{" "}
                   </p>
                 )} */}
-                <p className="italic text-sm">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy"
-                  )}
+                <p className="italic bg-[#9747FF] bg-opacity-30 px-2 w-fit rounded font-semibold">
+                  Update Terbaru :{" "}
+                  <span className="font-bold ">
+                    {format(new Date("2023-06-30T23:59:58"), "dd/MM/yyyy")}{" "}
+                  </span>
                 </p>
 
                 {/* {realData.isSuccess && (

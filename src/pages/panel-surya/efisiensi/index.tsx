@@ -19,7 +19,8 @@ import { EfficiencyChart } from "@/components/charts";
 import { OutdoorSolarEfficiencyData } from "@/types/types";
 
 import terbaru from "@/dummies/surya/ac/terbaru.json";
-import efficiencyDummy from "@/dummies/surya/ac/efisiensi.json";
+// import efficiencyDummy from "@/dummies/surya/ac/efisiensi.json";
+import efficiencyDummy from "@/dummies/surya/ac/generate.json";
 
 const tooltipTitle = (
   <>
@@ -34,7 +35,9 @@ const tooltipTitle = (
 export default function PanelSuryaEfisiensi() {
   const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
 
-  const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
+  const [dailyDate, setDailyDate] = useState<Date | null>(
+    new Date("2023-04-12T23:55:00")
+  );
 
   const changeDate = useCallback((newDate: Date | null) => {
     setDailyDate(newDate);
@@ -133,8 +136,8 @@ export default function PanelSuryaEfisiensi() {
               <div className="flex flex-col gap-2">
                 <div className="flex flex-row gap-2 justify-center">
                   <h3 className="text-2xl font-bold">
-                    <span className="text-[#9747FF]">Efisiensi</span> Daya
-                    Produksi
+                    Rasio Daya <span className="text-[#9747FF]">Input</span> vs{" "}
+                    <span className="text-[#9747FF]">Output</span>
                   </h3>
                   <Tooltip
                     title={tooltipTitle}
@@ -153,13 +156,15 @@ export default function PanelSuryaEfisiensi() {
                   </Tooltip>
                 </div>
 
-                <p className="italic text-sm">
-                  Last updated :{" "}
-                  {format(
-                    new Date(terbaru.value[4]?.db_created_at),
-                    "dd/MM/yyyy HH:mm:ss"
-                  )}{" "}
-                  WIB
+                <p className="italic bg-[#9747FF] bg-opacity-30 px-2 w-fit rounded font-semibold">
+                  Update Terbaru :{" "}
+                  <span className="font-bold ">
+                    {format(
+                      new Date("2023-06-30T23:59:58"),
+                      "dd/MM/yyyy HH:mm:ss"
+                    )}{" "}
+                    WIB
+                  </span>
                 </p>
                 {/* {outdoorSolar.isSuccess && (
                   <p className="italic text-sm">

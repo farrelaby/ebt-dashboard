@@ -63,24 +63,6 @@
         "sum_bulanan_daya": 1062454.5,
         "sum_bulanan_energi": 88537.87
       }
-    },
-    {
-      "bulan_ke": 7,
-      "value": {
-        "avg_bulanan_tegangan": 51.35,
-        "avg_bulanan_arus": 1.03,
-        "sum_bulanan_daya": 252240.27,
-        "sum_bulanan_energi": 21020.02
-      }
-    },
-    {
-      "bulan_ke": 10,
-      "value": {
-        "avg_bulanan_tegangan": 61.87,
-        "avg_bulanan_arus": 2.26,
-        "sum_bulanan_daya": 243055.7,
-        "sum_bulanan_energi": 20254.64
-      }
     }
   ]
 }

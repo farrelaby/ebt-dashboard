@@ -3,8 +3,8 @@ import { useState, useCallback } from "react";
 
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
+
+import Tabs from "@mui/material/Tabs";
 
 interface TabRouterValue {
   [key: string]: string;
@@ -42,39 +42,54 @@ function SolarHeader() {
         oleh panel surya yang terletak di gedung Departemen Teknik Nuklir dan
         Teknik Fisika Universitas Gadjah Mada (DTNTF UGM).
       </p> */}
-      <Box className=" py-4" sx={{ width: "100%", typography: "body1" }}>
-        <TabContext value={tabValue}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <TabList
-              onChange={handleTabChange}
-              aria-label="lab API tabs example"
-              textColor="secondary"
-              indicatorColor="secondary"
-            >
-              <Tab
-                onClick={() => router.push("/panel-surya/ac")}
-                label="AC"
-                value="1"
-              />
-              <Tab
-                onClick={() => router.push("/panel-surya/dc")}
-                label="DC"
-                value="2"
-              />
-              <Tab
-                onClick={() => router.push("/panel-surya/perbandingan")}
-                label="Perbandingan"
-                value="3"
-              />
-              <Tab
-                onClick={() => router.push("/panel-surya/efisiensi")}
-                label="Efisiensi"
-                value="4"
-              />
-            </TabList>
-          </Box>
-        </TabContext>
+      {/* <Box className=" py-4" sx={{ width: "100%", typography: "body1" }}>
+        <TabContext value={tabValue}> */}
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={tabValue}
+          onChange={handleTabChange}
+          aria-label="lab API tabs example"
+          textColor="secondary"
+          indicatorColor="secondary"
+          sx={{
+            "& .MuiTabs-indicator": {
+              // backgroundColor: "#E86826",
+              height: 5,
+              // top: 2,
+            },
+            "& .MuiTab-root.Mui-selected": {
+              // color: "#E86826",
+              fontWeight: "700",
+            },
+            "& .MuiTab-root": {
+              fontSize: "1rem",
+            },
+          }}
+        >
+          <Tab
+            onClick={() => router.push("/panel-surya/ac")}
+            label="AC"
+            value="1"
+          />
+          <Tab
+            onClick={() => router.push("/panel-surya/dc")}
+            label="DC"
+            value="2"
+          />
+          <Tab
+            onClick={() => router.push("/panel-surya/perbandingan")}
+            label="Perbandingan"
+            value="3"
+          />
+          <Tab
+            onClick={() => router.push("/panel-surya/efisiensi")}
+            label="Efisiensi"
+            value="4"
+          />
+        </Tabs>
       </Box>
+      {/* </TabContext>
+      </Box> */}
     </header>
   );
 }

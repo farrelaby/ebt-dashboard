@@ -63,6 +63,7 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
               defaultValue={sub(new Date(), { days: 1 })}
               onChange={(newValue) => setStartValue(newValue)}
               disableFuture
+              views={["year", "month", "day"]}
             />
             <DatePicker
               label="Tanggal Akhir"
@@ -70,6 +71,7 @@ function DownloadModal({ open, onClose, modalTitle }: DownloadModalProps) {
               defaultValue={new Date()}
               onChange={(newValue) => setEndValue(newValue)}
               disableFuture
+              views={["year", "month", "day"]}
             />
           </div>
           <h3>Pilih format file</h3>

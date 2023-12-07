@@ -17,7 +17,10 @@ function DownloadButton({ onClick }: DownloadButtonProps) {
         backgroundColor: "#9747FF",
         // backgroundColor: "#000000",
       }}
-      className="m-2 my-4"
+      sx={{
+        marginY: "1rem",
+      }}
+      // className="m-2 my-4"
     >
       <div className="flex flex-row gap-2 text-lg">
         <Image src="/download-logo.svg" alt="" width={20} height={20} />

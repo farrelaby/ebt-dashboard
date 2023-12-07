@@ -109,7 +109,16 @@ function RealChart({ data }: { data: RealData[] }) {
         format: "HH:mm:ss",
         datetimeUTC: false,
       },
+      title: {
+        text: "Waktu",
+        style: {
+          // fontSize: "15px",
+          fontWeight: 600,
+        },
+        offsetY: 4,
+      },
     },
+
     tooltip: {
       // shared: true,
       // x: {
@@ -515,6 +524,14 @@ function EnergyDailyChart({
         format: "HH:mm:ss",
         datetimeUTC: false,
       },
+      title: {
+        text: "Waktu",
+        style: {
+          fontSize: "15px",
+          fontWeight: 600,
+        },
+        offsetY: 4,
+      },
       // max: dailyDate?.getTime(),
     },
 
@@ -599,6 +616,14 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
     xaxis: {
       type: "datetime" as "datetime",
       categories: timestamps,
+      title: {
+        text: "Hari",
+        style: {
+          fontSize: "15px",
+          fontWeight: 600,
+        },
+        offsetY: 4,
+      },
     },
     tooltip: {
       x: {
@@ -689,6 +714,14 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
     ],
     xaxis: {
       categories: timestamps,
+      title: {
+        text: "Bulan",
+        style: {
+          fontSize: "15px",
+          fontWeight: 600,
+        },
+        offsetY: 4,
+      },
     },
     tooltip: {
       x: {
@@ -779,6 +812,14 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
       labels: {
         format: "HH:mm:ss",
         datetimeUTC: false,
+      },
+      title: {
+        text: "Waktu",
+        style: {
+          fontSize: "15px",
+          fontWeight: 600,
+        },
+        offsetY: 4,
       },
     },
     tooltip: {
@@ -900,6 +941,14 @@ export function ComparisonChart({
         format: "HH:mm:ss",
         datetimeUTC: false,
       },
+      // title: {
+      //   text: "Waktu",
+      //   style: {
+      //     fontSize: "15px",
+      //     fontWeight: 600,
+      //   },
+      //   offsetY: 30,
+      // },
     },
 
     tooltip: {

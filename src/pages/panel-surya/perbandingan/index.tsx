@@ -16,6 +16,7 @@ import { DailyData, OutdoorSolarData, RealData } from "@/types/types";
 import axios from "axios";
 import { useQuery, useQueries } from "@tanstack/react-query";
 import { SERVER_EBT_URL } from "@/configs/url";
+
 import harian from "@/dummies/surya/ac/harian.json";
 
 import { realTimeCardItems } from "@/utils";
@@ -63,6 +64,7 @@ export default function PerbandinganAcDc() {
           );
           return res.data;
         },
+        onError: () => snackbarHandler.open(),
       },
       {
         queryKey: [
@@ -79,6 +81,7 @@ export default function PerbandinganAcDc() {
           );
           return res.data;
         },
+        onError: () => snackbarHandler.open(),
       },
     ],
   });
@@ -107,9 +110,27 @@ export default function PerbandinganAcDc() {
                   <Select
                     value={compareParameter}
                     size="small"
-                    sx={{ fontWeight: 700, fontSize: "1.3rem" }}
+                    sx={{
+                      fontWeight: 700,
+                      fontSize: "1.3rem",
+                      "&:focus": {
+                        borderColor: "#80bdff",
+                      },
+                      "'& .MuiInputBase-input'": {
+                        borderRadius: 4,
+                        position: "relative",
+                        // backgroundColor: theme.palette.background.paper,
+                        border: "1px solid #ced4da",
+                        fontSize: 16,
+                        padding: "10px 26px 10px 12px",
+                        // transition: theme.transitions.create([
+                        //   "border-color",
+                        //   "box-shadow",
+                        // ]),
+                      },
+                    }}
                     onChange={(e) => setCompareParameter(e.target.value)}
-                    variant="standard"
+                    variant="outlined"
                   >
                     <MenuItem value="daya">Daya</MenuItem>
                     <MenuItem value="tegangan">Tegangan</MenuItem>
@@ -121,13 +142,15 @@ export default function PerbandinganAcDc() {
                 </div>
 
                 {realData.isSuccess && (
-                  <p className="italic text-sm ">
-                    Last updated :{" "}
-                    {format(
-                      new Date(realData.data[4]?.db_created_at),
-                      "dd/MM/yyyy HH:mm:ss"
-                    )}{" "}
-                    WIB
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy HH:mm:ss"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>

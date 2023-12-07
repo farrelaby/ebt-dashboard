@@ -27,8 +27,12 @@ import harian from "@/dummies/angin/harian.json";
 import { realTimeCardItems } from "@/utils";
 
 import { format } from "date-fns";
+import { ErrorSnackbar } from "@/components/snackbars";
+import { useErrorSnackbar } from "@/hooks/snackbars.hooks";
 
 export default function TurbinAngin() {
+  const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
+
   const [open, setOpen] = useState(false);
 
   const [powerDate, setPowerDate] = useState<Date | null>(new Date());
@@ -44,24 +48,24 @@ export default function TurbinAngin() {
     yearlyDate
   );
 
-  const dailyPower = useQuery({
-    queryKey: [
-      "dailyData",
-      { data: "turbin", waktu: format(powerDate as Date, "yyyy-MM-dd") },
-    ],
-    queryFn: async () => {
-      const res = await axios.get(
-        `${SERVER_EBT_URL}/ebt/harian?data=turbin&waktu=${format(
-          powerDate as Date,
-          "yyyy-MM-dd"
-        )}`
-      );
-      return res.data.value as DailyData[];
-    },
-    // placeholderData: harian.value,
+  // const dailyPower = useQuery({
+  //   queryKey: [
+  //     "dailyData",
+  //     { data: "turbin", waktu: format(powerDate as Date, "yyyy-MM-dd") },
+  //   ],
+  //   queryFn: async () => {
+  //     const res = await axios.get(
+  //       `${SERVER_EBT_URL}/ebt/harian?data=turbin&waktu=${format(
+  //         powerDate as Date,
+  //         "yyyy-MM-dd"
+  //       )}`
+  //     );
+  //     return res.data.value as DailyData[];
+  //   },
+  //   // placeholderData: harian.value,
 
-    // onError: () => snackbarHandler.open(),
-  });
+  //   // onError: () => snackbarHandler.open(),
+  // });
 
   const queryClient = useQueryClient();
 
@@ -92,6 +96,8 @@ export default function TurbinAngin() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/Wind-Turbine.svg" />
       </Head>
+
+      <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
 
       <div className="pb-8">
         <DownloadButton onClick={() => setOpen(true)} />
@@ -176,13 +182,15 @@ export default function TurbinAngin() {
                   </div>
 
                   {realData.isSuccess && (
-                    <p className="italic text-sm ">
-                      Last updated :{" "}
-                      {format(
-                        new Date(realData.data[4]?.db_created_at),
-                        "dd/MM/yyyy HH:mm:ss"
-                      )}{" "}
-                      WIB
+                    <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                      Update Terbaru :{" "}
+                      <span className="font-bold ">
+                        {format(
+                          new Date(realData.data[4]?.db_created_at),
+                          "dd/MM/yyyy HH:mm:ss"
+                        )}{" "}
+                        WIB
+                      </span>
                     </p>
                   )}
                 </div>
@@ -355,12 +363,15 @@ export default function TurbinAngin() {
                   Produksi Energi <span className="text-[#9747FF]">Harian</span>
                 </h3>
                 {realData.isSuccess && (
-                  <p className="italic text-sm">
-                    Last updated :{" "}
-                    {format(
-                      new Date(realData.data[4]?.db_created_at),
-                      "dd/MM/yyyy"
-                    )}
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>
@@ -397,12 +408,15 @@ export default function TurbinAngin() {
                   <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
                 {realData.isSuccess && (
-                  <p className="italic text-sm">
-                    Last updated :{" "}
-                    {format(
-                      new Date(realData.data[4]?.db_created_at),
-                      "dd/MM/yyyy"
-                    )}
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>

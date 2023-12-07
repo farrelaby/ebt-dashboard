@@ -212,13 +212,15 @@ export default function PanelSuryaAC() {
                   </div>
 
                   {realData.isSuccess && (
-                    <p className="italic text-sm ">
-                      Last updated :{" "}
-                      {format(
-                        new Date(realData.data[4]?.db_created_at),
-                        "dd/MM/yyyy HH:mm:ss"
-                      )}{" "}
-                      WIB
+                    <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                      Update Terbaru :{" "}
+                      <span className="font-bold ">
+                        {format(
+                          new Date(realData.data[4]?.db_created_at),
+                          "dd/MM/yyyy HH:mm:ss"
+                        )}{" "}
+                        WIB
+                      </span>
                     </p>
                   )}
                 </div>
@@ -333,12 +335,15 @@ export default function PanelSuryaAC() {
                   </p>
                 )} */}
                 {realData.isSuccess && (
-                  <p className="italic text-sm">
-                    Last updated :{" "}
-                    {format(
-                      new Date(realData.data[4]?.db_created_at),
-                      "dd/MM/yyyy"
-                    )}
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>
@@ -386,12 +391,15 @@ export default function PanelSuryaAC() {
                   </p>
                 )} */}
                 {realData.isSuccess && (
-                  <p className="italic text-sm">
-                    Last updated :{" "}
-                    {format(
-                      new Date(realData.data[4]?.db_created_at),
-                      "dd/MM/yyyy"
-                    )}
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>

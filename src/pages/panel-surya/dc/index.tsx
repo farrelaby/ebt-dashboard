@@ -185,13 +185,15 @@ export default function PanelSuryaDC() {
                   </div>
 
                   {realData.isSuccess && (
-                    <p className="italic text-sm ">
-                      Last updated :{" "}
-                      {format(
-                        new Date(realData.data[4]?.db_created_at),
-                        "dd/MM/yyyy HH:mm:ss"
-                      )}{" "}
-                      WIB
+                    <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                      Update Terbaru :{" "}
+                      <span className="font-bold ">
+                        {format(
+                          new Date(realData.data[4]?.db_created_at),
+                          "dd/MM/yyyy HH:mm:ss"
+                        )}{" "}
+                        WIB
+                      </span>
                     </p>
                   )}
                 </div>
@@ -362,12 +364,15 @@ export default function PanelSuryaDC() {
                   Produksi Energi <span className="text-[#9747FF]">Harian</span>
                 </h3>
                 {realData.isSuccess && (
-                  <p className="italic text-sm">
-                    Last updated :{" "}
-                    {format(
-                      new Date(realData.data[4]?.db_created_at),
-                      "dd/MM/yyyy"
-                    )}
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>
@@ -404,12 +409,15 @@ export default function PanelSuryaDC() {
                   <span className="text-[#9747FF]">Bulanan</span>
                 </h3>
                 {realData.isSuccess && (
-                  <p className="italic text-sm">
-                    Last updated :{" "}
-                    {format(
-                      new Date(realData.data[4]?.db_created_at),
-                      "dd/MM/yyyy"
-                    )}
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(realData.data[4]?.db_created_at),
+                        "dd/MM/yyyy"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>

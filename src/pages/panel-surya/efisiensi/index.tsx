@@ -25,7 +25,7 @@ const tooltipTitle = (
     <p className="text-sm">
       Efisiensi daya dihitung dengan membagi{" "}
       <b>daya yang dihasilkan oleh panel surya</b> dengan{" "}
-      <b>daya yang diterima oleh panel surya dari matahari</b>.
+      <b>hasil kali bacaan piranometer dengan luas area total panel surya</b>.
     </p>
   </>
 );
@@ -73,6 +73,7 @@ export default function PanelSuryaEfisiensi() {
       return res.data as OutdoorSolarEfficiencyData[];
     },
     // initialData: efficiencyDummy,
+    onError: () => snackbarHandler.open(),
   });
 
   // const [outdoorSolar, efficiencyData] = useQueries({
@@ -134,11 +135,12 @@ export default function PanelSuryaEfisiensi() {
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <div className="flex flex-row gap-2 justify-center">
-                  <h3 className="text-2xl font-bold">
+                  {/* <h3 className="text-2xl font-bold">
                     Rasio Daya <span className="text-[#9747FF]">Input</span> vs{" "}
                     <span className="text-[#9747FF]">Output</span>
-                  </h3>
-                  {/* <Tooltip
+                  </h3> */}
+                  <h3 className="text-2xl font-bold">Efisiensi</h3>
+                  <Tooltip
                     title={tooltipTitle}
                     placement="right"
                     arrow
@@ -152,7 +154,7 @@ export default function PanelSuryaEfisiensi() {
                         height={18}
                       />
                     </button>
-                  </Tooltip> */}
+                  </Tooltip>
                 </div>
                 {outdoorSolar.isSuccess && (
                   <p className="italic text-sm">
@@ -162,6 +164,18 @@ export default function PanelSuryaEfisiensi() {
                       "dd/MM/yyyy HH:mm:ss"
                     )}{" "}
                     WIB
+                  </p>
+                )}
+                {outdoorSolar.isSuccess && (
+                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                    Update Terbaru :{" "}
+                    <span className="font-bold ">
+                      {format(
+                        new Date(outdoorSolar.data as string),
+                        "dd/MM/yyyy HH:mm:ss"
+                      )}{" "}
+                      WIB
+                    </span>
                   </p>
                 )}
               </div>

@@ -45,22 +45,22 @@ function SolarHeader() {
       </p> */}
       {/* <Box className=" my-4" sx={{ width: "100%", typography: "body1" }}>
         <TabContext value={tabValue}> */}
-      <Box className="border-b-2 border-gray-400 rounded ">
+      <Box sx={{ borderBottom: 1, borderColor: "slategrey" }}>
         <Tabs
           value={tabValue}
           onChange={handleTabChange}
-          aria-label="lab API tabs example"
           textColor="secondary"
           indicatorColor="secondary"
+          centered
           sx={{
             "& .MuiTabs-indicator": {
               // backgroundColor: "#E86826",
-              height: 5,
+              // height: 3,
               // top: 2,
             },
             "& .MuiTab-root.Mui-selected": {
               // color: "#E86826",
-              fontWeight: "700",
+              fontWeight: "600",
             },
             "& .MuiTab-root": {
               fontSize: "1rem",

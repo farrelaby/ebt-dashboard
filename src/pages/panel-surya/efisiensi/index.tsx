@@ -27,7 +27,7 @@ const tooltipTitle = (
     <p className="text-sm">
       Efisiensi daya dihitung dengan membagi{" "}
       <b>daya yang dihasilkan oleh panel surya</b> dengan{" "}
-      <b>daya yang diterima oleh panel surya dari matahari</b>.
+      <b>hasil kali bacaan piranometer dengan luas area total panel surya</b>.
     </p>
   </>
 );
@@ -125,19 +125,22 @@ export default function PanelSuryaEfisiensi() {
 
       <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} />
 
-      <div className="pb-8">
+      <div className="pb-8 pt-4">
         {/* <h2>aku Efisiensi solar</h2> */}
         <section
           id="harian"
           className="mt-2 flex flex-col bg-white shadow-md rounded-3xl"
         >
-          <div className="mx-9 my-6">
+          <div className="mx-6 mt-4">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
-                <div className="flex flex-row gap-2 justify-center">
-                  <h3 className="text-2xl font-bold">
+                <div className="flex flex-row gap-2">
+                  {/* <h3 className="text-2xl font-bold">
                     Rasio Daya <span className="text-[#9747FF]">Input</span> vs{" "}
                     <span className="text-[#9747FF]">Output</span>
+                  </h3> */}
+                  <h3 className="text-2xl font-bold">
+                    Efisiensi <span className="text-[#9747FF]">Daya</span>
                   </h3>
                   <Tooltip
                     title={tooltipTitle}

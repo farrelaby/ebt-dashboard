@@ -119,12 +119,12 @@ export default function PerbandinganAcDc() {
 
       {/* <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} /> */}
 
-      <div className="pb-8">
+      <div className="pb-8 pt-4">
         <section
           id="daya-jam"
           className="mt-2 flex flex-col bg-white shadow-md rounded-3xl  "
         >
-          <div className="mx-9 my-6">
+          <div className="mx-6 mt-4">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <div className="text-2xl font-bold flex flex-row gap-2 items-center">
@@ -135,20 +135,16 @@ export default function PerbandinganAcDc() {
                     sx={{
                       fontWeight: 700,
                       fontSize: "1.3rem",
-                      "&:focus": {
-                        borderColor: "#80bdff",
-                      },
-                      "'& .MuiInputBase-input'": {
-                        borderRadius: 4,
+                      "& .MuiInputBase-input": {
+                        // borderRadius: 4,
                         position: "relative",
                         // backgroundColor: theme.palette.background.paper,
-                        border: "1px solid #ced4da",
-                        fontSize: 16,
+                        border: "1px solid #9747FF",
+
                         padding: "10px 26px 10px 12px",
-                        // transition: theme.transitions.create([
-                        //   "border-color",
-                        //   "box-shadow",
-                        // ]),
+                      },
+                      "&:focus": {
+                        borderColor: "#9747FF",
                       },
                     }}
                     onChange={(e) => setCompareParameter(e.target.value)}

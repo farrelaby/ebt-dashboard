@@ -72,7 +72,7 @@ export default function Home() {
 
       {/* <ErrorSnackbar toastOpen={snackbarOpen} toastHandler={snackbarHandler} /> */}
 
-      <div className="min-h-screen pb-8">
+      <div className="min-h-screen pb-8 w-full">
         <header className="flex flex-row pl-6">
           <Image src="/home-earth.svg" alt="earth" width={200} height={200} />
           <div className="relative bottom-4">
@@ -92,7 +92,7 @@ export default function Home() {
           <span className="text-[#9747FF]">5</span> Data Terakhir
         </h3>
 
-        <div className="flex flex-row gap-8 mt-8">
+        <div className="flex flex-row justify-between mt-8">
           <section id="panel-surya">
             <div className="flex flex-row gap-4 justify-center border-b pb-2">
               <h3 className="text-2xl font-semibold ">
@@ -108,7 +108,7 @@ export default function Home() {
                 <option value="suryaDC">DC</option>
               </select>
             </div>
-            <div className="flex flex-col mt-3 gap-4 ">
+            <div className="flex flex-col mt-3 gap-4 rounded">
               <RealChart data={terbaru.value} />
 
               {/* {solarReal.isSuccess ? (
@@ -188,24 +188,24 @@ export default function Home() {
   );
 }
 
-import { twoDecimalPlaces } from "@/utils";
+// import { twoDecimalPlaces } from "@/utils";
 
-function OverviewCard({
-  value,
-  unit,
-  title,
-}: {
-  value: number | undefined | null;
-  unit: string;
-  title: string;
-}) {
-  return (
-    <div className="bg-white w-36 h-32 shadow-md flex flex-col place-items-center justify-center rounded-lg">
-      <h4 className="text-4xl font-semibold">
-        {typeof value === "number" ? twoDecimalPlaces(value) : "-"}
-      </h4>
-      <p className="text-lg text-[#A4A6B3]">{unit}</p>
-      <div className="text-lg font-semibold text-[#9747FF]">{title}</div>
-    </div>
-  );
-}
+// function OverviewCard({
+//   value,
+//   unit,
+//   title,
+// }: {
+//   value: number | undefined | null;
+//   unit: string;
+//   title: string;
+// }) {
+//   return (
+//     <div className="bg-white w-36 h-32 shadow-md flex flex-col place-items-center justify-center rounded-lg">
+//       <h4 className="text-4xl font-semibold">
+//         {typeof value === "number" ? twoDecimalPlaces(value) : "-"}
+//       </h4>
+//       <p className="text-lg text-[#A4A6B3]">{unit}</p>
+//       <div className="text-lg font-semibold text-[#9747FF]">{title}</div>
+//     </div>
+//   );
+// }

@@ -51,15 +51,16 @@ function SolarHeader() {
           aria-label="lab API tabs example"
           textColor="secondary"
           indicatorColor="secondary"
+          centered
           sx={{
             "& .MuiTabs-indicator": {
               // backgroundColor: "#E86826",
-              height: 5,
+              // height: 5,
               // top: 2,
             },
             "& .MuiTab-root.Mui-selected": {
               // color: "#E86826",
-              fontWeight: "700",
+              fontWeight: "600",
             },
             "& .MuiTab-root": {
               fontSize: "1rem",

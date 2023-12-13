@@ -7,10 +7,10 @@ import { format, getMonth, getYear } from "date-fns";
 
 import { SERVER_EBT_URL } from "@/configs/url";
 
-import terbaru from "@/dummies/angin/terbaru.json";
-import harian from "@/dummies/angin/harian.json";
-import bulanan from "@/dummies/angin/bulanan.json";
-import tahunan from "@/dummies/angin/tahunan.json";
+// import terbaru from "@/dummies/angin/terbaru.json";
+// import harian from "@/dummies/angin/harian.json";
+// import bulanan from "@/dummies/angin/bulanan.json";
+// import tahunan from "@/dummies/angin/tahunan.json";
 
 export const useWindFetch = (
   dailyDate: Date | null,

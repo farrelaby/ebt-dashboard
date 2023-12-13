@@ -165,7 +165,7 @@ function RealChart({ data }: { data: RealData[] }) {
   };
 
   return (
-    <div className="bg-white shadow-md pt-3 h-72">
+    <div className="bg-white shadow-md pt-3 h-72 rounded">
       <ApexChart
         options={options}
         series={series}

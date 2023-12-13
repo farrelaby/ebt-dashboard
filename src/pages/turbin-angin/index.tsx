@@ -158,12 +158,12 @@ export default function TurbinAngin() {
           </div>
         </section> */}
 
-        <div className="grid grid-cols-6 grid-rows-2 grid-flow-col gap-4 pt-2">
+        <div className="grid grid-cols-6 grid-rows-2 grid-flow-col gap-4">
           <section
             id="daya-jam"
             className="col-span-5 row-span-2 flex flex-col bg-white shadow-md rounded-3xl "
           >
-            <div className="mx-9 mt-6 mb-2">
+            <div className="mx-6 mt-4 pb-2">
               <div className="flex flex-row justify-between">
                 <div className="flex flex-col gap-1">
                   <div className="text-2xl font-bold flex flex-row gap-2 items-center">
@@ -356,7 +356,7 @@ export default function TurbinAngin() {
           id="harian"
           className="mt-9 flex flex-col bg-white shadow-md rounded-3xl"
         >
-          <div className="mx-9 my-10">
+          <div className="mx-6 mt-4 pb-2">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold">
@@ -400,7 +400,7 @@ export default function TurbinAngin() {
           id="bulanan"
           className="mt-9 flex flex-col bg-white shadow-md rounded-3xl"
         >
-          <div className="mx-9 my-10">
+          <div className="mx-6 mt-4 pb-2">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
                 <h3 className="text-2xl font-bold">

@@ -1,22 +1,16 @@
 import { useQueries, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-import {
-  RealData,
-  DailyData,
-  MonthlyData,
-  YearlyData,
-  OutdoorSolarData,
-} from "@/types/types";
+import { RealData, DailyData, MonthlyData, YearlyData } from "@/types/types";
 
 import { format, getMonth, getYear } from "date-fns";
 
 import { SERVER_EBT_URL, SERVER_HEB_URL } from "@/configs/url";
 
-import terbaru from "@/dummies/surya/dc/terbaru.json";
-import harian from "@/dummies/surya/dc/harian.json";
-import bulanan from "@/dummies/surya/dc/bulanan.json";
-import tahunan from "@/dummies/surya/dc/tahunan.json";
+// import terbaru from "@/dummies/surya/dc/terbaru.json";
+// import harian from "@/dummies/surya/dc/harian.json";
+// import bulanan from "@/dummies/surya/dc/bulanan.json";
+// import tahunan from "@/dummies/surya/dc/tahunan.json";
 
 export const useSolarFetch = (
   device: "suryaAC" | "suryaDC",

@@ -388,7 +388,7 @@ export function PowerDailyChart({
       <ApexChart
         options={options}
         series={series}
-        type="area"
+        type="line"
         width={"100%"}
         height={420}
       />

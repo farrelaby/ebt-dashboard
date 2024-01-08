@@ -133,7 +133,7 @@ export default function PerbandinganAcDc() {
                 </div>
 
                 {realData.isSuccess && (
-                  <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
+                  <p className="w-fit italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
                     Update Terbaru :{" "}
                     <span className="font-bold ">
                       {format(

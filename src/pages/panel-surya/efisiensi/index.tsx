@@ -19,6 +19,7 @@ import { EfficiencyChart } from "@/components/charts";
 import { OutdoorSolarEfficiencyData } from "@/types/types";
 
 import efficiencyDummy from "@/dummies/surya/ac/efisiensi.json";
+import { SERVER_HEB_URL } from "@/configs/url";
 
 const tooltipTitle = (
   <>
@@ -43,7 +44,7 @@ export default function PanelSuryaEfisiensi() {
     queryKey: ["realData", "outdoor", "solar_power"],
     queryFn: async () => {
       const res = await axios.get(
-        `http://10.46.10.128:3001/site/outdoor/solar_power
+        `${SERVER_HEB_URL}/site/outdoor/solar_power
         `
       );
       // console.log(res.data);
@@ -134,7 +135,7 @@ export default function PanelSuryaEfisiensi() {
           <div className="mx-6 mt-4 pb-2">
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-2">
-                <div className="flex flex-row gap-2 justify-center">
+                <div className="flex flex-row gap-2 ">
                   {/* <h3 className="text-2xl font-bold">
                     Rasio Daya <span className="text-[#9747FF]">Input</span> vs{" "}
                     <span className="text-[#9747FF]">Output</span>
@@ -158,7 +159,7 @@ export default function PanelSuryaEfisiensi() {
                     </button>
                   </Tooltip>
                 </div>
-                {outdoorSolar.isSuccess && (
+                {/* {outdoorSolar.isSuccess && (
                   <p className="italic text-sm">
                     Last updated :{" "}
                     {format(
@@ -167,7 +168,7 @@ export default function PanelSuryaEfisiensi() {
                     )}{" "}
                     WIB
                   </p>
-                )}
+                )} */}
                 {outdoorSolar.isSuccess && (
                   <p className="italic bg-[#9747FF] bg-opacity-30 px-2 rounded font-semibold">
                     Update Terbaru :{" "}

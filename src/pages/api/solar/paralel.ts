@@ -8,14 +8,10 @@ import Cors from "cors";
 import axios from "axios";
 
 import { twoDecimalPlaces } from "@/utils";
-import {
-  format,
-  sub,
-  differenceInMinutes,
-  differenceInSeconds,
-} from "date-fns";
+import { format, sub, differenceInMinutes } from "date-fns";
 
 import { prisma } from "../db";
+import { SERVER_EBT_URL } from "@/configs/url";
 
 const cors = Cors({
   methods: ["GET", "HEAD"],
@@ -62,7 +58,7 @@ export default async function handler(
   try {
     // console.time("serial");
     const panelFetch = await axios
-      .get(`http://10.46.10.128:5000/ebt/harian?data=suryaAC&waktu=${tanggal}`)
+      .get(`${SERVER_EBT_URL}/ebt/harian?data=suryaAC&waktu=${tanggal}`)
       .then((response) => response.data.value as DailyData[]);
 
     let panelData;
@@ -112,6 +108,7 @@ export default async function handler(
     // console.timeEnd("paralel");
 
     // console.log(panelData);
+    // console.log(outdoorData);
 
     const panelPower = panelData.map((data) => {
       return {
@@ -203,7 +200,7 @@ export default async function handler(
 
     // res.status(200).send(data);
   } catch (error) {
-    // console.log(error);
+    console.log(error);
     return res.status(500).send(error);
   }
 }

@@ -1,5 +1,7 @@
 FROM node:18-alpine AS base
 
+ENV TZ="Asia/Bangkok"
+
 RUN npm install -g pnpm@8.8.0
 # Install dependencies only when needed
 FROM base AS deps
@@ -43,7 +45,7 @@ FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-ENV DATABASE_URL="mysql://root:superhero@10.46.10.128:8001/heb_iot?schema=public"
+ENV DATABASE_URL="mysql://root:superhero@10.46.7.51:8001/heb_iot?schema=public"
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 

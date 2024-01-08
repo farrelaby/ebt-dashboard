@@ -746,21 +746,37 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
 }
 
 function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
-  const efficiencyData: number[] = [];
-  const timestamps: Date[] = [];
+  // const efficiencyData: number[] = [];
+  // const timestamps: Date[] = [];
 
-  data?.map((data) => {
-    efficiencyData.push(data.efficiency);
-    timestamps.push(data.timestamp as Date);
+  // data?.map((data) => {
+  //   efficiencyData.push(data.efficiency);
+  //   timestamps.push(data.timestamp as Date);
+  // });
+
+  // console.log(timestamps);
+
+  // const series = [
+  //   {
+  //     name: "Efisiensi",
+  //     data: efficiencyData,
+  //     // fill: {
+  //     //   colors: ["#A300D6"],
+  //     // },
+  //   },
+  // ];
+
+  const efficiencyObject = data?.map((data) => {
+    return {
+      x: data.timestamp,
+      y: data.efficiency,
+    };
   });
 
   const series = [
     {
       name: "Efisiensi",
-      data: efficiencyData,
-      // fill: {
-      //   colors: ["#A300D6"],
-      // },
+      data: efficiencyObject,
     },
   ];
 
@@ -804,8 +820,8 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
       // },
     ],
     xaxis: {
+      // categories: timestamps,
       type: "datetime" as "datetime",
-      categories: timestamps,
       labels: {
         format: "HH:mm:ss",
         datetimeUTC: false,

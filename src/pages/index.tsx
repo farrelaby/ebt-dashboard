@@ -14,6 +14,7 @@ import { useErrorSnackbar } from "@/hooks/snackbars.hooks";
 import { RealChart } from "@/components/charts";
 
 import { useState } from "react";
+import { SERVER_EBT_URL } from "@/configs/url";
 
 // import terbaru from "../dummies/surya/ac/terbaru.json";
 
@@ -38,7 +39,7 @@ export default function Home() {
         queryKey: ["realData", { data: `${solarDropdown}` }],
         queryFn: async () => {
           const res = await axios.get(
-            `http://10.46.10.128:5000/ebt?data=${solarDropdown}`
+            `${SERVER_EBT_URL}/ebt?data=${solarDropdown}`
           );
           return res.data.value as RealData[];
         },
@@ -49,9 +50,7 @@ export default function Home() {
       {
         queryKey: ["realData", { data: "turbin" }],
         queryFn: async () => {
-          const res = await axios.get(
-            "http://10.46.10.128:5000/ebt?data=turbin"
-          );
+          const res = await axios.get(`${SERVER_EBT_URL}/ebt?data=turbin`);
           return res.data.value as RealData[];
         },
 
@@ -112,7 +111,7 @@ export default function Home() {
               {solarReal.isSuccess ? (
                 <RealChart data={solarReal.data} />
               ) : (
-                <Skeleton variant="rounded" width={650} height={290} />
+                <Skeleton variant="rounded" width={640} height={290} />
               )}
 
               {/* <div className="flex flex-row gap-4 mt-2 justify-center">
@@ -150,7 +149,7 @@ export default function Home() {
               {windReal.isSuccess ? (
                 <RealChart data={windReal.data} />
               ) : (
-                <Skeleton variant="rounded" width={650} height={290} />
+                <Skeleton variant="rounded" width={640} height={290} />
               )}
               {/* <div className="flex flex-row gap-4 mt-2 justify-center">
                 {windReal.isSuccess ? (

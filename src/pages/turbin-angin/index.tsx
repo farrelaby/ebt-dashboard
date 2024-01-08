@@ -222,9 +222,14 @@ export default function TurbinAngin() {
           <EnergyOverviewCard
             title="Hari Ini"
             value={
-              todayEnergy != undefined && todayEnergy.length != 0
-                ? todayEnergy[todayEnergy?.length - 1]?.value
-                    .sum_harian_energi / 1000
+              todayEnergy != undefined
+                ? isNaN(
+                    todayEnergy[todayEnergy?.length - 1]?.value
+                      .sum_harian_energi as number
+                  )
+                  ? 0
+                  : (todayEnergy[todayEnergy?.length - 1]?.value
+                      .sum_harian_energi as number) / 1000
                 : 0
             }
           />
@@ -232,8 +237,13 @@ export default function TurbinAngin() {
             title="Bulan Ini"
             value={
               thisMonthEnergy != undefined
-                ? (thisMonthEnergy[thisMonthEnergy.length - 1].value
-                    .sum_bulanan_energi as number) / 1000 ?? 0
+                ? isNaN(
+                    thisMonthEnergy[thisMonthEnergy?.length - 1]?.value
+                      .sum_bulanan_energi as number
+                  )
+                  ? 0
+                  : (thisMonthEnergy[thisMonthEnergy?.length - 1]?.value
+                      .sum_bulanan_energi as number) / 1000
                 : 0
             }
           />
@@ -354,7 +364,7 @@ export default function TurbinAngin() {
 
         <section
           id="harian"
-          className="mt-9 flex flex-col bg-white shadow-md rounded-3xl"
+          className="mt-9 flex flex-col bg-white shadow-md rounded-3xl min-h-96"
         >
           <div className="mx-6 mt-4 pb-2">
             <div className="flex flex-row justify-between">
@@ -382,7 +392,7 @@ export default function TurbinAngin() {
                 onChange={(newValue) => setMonthlyDate(newValue)}
                 disableFuture
                 openTo="month"
-                views={["month", "year"]}
+                views={["year", "month"]}
                 // className="mr-16"
               />
             </div>
@@ -398,7 +408,7 @@ export default function TurbinAngin() {
 
         <section
           id="bulanan"
-          className="mt-9 flex flex-col bg-white shadow-md rounded-3xl"
+          className="mt-9 flex flex-col bg-white shadow-md rounded-3xl min-h-96"
         >
           <div className="mx-6 mt-4 pb-2">
             <div className="flex flex-row justify-between">

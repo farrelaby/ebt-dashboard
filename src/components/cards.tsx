@@ -34,9 +34,11 @@ export function EnergyOverviewCard({
 }) {
   // console.log(value === NaN);
   return (
-    <div className="bg-white w-full shadow-md flex flex-col place-items-center justify-center rounded-3xl">
+    <div className="bg-white w-full min-h-64 shadow-md flex flex-col place-items-center justify-center rounded-3xl">
       <h4 className="text-4xl font-semibold">
-        {typeof value === "number" ? twoDecimalPlaces(value) : "-"}
+        {typeof value === "number"
+          ? FormatNumber(twoDecimalPlaces(value))
+          : "-"}
       </h4>
       <p className="text-lg text-[#A4A6B3]">{unit}</p>
       <p className="text-lg font-semibold ">Total Energi</p>

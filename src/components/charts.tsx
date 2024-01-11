@@ -2,7 +2,6 @@ import {
   DailyData,
   MonthlyData,
   YearlyData,
-  OutdoorSolarData,
   RealData,
   OutdoorSolarEfficiencyData,
 } from "@/types/types";
@@ -11,10 +10,7 @@ import { twoDecimalPlaces } from "@/utils";
 import FormatNumber from "@/utils/numFormatter";
 import { format } from "date-fns";
 
-import { use, useMemo } from "react";
-
 import dynamic from "next/dynamic";
-import { title } from "process";
 const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
 function RealChart({ data }: { data: RealData[] }) {
@@ -83,7 +79,7 @@ function RealChart({ data }: { data: RealData[] }) {
       enabled: false,
     },
     markers: {
-      size: 0,
+      size: 3.5,
     },
 
     yaxis: [
@@ -151,7 +147,9 @@ function RealChart({ data }: { data: RealData[] }) {
         </div>
         <div class="flex flex-row gap-10 justify-between">
         <div class="">Arus</div>
-        <div class="font-semibold">${data.additionalInfo.current} A</div>
+        <div class="font-semibold">${FormatNumber(
+          data.additionalInfo.current
+        )} A</div>
         </div>
           
             </div>
@@ -265,7 +263,14 @@ export function PowerDailyChart({
       enabled: false,
     },
     markers: {
-      size: 0,
+      size: 3.5,
+    },
+
+    noData: {
+      text: "Tidak ada data",
+      style: {
+        fontSize: "1.5rem",
+      },
     },
 
     yaxis: [
@@ -279,13 +284,6 @@ export function PowerDailyChart({
         },
         // max: maxDataValue,
       },
-      // {
-      //   opposite: true,
-      //   title: {
-      //     text: "Solar Irradiance (W/m^2)",
-      //   },
-      //   // max: maxDataValue,
-      // },
     ],
     xaxis: {
       type: "datetime" as "datetime",
@@ -368,7 +366,9 @@ export function PowerDailyChart({
             </div>
             <div class="flex flex-row gap-10 justify-between">
             <div class="">Arus</div>
-            <div class="font-semibold">${data.additionalInfo.current} A</div>
+            <div class="font-semibold">${FormatNumber(
+              data.additionalInfo.current
+            )} A</div>
             </div>
             </div>
             </div>
@@ -495,7 +495,7 @@ function EnergyDailyChart({
       enabled: false,
     },
     markers: {
-      size: 0,
+      size: 3.5,
     },
 
     yaxis: [
@@ -603,6 +603,13 @@ function EnergyMonthlyChart({ data }: { data: MonthlyData[] }) {
       enabled: false,
     },
 
+    noData: {
+      text: "Tidak ada data",
+      style: {
+        fontSize: "1.5rem",
+      },
+    },
+
     yaxis: [
       {
         title: {
@@ -667,7 +674,9 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
   ];
 
   data?.map((data) => {
-    barData.push(data.value.sum_bulanan_energi as number);
+    barData.push(
+      twoDecimalPlaces((data.value.sum_bulanan_energi as number) / 1000)
+    );
     timestamps.push(monthNames[data.bulan_ke - 1]);
   });
 
@@ -702,10 +711,17 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
       enabled: false,
     },
 
+    noData: {
+      text: "Tidak ada data",
+      style: {
+        fontSize: "1.5rem",
+      },
+    },
+
     yaxis: [
       {
         title: {
-          text: "Energi (Wh)",
+          text: "Energi (kWh)",
         },
       },
     ],
@@ -726,7 +742,7 @@ function EnergyYearlyChart({ data }: { data: YearlyData[] }) {
       },
       y: {
         formatter: function (value: number) {
-          return FormatNumber(value) + " Wh";
+          return FormatNumber(value) + " kWh";
         },
       },
     },
@@ -801,7 +817,14 @@ function EfficiencyChart({ data }: { data: OutdoorSolarEfficiencyData[] }) {
       enabled: false,
     },
     markers: {
-      size: 0,
+      size: 3.5,
+    },
+
+    noData: {
+      text: "Tidak ada data",
+      style: {
+        fontSize: "1.5rem",
+      },
     },
 
     yaxis: [
@@ -934,7 +957,14 @@ export function ComparisonChart({
       enabled: false,
     },
     markers: {
-      size: 0,
+      size: 3.5,
+    },
+
+    noData: {
+      text: "Tidak ada data",
+      style: {
+        fontSize: "1.5rem",
+      },
     },
 
     yaxis: [

@@ -6,6 +6,11 @@ import Tab from "@mui/material/Tab";
 
 import Tabs from "@mui/material/Tabs";
 
+import Image from "next/image";
+import { useInfoModal } from "@/hooks/info-modal.hooks";
+import SuryaInfoModal from "./surya-info-modal";
+import TurbinInfoModal from "./turbin-info-modal";
+
 interface TabRouterValue {
   [key: string]: string;
 }
@@ -32,18 +37,26 @@ function SolarHeader() {
     []
   );
 
+  const { infoModalHandler, openModal } = useInfoModal();
+
   return (
     <header>
-      <h1 className="text-4xl font-bold pt-8">
-        Monitoring <span className="text-[#9747FF]">Panel Surya</span>
-      </h1>
-      {/* <p className="pt-2">
-        Di sini Anda dapat melihat kumpulan data produksi energi yang dihasilkan
-        oleh panel surya yang terletak di gedung Departemen Teknik Nuklir dan
-        Teknik Fisika Universitas Gadjah Mada (DTNTF UGM).
-      </p> */}
-      {/* <Box className=" py-4" sx={{ width: "100%", typography: "body1" }}>
-        <TabContext value={tabValue}> */}
+      <div className="flex flex-row gap-4 pt-8 pb-4 items-end">
+        <h1 className="text-4xl font-bold ">
+          Monitoring <span className="text-[#9747FF]">Panel Surya</span>
+        </h1>
+        <button type="button" onClick={infoModalHandler.open}>
+          <Image
+            src="/info-circle.svg"
+            alt="Solar Panel"
+            width={30}
+            height={30}
+          />
+        </button>
+      </div>
+
+      <SuryaInfoModal open={openModal} onClose={infoModalHandler.close} />
+
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={tabValue}
@@ -112,11 +125,24 @@ function WindHeader() {
   //   []
   // );
 
+  const { infoModalHandler, openModal } = useInfoModal();
+
   return (
     <header>
-      <h1 className="text-4xl font-bold py-8 ">
-        Monitoring <span className="text-[#9747FF]">Turbin Angin</span>
-      </h1>
+      <div className="flex flex-row gap-4 pt-8 pb-4 items-end">
+        <h1 className="text-4xl font-bold ">
+          Monitoring <span className="text-[#9747FF]">Turbin Angin</span>
+        </h1>
+        <button type="button" onClick={infoModalHandler.open}>
+          <Image
+            src="/info-circle.svg"
+            alt="Solar Panel"
+            width={30}
+            height={30}
+          />
+        </button>
+      </div>
+      <TurbinInfoModal open={openModal} onClose={infoModalHandler.close} />
       {/* <p className="pt-5 pb-8">
         Di sini Anda dapat melihat kumpulan data produksi energi yang dihasilkan
         oleh turbin angin yang terletak di gedung Departemen Teknik Nuklir dan

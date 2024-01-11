@@ -2,37 +2,25 @@ import Head from "next/head";
 import { useState } from "react";
 import { DownloadButton } from "../../../components/button";
 import { DownloadModal } from "@/components/modal";
-import { format } from "date-fns";
+import { format, isThisMonth, isToday } from "date-fns";
 
 import { ErrorSnackbar } from "@/components/snackbars";
 import { useErrorSnackbar } from "@/hooks/snackbars.hooks";
 
 import { Skeleton } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers";
 
 import { EnergyOverviewCard } from "@/components/cards";
 import {
   PowerDailyChart,
-  EnergyDailyChart,
   EnergyMonthlyChart,
   EnergyYearlyChart,
 } from "@/components/charts";
-import {
-  RealData,
-  DailyData,
-  MonthlyData,
-  YearlyData,
-  OutdoorSolarData,
-} from "@/types/types";
+import { DailyData, MonthlyData, YearlyData } from "@/types/types";
 
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
-import { SERVER_EBT_URL } from "@/configs/url";
-import harian from "@/dummies/surya/dc/harian.json";
-
-import { useSolarFetch, useOutdoorSolarFetch } from "@/hooks/solar.hooks";
+import { useSolarFetch } from "@/hooks/solar.hooks";
+import { useOverviewDataFetch } from "@/hooks/overview-data.hooks";
+import { id } from "date-fns/locale";
 
 export default function PanelSuryaDC() {
   const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
@@ -73,24 +61,10 @@ export default function PanelSuryaDC() {
   //   onError: () => snackbarHandler.open(),
   // });
 
-  const queryClient = useQueryClient();
-
-  const todayEnergy = queryClient.getQueryData<MonthlyData[]>([
-    "monthlyData",
-    {
-      data: "suryaDC",
-      bulan: new Date().getMonth() + 1,
-      tahun: new Date().getFullYear(),
-    },
-  ]);
-
-  const thisMonthEnergy = queryClient.getQueryData<YearlyData[]>([
-    "yearlyData",
-    {
-      data: "suryaDC",
-      tahun: new Date().getFullYear(),
-    },
-  ]);
+  const { dailyEnergy, monthlyEnergy } = useOverviewDataFetch(
+    dailyDate,
+    "suryaDC"
+  );
 
   return (
     <>
@@ -223,29 +197,34 @@ export default function PanelSuryaDC() {
           </section>
 
           <EnergyOverviewCard
-            title="Hari Ini"
+            title={
+              isToday(dailyDate as Date)
+                ? "Hari Ini"
+                : format(dailyDate as Date, "dd MMM yyyy", { locale: id })
+            }
             value={
-              todayEnergy != undefined
-                ? isNaN(
-                    todayEnergy[todayEnergy?.length - 1]?.value
-                      .sum_harian_energi as number
-                  )
+              dailyEnergy.isSuccess
+                ? isNaN(dailyEnergy.data[0]?.value.sum_harian_energi as number)
                   ? 0
-                  : (todayEnergy[todayEnergy?.length - 1]?.value
-                      .sum_harian_energi as number) / 1000
+                  : (dailyEnergy.data[0]?.value.sum_harian_energi as number) /
+                    1000
                 : 0
             }
           />
+
           <EnergyOverviewCard
-            title="Bulan Ini"
+            title={
+              isThisMonth(dailyDate as Date)
+                ? "Bulan Ini"
+                : format(dailyDate as Date, "MMMM yyyy", { locale: id })
+            }
             value={
-              thisMonthEnergy != undefined
+              monthlyEnergy.isSuccess
                 ? isNaN(
-                    thisMonthEnergy[thisMonthEnergy?.length - 1]?.value
-                      .sum_bulanan_energi as number
+                    monthlyEnergy.data[0]?.value.sum_bulanan_energi as number
                   )
                   ? 0
-                  : (thisMonthEnergy[thisMonthEnergy?.length - 1]?.value
+                  : (monthlyEnergy.data[0]?.value
                       .sum_bulanan_energi as number) / 1000
                 : 0
             }

@@ -4,14 +4,11 @@ import { DownloadButton } from "../../components/button";
 import { DownloadModal } from "@/components/modal";
 
 import { Skeleton } from "@mui/material";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
 import { DatePicker } from "@mui/x-date-pickers";
 
 import { EnergyOverviewCard } from "@/components/cards";
 import {
   PowerDailyChart,
-  EnergyDailyChart,
   EnergyMonthlyChart,
   EnergyYearlyChart,
 } from "@/components/charts";
@@ -19,16 +16,11 @@ import { DailyData, MonthlyData, YearlyData } from "@/types/types";
 
 import { useWindFetch } from "@/hooks/wind.hooks";
 
-import axios from "axios";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { SERVER_EBT_URL } from "@/configs/url";
-import harian from "@/dummies/angin/harian.json";
-
-import { realTimeCardItems } from "@/utils";
-
-import { format } from "date-fns";
+import { format, isThisMonth, isToday } from "date-fns";
 import { ErrorSnackbar } from "@/components/snackbars";
 import { useErrorSnackbar } from "@/hooks/snackbars.hooks";
+import { useOverviewDataFetch } from "@/hooks/overview-data.hooks";
+import { id } from "date-fns/locale";
 
 export default function TurbinAngin() {
   const { snackbarOpen, snackbarHandler } = useErrorSnackbar();
@@ -39,8 +31,6 @@ export default function TurbinAngin() {
   const [dailyDate, setDailyDate] = useState<Date | null>(new Date());
   const [monthlyDate, setMonthlyDate] = useState<Date | null>(new Date());
   const [yearlyDate, setYearlyDate] = useState<Date | null>(new Date());
-
-  const [selectedParameter, setSelectedParameter] = useState<string>("energi");
 
   const [realData, dailyData, monthlyData, yearlyData] = useWindFetch(
     dailyDate,
@@ -67,26 +57,10 @@ export default function TurbinAngin() {
   //   // onError: () => snackbarHandler.open(),
   // });
 
-  const queryClient = useQueryClient();
-
-  const todayEnergy = queryClient.getQueryData<MonthlyData[]>([
-    "monthlyData",
-    {
-      data: "turbin",
-      bulan: new Date().getMonth() + 1,
-      tahun: new Date().getFullYear(),
-    },
-  ]);
-
-  const thisMonthEnergy = queryClient.getQueryData<YearlyData[]>([
-    "yearlyData",
-    {
-      data: "turbin",
-      tahun: new Date().getFullYear(),
-    },
-  ]);
-
-  // console.log(todayEnergy);
+  const { dailyEnergy, monthlyEnergy } = useOverviewDataFetch(
+    dailyDate,
+    "suryaAC"
+  );
 
   return (
     <>
@@ -220,29 +194,34 @@ export default function TurbinAngin() {
           </section>
 
           <EnergyOverviewCard
-            title="Hari Ini"
+            title={
+              isToday(dailyDate as Date)
+                ? "Hari Ini"
+                : format(dailyDate as Date, "dd MMM yyyy", { locale: id })
+            }
             value={
-              todayEnergy != undefined
-                ? isNaN(
-                    todayEnergy[todayEnergy?.length - 1]?.value
-                      .sum_harian_energi as number
-                  )
+              dailyEnergy.isSuccess
+                ? isNaN(dailyEnergy.data[0]?.value.sum_harian_energi as number)
                   ? 0
-                  : (todayEnergy[todayEnergy?.length - 1]?.value
-                      .sum_harian_energi as number) / 1000
+                  : (dailyEnergy.data[0]?.value.sum_harian_energi as number) /
+                    1000
                 : 0
             }
           />
+
           <EnergyOverviewCard
-            title="Bulan Ini"
+            title={
+              isThisMonth(dailyDate as Date)
+                ? "Bulan Ini"
+                : format(dailyDate as Date, "MMMM yyyy", { locale: id })
+            }
             value={
-              thisMonthEnergy != undefined
+              monthlyEnergy.isSuccess
                 ? isNaN(
-                    thisMonthEnergy[thisMonthEnergy?.length - 1]?.value
-                      .sum_bulanan_energi as number
+                    monthlyEnergy.data[0]?.value.sum_bulanan_energi as number
                   )
                   ? 0
-                  : (thisMonthEnergy[thisMonthEnergy?.length - 1]?.value
+                  : (monthlyEnergy.data[0]?.value
                       .sum_bulanan_energi as number) / 1000
                 : 0
             }
